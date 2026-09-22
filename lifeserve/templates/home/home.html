@@ -1,0 +1,784 @@
+{% extends "home/base.html" %}
+{% load i18n static %}
+
+{% block title %}
+LifeServe Blood Bank
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section class="ls-hero">
+
+    <div class="ls-hero-bg"></div>
+
+    <div class="container position-relative">
+
+        <div class="row align-items-center min-vh-75">
+
+            <div class="col-lg-7">
+
+                <span class="ls-badge">
+                    <i class="bi bi-heart-pulse-fill"></i>
+                    {% translate "LifeServe Blood Bank" %}
+                </span>
+
+                <h1 class="ls-hero-title">
+                    {% translate "Every Drop" %}
+                    <span>{% translate "Can Save a Life." %}</span>
+                </h1>
+
+                <p class="ls-hero-text">
+                    {% blocktrans %}Connecting generous blood donors with patients in need. Together, we can build a healthier community where safe blood is available when it matters most.{% endblocktrans %}
+                </p>
+
+                <div class="ls-hero-buttons">
+
+                    {% if user.is_authenticated %}
+
+                        <a href="{% url 'donate_blood' %}"
+                           class="ls-btn ls-btn-danger">
+
+                            <i class="bi bi-droplet-fill"></i>
+                            {% translate "Donate Blood" %}
+
+                        </a>
+
+                        <a href="{% url 'blood_request' %}"
+                           class="ls-btn ls-btn-light">
+
+                            <i class="bi bi-heart-pulse"></i>
+                            {% translate "Request Blood" %}
+
+                        </a>
+
+                    {% else %}
+
+                        <a href="{% url 'login' %}"
+                           class="ls-btn ls-btn-danger">
+
+                            <i class="bi bi-droplet-fill"></i>
+                            {% translate "Donate Blood" %}
+
+                        </a>
+
+                        <a href="{% url 'login' %}"
+                           class="ls-btn ls-btn-light">
+
+                            <i class="bi bi-heart-pulse"></i>
+                            {% translate "Request Blood" %}
+
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="ls-trust">
+
+                    <div>
+                        <i class="bi bi-shield-check"></i>
+                        {% translate "Safe & Secure" %}
+                    </div>
+
+                    <div>
+                        <i class="bi bi-clock"></i>
+                        {% translate "Quick Response" %}
+                    </div>
+
+                    <div>
+                        <i class="bi bi-people"></i>
+                        {% translate "Community Driven" %}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-5 text-center">
+
+                <div class="ls-hero-image-wrapper">
+
+                    <div class="ls-circle"></div>
+
+                    <img src="{% static 'images/donate1.jpg' %}"
+                         class="ls-hero-image"
+                         alt="{% translate 'Blood Donation' %}">
+
+                    <div class="ls-floating-card ls-card-one">
+
+                        <i class="bi bi-droplet-fill"></i>
+
+                        <div>
+                            <strong>{% translate "Save Lives" %}</strong>
+                            <small>{% translate "One donation matters" %}</small>
+                        </div>
+
+                    </div>
+
+                    <div class="ls-floating-card ls-card-two">
+
+                        <strong>24/7</strong>
+                        <small>{% translate "Emergency Support" %}</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= QUICK STATS ================= -->
+
+<section class="ls-stats">
+
+    <div class="container">
+
+        <div class="ls-stats-box">
+
+            <div class="ls-stat">
+
+                <i class="bi bi-people-fill"></i>
+
+                <div>
+                    <h3>5000+</h3>
+                    <p>{% translate "Registered Donors" %}</p>
+                </div>
+
+            </div>
+
+            <div class="ls-stat">
+
+                <i class="bi bi-droplet-fill"></i>
+
+                <div>
+                    <h3>2500+</h3>
+                    <p>{% translate "Blood Units" %}</p>
+                </div>
+
+            </div>
+
+            <div class="ls-stat">
+
+                <i class="bi bi-heart-fill"></i>
+
+                <div>
+                    <h3>3000+</h3>
+                    <p>{% translate "Patients Helped" %}</p>
+                </div>
+
+            </div>
+
+            <div class="ls-stat">
+
+                <i class="bi bi-hospital-fill"></i>
+
+                <div>
+                    <h3>100+</h3>
+                    <p>{% translate "Partner Hospitals" %}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="ls-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <span class="ls-section-label">
+                    {% translate "ABOUT LIFESERVE" %}
+                </span>
+
+                <h2 class="ls-section-title">
+                    {% translate "Together We Can" %}
+                    <span>{% translate "Save More Lives" %}</span>
+                </h2>
+
+                <p class="ls-section-text">
+                    {% blocktrans %}LifeServe Blood Bank is a modern blood bank management platform dedicated to connecting donors, patients, hospitals and blood bank administrators.{% endblocktrans %}
+                </p>
+
+                <p class="ls-section-text">
+                    {% blocktrans %}Our platform makes blood donation and blood requests simple, fast and transparent while helping manage donors, patients, blood inventory and emergency requests.{% endblocktrans %}
+                </p>
+
+                <div class="ls-feature-list">
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        {% translate "Safe blood management" %}
+                    </div>
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        {% translate "Fast donor connection" %}
+                    </div>
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        {% translate "Real-time request tracking" %}
+                    </div>
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        {% translate "Secure patient records" %}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="ls-about-image">
+
+                    <img src="{% static 'images/blood-donation.png' %}"
+                         alt="Blood Donation">
+
+                    <div class="ls-about-badge">
+
+                        <i class="bi bi-heart-fill"></i>
+
+                        <div>
+                            <strong>{% translate "Every Drop Counts" %}</strong>
+                            <span>{% translate "Donate today" %}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section class="ls-section ls-light-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="ls-section-label">
+                    {% translate "WHAT WE DO" %}
+            </span>
+
+            <h2 class="ls-section-title">
+                {% translate "Our" %} <span>{% translate "Services" %}</span>
+            </h2>
+
+            <p class="ls-section-subtitle">
+                {% translate "Everything you need for safe and efficient blood management." %}
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="ls-service-card">
+
+                    <div class="ls-service-icon">
+                        <img src="{% static 'images/blood-group.png' %}"
+                             alt="Blood Donation">
+                    </div>
+
+                    <h4>{% translate "Blood Donation" %}</h4>
+
+                    <p>
+                        {% blocktrans %}Register as a donor and help someone who needs blood urgently.{% endblocktrans %}
+                    </p>
+
+                    <a href="#">
+                        {% translate "Learn More" %}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="ls-service-card">
+
+                    <div class="ls-service-icon">
+                        <img src="{% static 'images/donation-requests.png' %}"
+                             alt="Blood Request">
+                    </div>
+
+                    <h4>{% translate "Blood Request" %}</h4>
+
+                    <p>
+                        {% blocktrans %}Patients can submit blood requests quickly during their time of need.{% endblocktrans %}
+                    </p>
+
+                    <a href="#">
+                        {% translate "Request Blood" %}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="ls-service-card">
+
+                    <div class="ls-service-icon">
+                        <img src="{% static 'images/blood.png' %}"
+                             alt="Blood Stock">
+                    </div>
+
+                    <h4>{% translate "Blood Stock" %}</h4>
+
+                    <p>
+                        {% blocktrans %}Monitor available blood groups and maintain efficient inventory.{% endblocktrans %}
+                    </p>
+
+                    <a href="#">
+                        {% translate "View Stock" %}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="ls-service-card">
+
+                    <div class="ls-service-icon">
+                        <img src="{% static 'images/emergency.png' %}"
+                             alt="Emergency">
+                    </div>
+
+                    <h4>{% translate "Emergency Support" %}</h4>
+
+                    <p>
+                        {% blocktrans %}Quick access to blood support for critical and emergency situations.{% endblocktrans %}
+                    </p>
+
+                    <a href="#">
+                        {% translate "Get Help" %}
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= BLOOD AVAILABILITY ================= -->
+
+<section class="ls-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="ls-section-label">
+                {% translate "LIVE BLOOD STOCK" %}
+            </span>
+
+            <h2 class="ls-section-title">
+                {% translate "Blood Groups" %} <span>{% translate "Availability" %}</span>
+            </h2>
+
+            <p class="ls-section-subtitle">
+                {% translate "Check the current availability of blood groups in our blood bank." %}
+            </p>
+
+        </div>
+
+        <div class="row g-3">
+
+            {% for stock in blood_stock %}
+
+            <div class="col-6 col-md-3">
+
+                <div class="ls-blood-card">
+
+                    <div class="ls-blood-icon">
+
+                        <i class="bi bi-droplet-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            {{ stock.blood_group }}
+                        </h4>
+
+                        {% if stock.units > 5 %}
+
+                            <span class="stock-available">
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                {% translate "Available" %}
+
+                            </span>
+
+                        {% elif stock.units > 0 %}
+
+                            <span class="stock-low">
+
+                                <i class="bi bi-exclamation-circle-fill"></i>
+
+                                {% translate "Low Stock" %}
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="stock-out">
+
+                                <i class="bi bi-x-circle-fill"></i>
+
+                                {% translate "Out of Stock" %}
+
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="alert alert-info text-center">
+
+                    {% translate "Blood stock information is currently unavailable." %}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= COMPANY ================= -->
+
+<section class="ls-section ls-light-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-7">
+
+                <span class="ls-section-label">
+                    {% translate "OUR ORGANIZATION" %}
+                </span>
+
+                <h2 class="ls-section-title">
+                    {% translate "About" %} <span>{% translate "LifeServe" %}</span>
+                </h2>
+
+                <p class="ls-section-text">
+                    {% blocktrans %}LifeServe Blood Bank is a trusted blood bank management organization dedicated to connecting blood donors with patients in need.{% endblocktrans %}
+                </p>
+
+                <p class="ls-section-text">
+                    {% blocktrans %}The system enables efficient management of blood donations, blood requests, donor information, patient records and blood inventory through a secure and user-friendly platform.{% endblocktrans %}
+                </p>
+
+                <p class="ls-section-text">
+                    {% blocktrans %}Our goal is to strengthen community participation in blood donation and contribute towards a healthier and more responsive healthcare system.{% endblocktrans %}
+                </p>
+
+            </div>
+
+            <div class="col-lg-5">
+
+                <div class="ls-company-image">
+
+                    <img src="{% static 'images/Company.png' %}"
+                         alt="LifeServe">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MISSION VISION ================= -->
+
+<section class="ls-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-5 order-2 order-lg-1">
+
+                <div class="ls-company-image">
+
+                    <img src="{% static 'images/vision.png' %}"
+                         alt="Mission and Vision">
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-7 order-1 order-lg-2">
+
+                <span class="ls-section-label">
+                    {% translate "OUR PURPOSE" %}
+                </span>
+
+                <h2 class="ls-section-title">
+                    {% translate "Mission &" %} <span>{% translate "Vision" %}</span>
+                </h2>
+
+                <div class="ls-mission-box">
+
+                    <div class="ls-mission-icon">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+
+                    <div>
+
+                        <h4>{% translate "Our Mission" %}</h4>
+
+                        <p>
+                            {% blocktrans %}To make blood donation simple, fast and accessible for everyone while helping patients receive safe blood when they need it most.{% endblocktrans %}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="ls-mission-box">
+
+                    <div class="ls-mission-icon">
+                        <i class="bi bi-eye"></i>
+                    </div>
+
+                    <div>
+
+                        <h4>{% translate "Our Vision" %}</h4>
+
+                        <p>
+                            {% blocktrans %}To build a reliable, transparent and technology-driven blood donation network where every patient can quickly access safe blood.{% endblocktrans %}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LEADERSHIP ================= -->
+
+<section class="ls-section ls-light-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="ls-section-label">
+                    {% translate "LEADERSHIP" %}
+            </span>
+
+            <h2 class="ls-section-title">
+                {% translate "Our" %} <span>{% translate "Leadership" %}</span>
+            </h2>
+
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="ls-leader-card">
+
+                    <img src="{% static 'images/Droupadi Murmu.jpg' %}"
+                         alt="Leadership">
+
+                    <h4>Smt. Droupadi Murmu</h4>
+
+                    <p>
+                        {% translate "Hon'ble President of India" %}
+                    </p>
+
+                    <span>
+                        {% translate "President, Indian Red Cross Society" %}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="ls-leader-card">
+
+                    <img src="{% static 'images/jp Nadda.jpg' %}"
+                         alt="Leadership">
+
+                    <h4>Shri Jagat Prakash Nadda</h4>
+
+                    <p>
+                        {% translate "Hon'ble Union Minister of Health & Family Welfare" %}
+                    </p>
+
+                    <span>
+                        {% translate "Government of India" %}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="ls-leader-card">
+
+                    <img src="{% static 'images/RK Jain.jpg' %}"
+                         alt="Leadership">
+
+                    <h4>Shri R K Jain (IAS) Retd</h4>
+
+                    <p>
+                        {% translate "Secretary General" %}
+                    </p>
+
+                    <span>
+                        {% translate "Indian Red Cross Society" %}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="ls-final-cta">
+
+    <div class="container">
+
+        <div class="ls-cta-box">
+
+            <div>
+
+                <span>
+                    {% translate "MAKE A DIFFERENCE TODAY" %}
+                </span>
+
+                <h2>
+                    {% translate "Your Blood Can Give Someone" %}
+                    <strong>{% translate "Another Chance." %}</strong>
+                </h2>
+
+                <p>
+                    {% blocktrans %}One donation can make a meaningful difference. Become a LifeServe donor today.{% endblocktrans %}
+                </p>
+
+            </div>
+
+            <div>
+
+                {% if user.is_authenticated %}
+
+                    <a href="{% url 'donate_blood' %}"
+                       class="ls-btn ls-btn-white">
+
+                        <i class="bi bi-heart-fill"></i>
+                        {% translate "Donate Blood" %}
+
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}"
+                       class="ls-btn ls-btn-white">
+
+                        <i class="bi bi-heart-fill"></i>
+                        {% translate "Become a Donor" %}
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

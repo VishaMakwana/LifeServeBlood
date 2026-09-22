@@ -1,0 +1,486 @@
+/* =========================================
+   LIFE SERVE - PATIENT SIDEBAR
+========================================= */
+
+.patient-sidebar-content {
+    width: 100%;
+    min-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 22px 15px;
+
+    background: #ffffff;
+
+    color: #334155;
+}
+
+
+/* =========================================
+   PROFILE
+========================================= */
+
+.patient-profile {
+    padding: 18px 10px 25px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #eef2f7;
+
+    margin-bottom: 18px;
+}
+
+.patient-avatar-wrapper {
+    position: relative;
+
+    width: 76px;
+    height: 76px;
+
+    margin: 0 auto 13px;
+}
+
+.patient-profile-img {
+    width: 76px;
+    height: 76px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid #ffffff;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.12);
+}
+
+.patient-profile-fallback {
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f5f5f5 0%, #dfe7ee 100%);
+    color: #c41e3a;
+    font-size: 26px;
+    font-weight: 800;
+    border: 3px solid #ffffff;
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.12);
+}
+
+.patient-online-dot {
+    position: absolute;
+
+    right: 2px;
+    bottom: 5px;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    border: 3px solid #ffffff;
+}
+
+.patient-profile h4 {
+    margin: 0 0 7px;
+
+    color: #172033;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    word-break: break-word;
+}
+
+.patient-role {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    background: rgba(196, 30, 58, 0.08);
+
+    color: #c41e3a;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.patient-menu {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.patient-menu-label {
+    padding: 5px 13px 9px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+
+/* =========================================
+   SIDEBAR LINK
+========================================= */
+
+.patient-sidebar-link {
+    position: relative;
+
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 9px 12px;
+
+    border-radius: 12px;
+
+    color: #64748b;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.patient-sidebar-link:hover {
+    background: #f8fafc;
+
+    color: #c41e3a;
+
+    text-decoration: none;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.patient-link-icon {
+    width: 35px;
+    height: 35px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 16px;
+
+    transition: all 0.2s ease;
+}
+
+.patient-sidebar-link:hover .patient-link-icon {
+    background: rgba(196, 30, 58, 0.08);
+
+    color: #c41e3a;
+}
+
+
+/* =========================================
+   ACTIVE LINK
+========================================= */
+
+.patient-sidebar-link.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(196, 30, 58, 0.11),
+            rgba(196, 30, 58, 0.04)
+        );
+
+    color: #c41e3a;
+
+    font-weight: 700;
+}
+
+.patient-sidebar-link.active::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 9px;
+    bottom: 9px;
+
+    width: 3px;
+
+    border-radius: 0 5px 5px 0;
+
+    background: #c41e3a;
+}
+
+.patient-sidebar-link.active .patient-link-icon {
+    background: #c41e3a;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 12px rgba(196, 30, 58, 0.18);
+}
+
+
+/* =========================================
+   NOTIFICATION BADGE
+========================================= */
+
+.patient-notification-link {
+    padding-right: 9px;
+}
+
+.patient-notification-badge {
+    min-width: 21px;
+    height: 21px;
+
+    margin-left: auto;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 6px;
+
+    border-radius: 20px;
+
+    background: #c41e3a;
+
+    color: #ffffff;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+/* =========================================
+   BOTTOM AREA
+========================================= */
+
+.patient-sidebar-bottom {
+    margin-top: auto;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eef2f7;
+}
+
+
+/* =========================================
+   SUPPORT BOX
+========================================= */
+
+.patient-support-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 0 3px 12px;
+
+    padding: 12px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5f6,
+            #fffafa
+        );
+
+    border: 1px solid rgba(196, 30, 58, 0.08);
+}
+
+.support-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(196, 30, 58, 0.09);
+
+    color: #c41e3a;
+
+    font-size: 15px;
+}
+
+.patient-support-box strong {
+    display: block;
+
+    color: #334155;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.patient-support-box small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.patient-sidebar-link.patient-logout {
+    color: #64748b;
+}
+
+.patient-sidebar-link.patient-logout:hover {
+    background: #fff1f2;
+
+    color: #dc2626;
+}
+
+.patient-sidebar-link.patient-logout:hover .patient-link-icon {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+/* =========================================
+   COLLAPSED SIDEBAR SUPPORT
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .patient-sidebar-content {
+        padding: 18px 11px;
+    }
+
+    .patient-link-text {
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .patient-sidebar-content {
+        padding: 20px 15px;
+    }
+
+    .patient-profile {
+        padding-top: 10px;
+    }
+
+    .patient-sidebar-link {
+        min-height: 50px;
+
+        padding: 9px 13px;
+
+        font-size: 14px;
+    }
+
+    .patient-link-icon {
+        width: 38px;
+        height: 38px;
+
+        font-size: 17px;
+    }
+
+    .patient-menu {
+        gap: 6px;
+    }
+
+    .patient-sidebar-bottom {
+        padding-top: 20px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+    .patient-sidebar-content {
+        padding: 15px 12px;
+    }
+
+    .patient-avatar-wrapper,
+    .patient-profile-img {
+        width: 68px;
+        height: 68px;
+    }
+
+    .patient-profile h4 {
+        font-size: 14px;
+    }
+
+    .patient-sidebar-link {
+        font-size: 13px;
+    }
+
+}

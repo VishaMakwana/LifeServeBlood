@@ -1,0 +1,195 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}Edit Blood Stock | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/edit-blood-stock.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-stock-page">
+
+    <!-- Page Header -->
+    <!-- <div class="es-page-header"> -->
+        <section class="es-page-header">
+
+        <div class="es-header-left">
+
+            <div class="es-title-icon">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div>
+                <h1>Edit Blood Stock</h1>
+                <p>Update available blood inventory units</p>
+            </div>
+
+        </div>
+
+        <div class="es-secure-badge">
+            <i class="bi bi-shield-check-fill"></i>
+            <span>Secure Admin Area</span>
+        </div>
+        </section>
+
+    <!-- </div> -->
+
+
+    <!-- Main Card -->
+    <div class="es-card">
+
+        <!-- Card Header -->
+        <div class="es-card-header">
+
+            <div class="es-card-heading">
+
+                <div class="es-heading-icon">
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+
+                <div>
+                    <h2>Update Blood Units</h2>
+                    <p>Modify the current blood stock quantity</p>
+                </div>
+
+            </div>
+
+            <div class="es-edit-badge">
+                <i class="bi bi-pencil-fill"></i>
+                Edit Mode
+            </div>
+
+        </div>
+
+
+        <!-- Card Body -->
+        <div class="es-card-body">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- Blood Group -->
+                <div class="es-form-group">
+
+                    <label for="blood_group">
+                        <i class="bi bi-droplet-fill"></i>
+                        Blood Group
+                    </label>
+
+                    <div class="es-blood-display">
+
+                        <div class="es-blood-icon">
+                            <i class="bi bi-droplet-fill"></i>
+                        </div>
+
+                        <div class="es-blood-info">
+                            <span>Blood Group</span>
+                            <strong>{{ stock.blood_group }}</strong>
+                        </div>
+
+                        <div class="es-readonly-badge">
+                            <i class="bi bi-lock-fill"></i>
+                            Locked
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Units -->
+                <div class="es-form-group es-units-group">
+
+                    <label for="units">
+                        <i class="bi bi-box-seam-fill"></i>
+                        Available Units
+                    </label>
+
+                    <div class="es-input-wrap">
+
+                        <i class="bi bi-droplet"></i>
+
+                        <input
+                            type="number"
+                            id="units"
+                            name="units"
+                            value="{{ stock.units }}"
+                            class="es-form-control"
+                            min="0"
+                            placeholder="Enter blood units"
+                        >
+
+                        <span class="es-input-suffix">Units</span>
+
+                    </div>
+
+                    <small class="es-field-help">
+                        <i class="bi bi-info-circle"></i>
+                        Enter the currently available number of blood units.
+                    </small>
+
+                </div>
+
+
+                <!-- Stock Status -->
+                <div class="es-status-box">
+
+                    <div class="es-status-icon">
+                        <i class="bi bi-activity"></i>
+                    </div>
+
+                    <div class="es-status-content">
+                        <strong>Inventory Update</strong>
+                        <span>
+                            This change will update the available stock for
+                            {{ stock.blood_group }} blood.
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- Actions -->
+                <div class="es-form-actions">
+
+                    <a href="{% url 'blood_stock' %}" class="es-cancel-btn">
+                        <i class="bi bi-arrow-left"></i>
+                        Cancel
+                    </a>
+
+                    <button type="submit" class="es-update-btn">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Update Stock
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div class="es-page-footer">
+
+        <div>
+            <i class="bi bi-droplet-fill"></i>
+            LifeServe Blood Inventory
+        </div>
+
+        <div>
+            <i class="bi bi-shield-lock-fill"></i>
+            Secure & Confidential
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

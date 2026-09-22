@@ -1,0 +1,865 @@
+/* =========================================
+   LIFE SERVE
+   BLOOD AVAILABILITY
+========================================= */
+
+.blood-availability-page {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.availability-header {
+    position: relative;
+
+    min-height: 170px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 26px;
+
+    padding: 30px 38px;
+
+    overflow: hidden;
+
+    border-radius: 21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c41e3a,
+            #a51632,
+            #7f1229
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 14px 38px rgba(196, 30, 58, 0.17);
+}
+
+.availability-header::before,
+.availability-header::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.availability-header::before {
+    width: 310px;
+    height: 310px;
+
+    right: -120px;
+    top: -180px;
+}
+
+.availability-header::after {
+    width: 190px;
+    height: 190px;
+
+    left: -90px;
+    bottom: -125px;
+}
+
+
+/* =========================================
+   HEADER CONTENT
+========================================= */
+
+.availability-header-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.availability-eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 9px;
+
+    color: rgba(255, 255, 255, 0.73);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.availability-header h1 {
+    margin: 0 0 8px;
+
+    font-size: 29px;
+
+    font-weight: 800;
+}
+
+.availability-header p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   HEADER ICON
+========================================= */
+
+.availability-header-icon {
+    position: relative;
+
+    z-index: 2;
+
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    font-size: 30px;
+
+    backdrop-filter: blur(5px);
+}
+
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
+.availability-card {
+    overflow: hidden;
+
+    border: 1px solid #e8edf3;
+
+    border-radius: 19px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 9px 30px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.availability-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 21px 25px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.availability-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.availability-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 18px;
+}
+
+.availability-heading h2 {
+    margin: 0 0 3px;
+
+    color: #172033;
+
+    font-size: 17px;
+
+    font-weight: 800;
+}
+
+.availability-heading p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   LIVE STOCK
+========================================= */
+
+.stock-live {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    background: #f0fdf4;
+
+    color: #15803d;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 4px rgba(34, 197, 94, 0.12);
+}
+
+
+/* =========================================
+   TABLE WRAPPER
+========================================= */
+
+.availability-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #cbd5e1
+        transparent;
+}
+
+.availability-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.availability-table-wrapper::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+
+.availability-table-wrapper::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.availability-table {
+    width: 100%;
+
+    min-width: 700px;
+
+    margin: 0;
+
+    vertical-align: middle;
+}
+
+
+/* =========================================
+   TABLE HEAD
+========================================= */
+
+.availability-table thead th {
+    padding: 15px 22px;
+
+    border-bottom: 1px solid #e9eef4;
+
+    background: #f8fafc;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+.availability-table .number-column {
+    width: 65px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   TABLE BODY
+========================================= */
+
+.availability-table tbody td {
+    padding: 19px 22px;
+
+    border-color: #eef2f7;
+
+    color: #334155;
+
+    font-size: 12px;
+}
+
+.availability-table tbody tr {
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.availability-table tbody tr:hover {
+    background: #fffafb;
+}
+
+
+/* =========================================
+   NUMBER
+========================================= */
+
+.stock-number {
+    width: 29px;
+    height: 29px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   BLOOD GROUP
+========================================= */
+
+.blood-group-cell {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.blood-group-icon {
+    width: 37px;
+    height: 37px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 15px;
+}
+
+.blood-group-cell strong {
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   UNITS
+========================================= */
+
+.units-cell {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 6px;
+}
+
+.units-cell strong {
+    color: #172033;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+.units-cell span {
+    color: #94a3b8;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.availability-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+}
+
+
+/* AVAILABLE */
+
+.availability-status.available {
+    background: #ecfdf5;
+
+    color: #15803d;
+}
+
+
+/* LOW STOCK */
+
+.availability-status.low {
+    background: #fffbeb;
+
+    color: #b77900;
+}
+
+
+/* OUT OF STOCK */
+
+.availability-status.out {
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.availability-empty {
+    padding: 65px 20px !important;
+
+    text-align: center;
+}
+
+.empty-stock-icon {
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 14px;
+
+    border-radius: 17px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 26px;
+}
+
+.availability-empty h3 {
+    margin: 0 0 6px;
+
+    color: #334155;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+.availability-empty p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   CARD FOOTER
+========================================= */
+
+.availability-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px 22px;
+
+    border-top: 1px solid #eef2f7;
+
+    background: #fafbfc;
+}
+
+.availability-note {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+.availability-note i {
+    color: #64748b;
+}
+
+.secure-stock {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #16a34a;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   GUIDE
+========================================= */
+
+.stock-legend {
+    margin-top: 20px;
+
+    padding: 19px 22px;
+
+    border: 1px solid #e8edf3;
+
+    border-radius: 17px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 6px 22px rgba(15, 23, 42, 0.04);
+}
+
+.legend-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 16px;
+
+    color: #334155;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.legend-title i {
+    color: #c41e3a;
+}
+
+.legend-items {
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+}
+
+.legend-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.legend-dot {
+    width: 9px;
+    height: 9px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+}
+
+.available-dot {
+    background: #22c55e;
+}
+
+.low-dot {
+    background: #eab308;
+}
+
+.out-dot {
+    background: #ef4444;
+}
+
+.legend-item strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #475569;
+
+    font-size: 10px;
+}
+
+.legend-item small {
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .availability-header {
+        min-height: 150px;
+
+        padding: 27px;
+
+        border-radius: 18px;
+    }
+
+    .availability-header h1 {
+        font-size: 25px;
+    }
+
+    .availability-header-icon {
+        width: 62px;
+        height: 62px;
+
+        border-radius: 16px;
+
+        font-size: 25px;
+    }
+
+    .availability-card-header {
+        padding: 18px;
+    }
+
+    .availability-table thead th,
+    .availability-table tbody td {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .legend-items {
+        gap: 20px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .availability-header {
+        min-height: auto;
+
+        padding: 23px 20px;
+    }
+
+    .availability-header h1 {
+        font-size: 22px;
+    }
+
+    .availability-header p {
+        font-size: 11px;
+
+        max-width: 280px;
+    }
+
+    .availability-header-icon {
+        display: none;
+    }
+
+    .availability-card {
+        border-radius: 15px;
+    }
+
+    .availability-card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 17px;
+    }
+
+    .stock-live {
+        align-self: flex-start;
+    }
+
+    .availability-footer {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 14px 17px;
+    }
+
+    .stock-legend {
+        padding: 17px;
+
+        border-radius: 15px;
+    }
+
+    .legend-items {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .availability-header {
+        padding: 21px 17px;
+    }
+
+    .availability-card-header {
+        padding: 15px;
+    }
+
+    .availability-heading h2 {
+        font-size: 15px;
+    }
+
+    .availability-heading p {
+        font-size: 9px;
+    }
+
+    .availability-table {
+        min-width: 650px;
+    }
+
+}

@@ -1,0 +1,194 @@
+{% extends "donor/base.html" %}
+{% load static %}
+
+{% block title %}
+Notifications | LifeServe
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/donor-notifications.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="donor-notifications-page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="notification-page-header">
+
+        <div class="notification-header-content">
+
+            <span class="notification-eyebrow">
+                <i class="bi bi-bell-fill"></i>
+                LIFESERVE DONOR PORTAL
+            </span>
+
+            <h1>
+                Notifications
+            </h1>
+
+            <p>
+                Stay updated with your donation requests,
+                approvals and important LifeServe messages.
+            </p>
+
+        </div>
+
+
+        <div class="notification-header-icon">
+
+            <i class="bi bi-bell-fill"></i>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         NOTIFICATION SECTION
+    ========================================== -->
+
+    <section class="notifications-card">
+
+
+        <!-- Header -->
+
+        <div class="notifications-card-header">
+
+            <div class="notification-title-area">
+
+                <div class="notification-title-icon">
+
+                    <i class="bi bi-bell-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        Your Notifications
+                    </h2>
+
+                    <p>
+                        Recent updates and important messages
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <span class="notification-badge">
+                UPDATES
+            </span>
+
+        </div>
+
+
+
+        <!-- Notification List -->
+
+        <div class="notification-list">
+
+
+        {% for n in notifications %}
+
+
+            <article class="notification-item">
+
+
+                <!-- Icon -->
+
+                <div class="notification-item-icon">
+
+                    <i class="bi bi-info-circle-fill"></i>
+
+                </div>
+
+
+                <!-- Content -->
+
+                <div class="notification-item-content">
+
+                    <div class="notification-item-top">
+
+                        <h3>
+                            {{ n.title }}
+                        </h3>
+
+                        <span class="notification-time">
+
+                            <i class="bi bi-clock"></i>
+
+                            {{ n.created_at|date:"d M Y h:i A" }}
+
+                        </span>
+
+                    </div>
+
+
+                    <p>
+                        {{ n.message }}
+                    </p>
+
+
+                    <div class="notification-footer">
+
+                        <span class="notification-source">
+
+                            <i class="bi bi-heart-pulse-fill"></i>
+
+                            LifeServe Blood Bank
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </article>
+
+
+        {% empty %}
+
+
+            <!-- Empty State -->
+
+            <div class="notification-empty">
+
+                <div class="empty-notification-icon">
+
+                    <i class="bi bi-bell-slash-fill"></i>
+
+                </div>
+
+                <h3>
+                    No Notifications Yet
+                </h3>
+
+                <p>
+                    You don't have any new notifications.
+                    Important updates will appear here.
+                </p>
+
+            </div>
+
+
+        {% endfor %}
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

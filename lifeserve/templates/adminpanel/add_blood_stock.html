@@ -1,0 +1,219 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}Add Blood Stock | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/add-blood-stock.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="add-stock-page">
+
+    <!-- Page Header -->
+     
+    <div class="as-page-header">
+        <section class="reports-page-header">
+
+        <div class="as-header-left">
+
+            <div class="as-title-icon">
+                <i class="bi bi-plus-circle-fill"></i>
+            </div>
+
+            <div>
+                <h1>Add Blood Stock</h1>
+                <p>Add new blood units to the inventory</p>
+            </div>
+
+        </div>
+
+        <div class="as-secure-badge">
+            <i class="bi bi-shield-check-fill"></i>
+            <span>Secure Admin Area</span>
+        </div>
+       </section>
+    </div>
+   
+
+
+    <!-- Main Card -->
+    <div class="as-card">
+
+        <!-- Card Header -->
+        <div class="as-card-header">
+
+            <div class="as-card-heading">
+
+                <div class="as-heading-icon">
+                    <i class="bi bi-droplet-fill"></i>
+                </div>
+
+                <div>
+                    <h2>Add Blood Units</h2>
+                    <p>Enter the blood group and available units</p>
+                </div>
+
+            </div>
+
+            <div class="as-add-badge">
+                <i class="bi bi-plus-lg"></i>
+                New Stock
+            </div>
+
+        </div>
+
+
+        <!-- Card Body -->
+        <div class="as-card-body">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- Blood Group -->
+                <div class="as-form-group">
+
+                    <label for="blood_group">
+                        <i class="bi bi-droplet-fill"></i>
+                        Blood Group
+                    </label>
+
+                    <div class="as-select-wrap">
+
+                        <i class="bi bi-droplet"></i>
+
+                        <select
+                            name="blood_group"
+                            id="blood_group"
+                            class="as-form-control"
+                            required
+                        >
+
+                            {% for value,label in blood_groups %}
+
+                            <option value="{{ value }}">
+                                {{ label }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                        <i class="bi bi-chevron-down as-select-arrow"></i>
+
+                    </div>
+
+                    <small class="as-field-help">
+                        <i class="bi bi-info-circle"></i>
+                        Select the blood group you want to add.
+                    </small>
+
+                </div>
+
+
+                <!-- Units -->
+                <div class="as-form-group">
+
+                    <label for="units">
+                        <i class="bi bi-box-seam-fill"></i>
+                        Blood Units
+                    </label>
+
+                    <div class="as-input-wrap">
+
+                        <i class="bi bi-droplet"></i>
+
+                        <input
+                            type="number"
+                            name="units"
+                            id="units"
+                            class="as-form-control"
+                            min="1"
+                            required
+                            placeholder="Enter number of units"
+                        >
+
+                        <span class="as-input-suffix">
+                            Units
+                        </span>
+
+                    </div>
+
+                    <small class="as-field-help">
+                        <i class="bi bi-info-circle"></i>
+                        Enter the number of blood units available.
+                    </small>
+
+                </div>
+
+
+                <!-- Inventory Information -->
+                <div class="as-info-box">
+
+                    <div class="as-info-icon">
+                        <i class="bi bi-activity"></i>
+                    </div>
+
+                    <div class="as-info-content">
+
+                        <strong>Inventory Management</strong>
+
+                        <span>
+                            Make sure the blood group and unit quantity
+                            are accurate before saving the stock.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Actions -->
+                <div class="as-form-actions">
+
+                    <a
+                        href="{% url 'blood_stock' %}"
+                        class="as-cancel-btn"
+                    >
+                        <i class="bi bi-arrow-left"></i>
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="as-save-btn"
+                    >
+                        <i class="bi bi-check-circle-fill"></i>
+                        Save Blood Stock
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div class="as-page-footer">
+
+        <div>
+            <i class="bi bi-droplet-fill"></i>
+            LifeServe Blood Inventory
+        </div>
+
+        <div>
+            <i class="bi bi-shield-lock-fill"></i>
+            Secure & Confidential
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,872 @@
+/* =========================================================
+   LIFESERVE - DONOR PROFILE
+   MODERN PROFESSIONAL UI
+========================================================= */
+
+.donor-profile-page {
+    width: 100%;
+    max-width: 1180px;
+
+    margin: 0 auto;
+
+    padding: 8px 4px 40px;
+
+    color: #172033;
+}
+
+
+/* =========================================================
+   PROFILE PAGE HEADER
+========================================================= */
+
+.profile-page-header {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-height: 165px;
+
+    margin-bottom: 24px;
+
+    padding: 30px 36px;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #831843 0%,
+            #b5163a 48%,
+            #df3153 100%
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 16px 38px
+        rgba(180, 22, 58, 0.17);
+}
+
+
+/* Decorative circle */
+
+.profile-page-header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    right: -135px;
+    top: -220px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.07);
+}
+
+
+.profile-page-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    left: -100px;
+    bottom: -145px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.045);
+}
+
+
+/* =========================================================
+   HEADER TEXT
+========================================================= */
+
+.profile-page-header > div:first-child {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.profile-eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 10px;
+
+    padding: 7px 12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.10);
+
+    color:
+        rgba(255,255,255,0.86);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+.profile-eyebrow i {
+    font-size: 11px;
+}
+
+
+.profile-page-header h1 {
+    margin: 0 0 7px;
+
+    color: #ffffff;
+
+    font-size: 30px;
+
+    line-height: 1.2;
+
+    font-weight: 850;
+
+    letter-spacing: -0.5px;
+}
+
+
+.profile-page-header p {
+    margin: 0;
+
+    color:
+        rgba(255,255,255,0.78);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   HEADER ICON
+========================================================= */
+
+.profile-header-icon {
+    position: relative;
+
+    z-index: 2;
+
+    width: 78px;
+    height: 78px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,0.10);
+
+    color: #ffffff;
+
+    font-size: 36px;
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   INCLUDED PROFILE CONTENT
+========================================================= */
+
+/*
+   The actual form is coming from:
+   accounts/profile_content.html
+
+   Only visual styling is changed here.
+*/
+
+.donor-profile-page .container {
+    width: 100% !important;
+
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+}
+
+
+.donor-profile-page .row {
+    margin: 0 !important;
+}
+
+
+.donor-profile-page .col-lg-10 {
+    width: 100% !important;
+
+    padding: 0 !important;
+}
+
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.donor-profile-page .card {
+    overflow: hidden;
+
+    border:
+        1px solid #e5eaf0 !important;
+
+    border-radius: 20px !important;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15,23,42,0.055) !important;
+}
+
+
+/* =========================================================
+   OLD CARD HEADER
+========================================================= */
+
+.donor-profile-page .card-header {
+    display: flex;
+
+    align-items: center;
+
+    min-height: 62px;
+
+    padding: 17px 25px !important;
+
+    border: 0 !important;
+
+    border-bottom:
+        1px solid #edf1f5 !important;
+
+    background: #ffffff !important;
+
+    color: #172033 !important;
+
+    text-align: left !important;
+}
+
+
+.donor-profile-page .card-header h3 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 16px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.donor-profile-page .card-body {
+    padding: 30px !important;
+}
+
+
+/* =========================================================
+   PHOTO SECTION
+========================================================= */
+
+.donor-profile-page .card-body form
+> div:first-child {
+
+    position: relative;
+
+    margin-bottom: 28px !important;
+
+    padding: 25px;
+
+    border:
+        1px solid #edf1f5;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fafbfc,
+            #ffffff
+        );
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+.donor-profile-page img.rounded-circle {
+
+    width: 130px !important;
+    height: 130px !important;
+
+    object-fit: cover;
+
+    padding: 4px;
+
+    border:
+        3px solid #ffffff !important;
+
+    outline:
+        2px solid #f2c7d0;
+
+    box-shadow:
+        0 10px 28px
+        rgba(15,23,42,0.12) !important;
+}
+
+
+/* =========================================================
+   FORM LABELS
+========================================================= */
+
+.donor-profile-page .form-label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #475569;
+
+    font-size: 10px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.donor-profile-page .form-control,
+.donor-profile-page select,
+.donor-profile-page textarea {
+
+    width: 100%;
+
+    min-height: 44px;
+
+    padding:
+        10px 13px;
+
+    border:
+        1px solid #dfe5ec !important;
+
+    border-radius: 10px !important;
+
+    background:
+        #ffffff;
+
+    color:
+        #263449;
+
+    font-size: 11px;
+
+    box-shadow: none !important;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+
+/* Textarea */
+
+.donor-profile-page textarea {
+
+    min-height: 115px;
+
+    line-height: 1.6;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+.donor-profile-page .form-control:focus,
+.donor-profile-page select:focus,
+.donor-profile-page textarea:focus {
+
+    border-color:
+        #c41e3a !important;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(196,30,58,0.08) !important;
+
+    outline: none;
+}
+
+
+/* =========================================================
+   READ ONLY USERNAME
+========================================================= */
+
+.donor-profile-page input[readonly] {
+
+    background:
+        #f8fafc;
+
+    color:
+        #64748b;
+
+    border-color:
+        #e5eaf0 !important;
+
+    cursor:
+        not-allowed;
+}
+
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+.donor-profile-page input[type="file"] {
+
+    height: auto;
+
+    min-height: 42px;
+
+    padding: 7px;
+
+    margin-top: 7px;
+
+    border-radius: 10px;
+
+    background:
+        #ffffff;
+
+    font-size: 10px;
+}
+
+
+.donor-profile-page
+input[type="file"]::file-selector-button {
+
+    margin-right: 10px;
+
+    padding:
+        7px 12px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background:
+        #fff0f3;
+
+    color:
+        #c41e3a;
+
+    font-size: 9px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease;
+}
+
+
+.donor-profile-page
+input[type="file"]::file-selector-button:hover {
+
+    background:
+        #ffe1e7;
+}
+
+
+/* =========================================================
+   FORM ROW
+========================================================= */
+
+.donor-profile-page .row {
+
+    row-gap: 3px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.donor-profile-page .mb-3 {
+
+    margin-bottom:
+        18px !important;
+}
+
+
+/* =========================================================
+   UPDATE BUTTON AREA
+========================================================= */
+
+.donor-profile-page
+.text-center.mt-4 {
+
+    margin-top: 12px !important;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid #edf1f5;
+}
+
+
+/* =========================================================
+   UPDATE BUTTON
+========================================================= */
+
+.donor-profile-page button[type="submit"] {
+
+    min-width: 200px;
+
+    min-height: 44px;
+
+    padding:
+        10px 24px !important;
+
+    border: 0 !important;
+
+    border-radius:
+        10px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9f1239,
+            #c41e3a
+        ) !important;
+
+    color:
+        #ffffff !important;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: .2px;
+
+    box-shadow:
+        0 8px 18px
+        rgba(196,30,58,0.18);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.donor-profile-page button[type="submit"]:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(196,30,58,0.25);
+}
+
+
+.donor-profile-page button[type="submit"]:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   SELECT ARROW
+========================================================= */
+
+.donor-profile-page select {
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+.donor-profile-page
+.form-control::placeholder {
+
+    color:
+        #a6b0bd;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .donor-profile-page {
+
+        max-width: 100%;
+
+        padding:
+            4px 0 30px;
+    }
+
+
+    .profile-page-header {
+
+        padding:
+            28px;
+
+        border-radius:
+            18px;
+    }
+
+
+    .profile-page-header h1 {
+
+        font-size:
+            27px;
+    }
+
+
+    .donor-profile-page .card-body {
+
+        padding:
+            25px !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .profile-page-header {
+
+        min-height:
+            140px;
+
+        padding:
+            23px;
+
+        border-radius:
+            17px;
+    }
+
+
+    .profile-page-header h1 {
+
+        font-size:
+            24px;
+    }
+
+
+    .profile-page-header p {
+
+        font-size:
+            10px;
+    }
+
+
+    .profile-header-icon {
+
+        width:
+            62px;
+
+        height:
+            62px;
+
+        border-radius:
+            17px;
+
+        font-size:
+            28px;
+    }
+
+
+    .donor-profile-page .card {
+
+        border-radius:
+            16px !important;
+    }
+
+
+    .donor-profile-page .card-body {
+
+        padding:
+            20px 17px !important;
+    }
+
+
+    .donor-profile-page
+    .card-body form
+    > div:first-child {
+
+        padding:
+            20px 15px;
+    }
+
+
+    .donor-profile-page
+    img.rounded-circle {
+
+        width:
+            115px !important;
+
+        height:
+            115px !important;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+    .profile-page-header {
+
+        min-height:
+            125px;
+
+        padding:
+            21px 18px;
+    }
+
+
+    .profile-header-icon {
+
+        display:
+            none;
+    }
+
+
+    .profile-page-header h1 {
+
+        font-size:
+            21px;
+    }
+
+
+    .profile-eyebrow {
+
+        font-size:
+            7px;
+
+        padding:
+            6px 9px;
+    }
+
+
+    .profile-page-header p {
+
+        font-size:
+            9px;
+    }
+
+
+    .donor-profile-page .card-header {
+
+        padding:
+            15px 17px !important;
+    }
+
+
+    .donor-profile-page .card-body {
+
+        padding:
+            17px 13px !important;
+    }
+
+
+    .donor-profile-page
+    button[type="submit"] {
+
+        width:
+            100%;
+
+        min-width:
+            0;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .profile-page-header h1 {
+
+        font-size:
+            19px;
+    }
+
+
+    .donor-profile-page
+    .form-control,
+    .donor-profile-page select,
+    .donor-profile-page textarea {
+
+        font-size:
+            10px;
+    }
+
+}

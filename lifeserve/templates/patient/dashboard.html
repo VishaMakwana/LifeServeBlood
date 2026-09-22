@@ -1,0 +1,977 @@
+{% extends "patient/base.html" %}
+{% load static %}
+
+{% block title %}
+Patient Dashboard | LifeServe
+{% endblock %}
+<!-- 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/patient-dashboard.css' %}">
+<link rel="stylesheet"href="{% static 'css/patient-sidebar.css' %}">
+{% endblock %}  -->
+
+
+{% block content %}
+
+<div class="patient-dashboard">
+
+
+    <!-- =========================================
+         WELCOME SECTION
+    ========================================== -->
+
+    <section class="dashboard-welcome">
+
+        <div class="welcome-content">
+
+            <span class="welcome-label">
+                <i class="bi bi-heart-pulse-fill"></i>
+                LifeServe Patient Portal
+            </span>
+
+            <h1>
+                Welcome, {{ request.user.first_name }}
+            </h1>
+
+            <p>
+                Welcome to your Patient Dashboard.
+                Manage your blood requests and track your status.
+            </p>
+
+        </div>
+
+
+        <div class="welcome-image">
+
+            <img
+                src="{% static 'images/welcome.png' %}"
+                alt="Welcome">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         SUMMARY TITLE
+    ========================================== -->
+
+    <div class="dashboard-section-title">
+
+        <div>
+
+            <span>
+                PATIENT OVERVIEW
+            </span>
+
+            <h2>
+                Your Blood Request Summary
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         STAT CARDS
+    ========================================== -->
+
+    <section class="dashboard-stats">
+
+        <div class="row g-4">
+
+
+            <!-- =================================
+                 TOTAL REQUESTS
+            ================================== -->
+
+            <div class="col-xl-3 col-lg-6 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon">
+
+                            <img
+                                src="{% static 'images/blood.png' %}"
+                                alt="Blood Requests">
+
+                        </div>
+
+                        <span class="stat-label">
+                            REQUESTS
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <h3>
+                            {{ total_requests }}
+                        </h3>
+
+                        <p>
+                            Total Blood Requests
+                        </p>
+
+                    </div>
+
+
+                    <div class="stat-footer">
+
+                        <i class="bi bi-activity"></i>
+
+                        Blood requests submitted
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 LAST REQUEST
+            ================================== -->
+
+            <div class="col-xl-3 col-lg-6 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon">
+
+                            <img
+                                src="{% static 'images/last_date.svg' %}"
+                                alt="Last Request">
+
+                        </div>
+
+                        <span class="stat-label">
+                            LATEST
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        {% if last_request %}
+
+                            <h3 class="date-value">
+                                {{ last_request.request_date }}
+                            </h3>
+
+                            <p>
+                                Last Blood Request
+                            </p>
+
+                        {% else %}
+
+                            <h3 class="date-value">
+                                No Request
+                            </h3>
+
+                            <p>
+                                No request submitted yet
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="stat-footer">
+
+                        <i class="bi bi-calendar-check"></i>
+
+                        Latest request record
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 STATUS
+            ================================== -->
+
+            <div class="col-xl-3 col-lg-6 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon">
+
+                            <i class="bi bi-clipboard2-pulse"></i>
+
+                        </div>
+
+                        <span class="stat-label">
+                            STATUS
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        {% if last_request %}
+
+                            {% if last_request.status == "Approved" %}
+
+                                <h3 class="status-approved">
+                                    Approved
+                                </h3>
+
+                                <p>
+                                    Blood request approved
+                                </p>
+
+                            {% elif last_request.status == "Pending" %}
+
+                                <h3 class="status-pending">
+                                    Pending
+                                </h3>
+
+                                <p>
+                                    Waiting for approval
+                                </p>
+
+                            {% else %}
+
+                                <h3 class="status-rejected">
+                                    Rejected
+                                </h3>
+
+                                <p>
+                                    Blood request rejected
+                                </p>
+
+                            {% endif %}
+
+                        {% else %}
+
+                            <h3>
+                                No Status
+                            </h3>
+
+                            <p>
+                                No request available
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="stat-footer">
+
+                        <i class="bi bi-shield-check"></i>
+
+                        Latest request status
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 BLOOD GROUP
+            ================================== -->
+
+            <div class="col-xl-3 col-lg-6 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon">
+
+                            <img
+                                src="{% static 'images/blood-group.png' %}"
+                                alt="Blood Group">
+
+                        </div>
+
+                        <span class="stat-label">
+                            BLOOD TYPE
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <h3>
+                            {{ patient.blood_group }}
+                        </h3>
+
+                        <p>
+                            Registered Blood Group
+                        </p>
+
+                    </div>
+
+
+                    <div class="stat-footer">
+
+                        <i class="bi bi-droplet-fill"></i>
+
+                        Patient blood type
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         CHART SECTION TITLE
+    ========================================== -->
+
+    <div class="dashboard-section-title chart-section-title">
+
+        <div>
+
+            <span>
+                ANALYTICS
+            </span>
+
+            <h2>
+                Request Analytics
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         CHARTS
+    ========================================== -->
+
+    <section class="row g-4">
+
+
+        <!-- =================================
+             MONTHLY REQUEST CHART
+        ================================== -->
+
+        <div class="col-lg-8">
+
+            <div class="dashboard-card chart-card">
+
+                <div class="dashboard-card-header">
+
+                    <div>
+
+                        <div class="card-icon-small">
+
+                            <i class="bi bi-bar-chart-line-fill"></i>
+
+                        </div>
+
+
+                        <div class="card-header-text">
+
+                            <h3>
+                                Monthly Blood Requests
+                            </h3>
+
+                            <p>
+                                Your request activity by month
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="stat-label">
+                        ACTIVITY
+                    </span>
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <canvas id="requestChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             STATUS CHART
+        ================================== -->
+
+        <div class="col-lg-4">
+
+            <div class="dashboard-card chart-card">
+
+                <div class="dashboard-card-header">
+
+                    <div>
+
+                        <div class="card-icon-small">
+
+                            <i class="bi bi-pie-chart-fill"></i>
+
+                        </div>
+
+
+                        <div class="card-header-text">
+
+                            <h3>
+                                Request Status
+                            </h3>
+
+                            <p>
+                                Request status overview
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="stat-label">
+                        OVERVIEW
+                    </span>
+
+                </div>
+
+
+                <div class="status-chart-container">
+
+                    <canvas id="statusChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         RECENT REQUEST TITLE
+    ========================================== -->
+
+    <div class="dashboard-section-title recent-section-title">
+
+        <div>
+
+            <span>
+                REQUEST HISTORY
+            </span>
+
+            <h2>
+                Recent Blood Requests
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         REQUEST HISTORY TABLE
+    ========================================== -->
+
+    <section class="dashboard-card requests-table-card">
+
+
+        <div class="dashboard-card-header table-card-header">
+
+            <div>
+
+                <div class="card-icon-small">
+
+                    <i class="bi bi-clock-history"></i>
+
+                </div>
+
+
+                <div class="card-header-text">
+
+                    <h3>
+                        Recent Requests
+                    </h3>
+
+                    <p>
+                        Your latest blood request records
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <span class="stat-label">
+                RECENT
+            </span>
+
+        </div>
+
+
+
+        <div class="table-responsive">
+
+            <table class="table dashboard-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Blood Group
+                        </th>
+
+                        <th>
+                            Units
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for request in recent_requests %}
+
+
+                    <tr>
+
+
+                        <!-- DATE -->
+
+                        <td>
+
+                            <div class="table-date">
+
+                                <span class="date-icon">
+
+                                    <i class="bi bi-calendar3"></i>
+
+                                </span>
+
+                                {{ request.request_date }}
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- BLOOD GROUP -->
+
+                        <td>
+
+                            <span class="blood-group-badge">
+
+                                <i class="bi bi-droplet-fill"></i>
+
+                                {{ request.blood_group }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- UNITS -->
+
+                        <td>
+
+                            <span class="units-value">
+
+                                {{ request.units }}
+
+                            </span>
+
+                            <small class="text-muted">
+                                units
+                            </small>
+
+                        </td>
+
+
+
+                        <!-- STATUS -->
+
+                        <td>
+
+
+                            {% if request.status == "Approved" %}
+
+                                <span class="request-status approved">
+
+                                    <span class="status-dot"></span>
+
+                                    Approved
+
+                                </span>
+
+
+                            {% elif request.status == "Pending" %}
+
+                                <span class="request-status pending">
+
+                                    <span class="status-dot"></span>
+
+                                    Pending
+
+                                </span>
+
+
+                            {% else %}
+
+                                <span class="request-status rejected">
+
+                                    <span class="status-dot"></span>
+
+                                    Rejected
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% empty %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="empty-state">
+
+
+                            <div class="empty-icon">
+
+                                <i class="bi bi-droplet"></i>
+
+                            </div>
+
+
+                            <h4>
+                                No Blood Requests Found
+                            </h4>
+
+
+                            <p>
+                                Your blood request history will appear here.
+                            </p>
+
+
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+<!-- =========================================
+     CHART.JS
+========================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================
+           MONTHLY REQUEST CHART
+        ===================================== */
+
+        const requestCanvas =
+            document.getElementById("requestChart");
+
+
+        if (requestCanvas) {
+
+            new Chart(
+                requestCanvas,
+                {
+
+                    type: "line",
+
+                    data: {
+
+                        labels: {{ months|safe }},
+
+                        datasets: [
+
+                            {
+
+                                label: "Blood Requests",
+
+                                data: {{ request_counts|safe }},
+
+                                borderColor: "#c41e3a",
+
+                                backgroundColor:
+                                    "rgba(196,30,58,0.10)",
+
+                                fill: true,
+
+                                tension: 0.4,
+
+                                borderWidth: 2,
+
+                                pointRadius: 3,
+
+                                pointHoverRadius: 5
+
+                            }
+
+                        ]
+
+                    },
+
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+                                display: false
+                            }
+
+                        },
+
+
+                        scales: {
+
+                            y: {
+
+                                beginAtZero: true,
+
+                                grid: {
+
+                                    color: "#eef2f7"
+
+                                },
+
+                                ticks: {
+
+                                    color: "#94a3b8",
+
+                                    font: {
+                                        size: 10
+                                    }
+
+                                }
+
+                            },
+
+
+                            x: {
+
+                                grid: {
+                                    display: false
+                                },
+
+                                ticks: {
+
+                                    color: "#94a3b8",
+
+                                    font: {
+                                        size: 10
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================
+           STATUS CHART
+        ===================================== */
+
+        const statusCanvas =
+            document.getElementById("statusChart");
+
+
+        if (statusCanvas) {
+
+            new Chart(
+                statusCanvas,
+                {
+
+                    type: "doughnut",
+
+                    data: {
+
+                        labels: [
+                            "Approved",
+                            "Pending",
+                            "Rejected"
+                        ],
+
+
+                        datasets: [
+
+                            {
+
+                                data: [
+
+                                    {{ approved }},
+                                    {{ pending }},
+                                    {{ rejected }}
+
+                                ],
+
+
+                                backgroundColor: [
+
+                                    "#198754",
+                                    "#ffc107",
+                                    "#dc3545"
+
+                                ],
+
+
+                                borderWidth: 0,
+
+                                hoverOffset: 5
+
+                            }
+
+                        ]
+
+                    },
+
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        cutout: "70%",
+
+
+                        plugins: {
+
+                            legend: {
+
+                                position: "bottom",
+
+                                labels: {
+
+                                    usePointStyle: true,
+
+                                    padding: 15,
+
+                                    color: "#64748b",
+
+                                    font: {
+                                        size: 10
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+    }
+
+);
+
+</script>
+
+
+{% endblock %}

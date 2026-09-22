@@ -1,0 +1,285 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}Edit Patient | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/edit-patient.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-patient-page">
+
+    <!-- ================= PAGE HEADER ================= -->
+     <section class="ep-page-header">
+    <!-- <div class="ep-page-header"> -->
+
+        <div class="ep-header-content">
+
+            <div class="ep-page-icon">
+                <i class="bi bi-pencil-square"></i>
+            </div>
+
+            <div>
+                <h2>Edit Patient</h2>
+                <p>Update patient contact and profile information</p>
+            </div>
+
+        </div>
+         <div class="ep-header-badge ">
+        <div class="ep-secure-badge">
+            <i class="bi bi-shield-check"></i>
+            <span>Secure Admin Panel</span>
+        </div>
+         </div>
+
+    </section>
+</div>
+
+
+    <!-- ================= MAIN CARD ================= -->
+
+    <div class="ep-card">
+
+        <!-- Card Header -->
+
+        <div class="ep-card-header">
+
+            <div class="ep-card-title">
+
+                <div class="ep-card-title-icon">
+                    <i class="bi bi-person-gear"></i>
+                </div>
+
+                <div>
+                    <h4>Update Patient Details</h4>
+                    <p>Modify the patient's registered information</p>
+                </div>
+
+            </div>
+
+            <div class="ep-update-badge">
+                <i class="bi bi-pencil-fill"></i>
+                Edit Mode
+            </div>
+
+        </div>
+
+
+        <!-- ================= CARD BODY ================= -->
+
+        <div class="ep-card-body">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- ================= FORM GRID ================= -->
+
+                <div class="ep-form-grid">
+
+
+                    <!-- Phone -->
+
+                    <div class="ep-form-group">
+
+                        <label for="phone">
+                            <i class="bi bi-telephone-fill"></i>
+                            Phone Number
+                        </label>
+
+                        <div class="ep-input-wrap">
+
+                            <i class="bi bi-telephone-fill"></i>
+
+                            <input
+                                type="text"
+                                id="phone"
+                                name="phone"
+                                value="{{ patient.phone }}"
+                                placeholder="Enter phone number"
+                                autocomplete="tel">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Blood Group -->
+
+                    <div class="ep-form-group">
+
+                        <label for="blood_group">
+                            <i class="bi bi-droplet-fill"></i>
+                            Blood Group
+                        </label>
+
+                        <div class="ep-input-wrap blood-input">
+
+                            <i class="bi bi-droplet-fill"></i>
+
+                            <input
+                                type="text"
+                                id="blood_group"
+                                name="blood_group"
+                                value="{{ patient.blood_group }}"
+                                placeholder="e.g. A+">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- City -->
+
+                    <div class="ep-form-group">
+
+                        <label for="city">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            City
+                        </label>
+
+                        <div class="ep-input-wrap">
+
+                            <i class="bi bi-geo-alt-fill"></i>
+
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                value="{{ patient.city }}"
+                                placeholder="Enter city">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- State -->
+
+                    <div class="ep-form-group">
+
+                        <label for="state">
+                            <i class="bi bi-map-fill"></i>
+                            State
+                        </label>
+
+                        <div class="ep-input-wrap">
+
+                            <i class="bi bi-map-fill"></i>
+
+                            <input
+                                type="text"
+                                id="state"
+                                name="state"
+                                value="{{ patient.state }}"
+                                placeholder="Enter state">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Address -->
+
+                    <div class="ep-form-group ep-address-group">
+
+                        <label for="address">
+                            <i class="bi bi-house-fill"></i>
+                            Address
+                        </label>
+
+                        <div class="ep-textarea-wrap">
+
+                            <i class="bi bi-house-fill"></i>
+
+                            <textarea
+                                id="address"
+                                name="address"
+                                rows="4"
+                                placeholder="Enter complete address">{{ patient.address }}</textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= FORM NOTE ================= -->
+
+                <div class="ep-form-note">
+
+                    <div class="ep-note-icon">
+                        <i class="bi bi-info-circle-fill"></i>
+                    </div>
+
+                    <div>
+                        <strong>Update Information</strong>
+                        <span>
+                            Make sure the patient information is correct before saving changes.
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= ACTIONS ================= -->
+
+                <div class="ep-form-actions">
+
+                    <a href="{% url 'manage_patients' %}"
+                       class="ep-cancel-btn">
+
+                        <i class="bi bi-x-lg"></i>
+                        <span>Cancel</span>
+
+                    </a>
+
+
+                    <button type="submit"
+                            class="ep-update-btn">
+
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Update Patient</span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <div class="ep-card-footer">
+
+            <div class="ep-footer-info">
+
+                <i class="bi bi-person-check-fill"></i>
+
+                <span>
+                    Patient Information
+                </span>
+
+            </div>
+
+            <div class="ep-footer-secure">
+
+                <i class="bi bi-lock-fill"></i>
+
+                Secure &amp; Protected
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

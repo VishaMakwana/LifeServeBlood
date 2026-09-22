@@ -1,0 +1,383 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}Donor Details | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/donor-details.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="donor-details-page">
+
+    <!-- ================= PAGE HEADER ================= -->
+     <section class="dd-page-header">
+    <!-- <div class="dd-page-header"> -->
+
+        <div class="dd-header-content">
+
+            <div class="dd-page-icon">
+                <i class="bi bi-person-vcard-fill"></i>
+            </div>
+
+            <div>
+                <h2>Donor Details</h2>
+                <p>View complete donor profile and information</p>
+            </div>
+
+        </div>
+         <div class="dd-header-badge">
+        <!-- <div class="dd-secure-badge"> -->
+            <i class="bi bi-shield-check"></i>
+            <span>Secure Admin Panel</span>
+        </div>
+         <!-- </div> -->
+
+    </div>
+     </section>
+
+
+    <!-- ================= MAIN CARD ================= -->
+
+    <div class="dd-card">
+
+        <!-- Card Header -->
+
+        <div class="dd-card-header">
+
+            <div class="dd-card-title">
+
+                <div class="dd-card-title-icon">
+                    <i class="bi bi-person-heart"></i>
+                </div>
+
+                <div>
+                    <h4>Donor Information</h4>
+                    <p>Personal, contact and donation profile details</p>
+                </div>
+
+            </div>
+
+            <div class="dd-status-badge">
+                <i class="bi bi-check-circle-fill"></i>
+                Registered Donor
+            </div>
+
+        </div>
+
+
+        <!-- ================= CARD BODY ================= -->
+
+        <div class="dd-card-body">
+
+            <div class="dd-profile-layout">
+
+
+                <!-- ================= PROFILE ================= -->
+
+                <div class="dd-profile-section">
+
+                    <div class="dd-profile-photo">
+
+                        {% if donor.profile_photo %}
+
+                            <img src="{{ donor.profile_photo.url }}"
+                                 alt="Donor Profile Photo">
+
+                        {% else %}
+
+                            <div class="dd-default-avatar">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="dd-profile-name">
+
+                        <h3>
+                            {{ donor.user.get_full_name }}
+                        </h3>
+
+                        <span>
+                            <i class="bi bi-heart-pulse-fill"></i>
+                            Registered Blood Donor
+                        </span>
+
+                    </div>
+
+
+                    <!-- Blood Group -->
+
+                    <div class="dd-blood-group">
+
+                        <div class="dd-blood-icon">
+                            <i class="bi bi-droplet-fill"></i>
+                        </div>
+
+                        <div>
+                            <span>Blood Group</span>
+                            <strong>{{ donor.blood_group }}</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Security -->
+
+                    <div class="dd-profile-security">
+
+                        <i class="bi bi-shield-lock-fill"></i>
+
+                        <span>
+                            Donor information is securely protected
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= INFORMATION ================= -->
+
+                <div class="dd-information-section">
+
+                    <div class="dd-info-grid">
+
+
+                        <!-- Full Name -->
+
+                        <div class="dd-info-item">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>Full Name</span>
+                                <strong>
+                                    {{ donor.user.get_full_name }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Username -->
+
+                        <div class="dd-info-item">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-at"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>Username</span>
+                                <strong>
+                                    {{ donor.user.username }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="dd-info-item">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>Email Address</span>
+                                <strong>
+                                    {{ donor.user.email }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Phone -->
+
+                        <div class="dd-info-item">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>Phone Number</span>
+                                <strong>
+                                    {{ donor.phone }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Age -->
+
+                        <div class="dd-info-item">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-calendar2-heart-fill"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>Age</span>
+                                <strong>
+                                    {{ donor.age }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Gender -->
+
+                        <div class="dd-info-item">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-gender-ambiguous"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>Gender</span>
+                                <strong>
+                                    {{ donor.gender }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Blood Group -->
+
+                        <div class="dd-info-item dd-blood-info">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-droplet-fill"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>Blood Group</span>
+                                <strong>
+                                    {{ donor.blood_group }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- City -->
+
+                        <div class="dd-info-item">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>City</span>
+                                <strong>
+                                    {{ donor.city }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- State -->
+
+                        <div class="dd-info-item">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-map-fill"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>State</span>
+                                <strong>
+                                    {{ donor.state }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Address -->
+
+                        <div class="dd-info-item dd-address-item">
+
+                            <div class="dd-info-icon">
+                                <i class="bi bi-house-fill"></i>
+                            </div>
+
+                            <div class="dd-info-content">
+                                <span>Address</span>
+                                <strong>
+                                    {{ donor.address }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Back Button -->
+
+                    <div class="dd-actions">
+
+                        <a href="{% url 'manage_donors' %}"
+                           class="dd-back-btn">
+
+                            <i class="bi bi-arrow-left"></i>
+
+                            <span>Back to Donors</span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <div class="dd-card-footer">
+
+            <div class="dd-footer-info">
+
+                <i class="bi bi-heart-fill"></i>
+
+                <span>
+                    Donor Profile
+                </span>
+
+            </div>
+
+            <div class="dd-footer-secure">
+
+                <i class="bi bi-lock-fill"></i>
+
+                Secure &amp; Protected
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

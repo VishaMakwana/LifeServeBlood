@@ -1,0 +1,849 @@
+/* =========================================
+   LIFE SERVE
+   PATIENT DASHBOARD
+========================================= */
+
+.patient-dashboard {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.dashboard-welcome {
+    position: relative;
+
+    min-height: 190px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 32px 40px;
+
+    margin-bottom: 32px;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c41e3a 0%,
+            #a51632 55%,
+            #7f1229 100%
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 15px 40px rgba(196, 30, 58, 0.18);
+}
+
+.dashboard-welcome::before,
+.dashboard-welcome::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.dashboard-welcome::before {
+    width: 300px;
+    height: 300px;
+
+    right: -100px;
+    top: -170px;
+}
+
+.dashboard-welcome::after {
+    width: 200px;
+    height: 200px;
+
+    left: -100px;
+    bottom: -130px;
+}
+
+.welcome-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.welcome-label {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 10px;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.welcome-content h1 {
+    margin: 0 0 8px;
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+.welcome-content p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 14px;
+}
+
+.welcome-image {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 130px;
+    height: 130px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(4px);
+}
+
+.welcome-image img {
+    width: 100px;
+    height: 100px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================
+   SECTION TITLES
+========================================= */
+
+.dashboard-section-title {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.dashboard-section-title span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #c41e3a;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    text-transform: uppercase;
+}
+
+.dashboard-section-title h2 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 21px;
+
+    font-weight: 800;
+}
+
+.chart-section-title {
+    margin-top: 38px;
+}
+
+.recent-section-title {
+    margin-top: 38px;
+}
+
+
+/* =========================================
+   STAT CARDS
+========================================= */
+
+.dashboard-stats {
+    margin-bottom: 5px;
+}
+
+.stat-card {
+    position: relative;
+
+    height: 100%;
+
+    min-height: 195px;
+
+    padding: 22px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid #e9eef4;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 28px rgba(15, 23, 42, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.stat-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    right: -55px;
+    bottom: -55px;
+
+    border-radius: 50%;
+
+    background: rgba(196, 30, 58, 0.035);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(15, 23, 42, 0.09);
+}
+
+
+/* =========================================
+   STAT CARD TOP
+========================================= */
+
+.stat-card-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    overflow: hidden;
+}
+
+.stat-icon img {
+    width: 30px;
+    height: 30px;
+
+    object-fit: contain;
+}
+
+.stat-icon i {
+    font-size: 22px;
+}
+
+.stat-label {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #f8fafc;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================
+   STAT CONTENT
+========================================= */
+
+.stat-content h3 {
+    margin: 0 0 4px;
+
+    color: #172033;
+
+    font-size: 27px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+.stat-content h3.date-value {
+    font-size: 20px;
+}
+
+.stat-content p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   STATUS COLORS
+========================================= */
+
+.status-approved {
+    color: #198754 !important;
+}
+
+.status-pending {
+    color: #d89b00 !important;
+}
+
+.status-rejected {
+    color: #dc3545 !important;
+}
+
+
+/* =========================================
+   STAT FOOTER
+========================================= */
+
+.stat-footer {
+    position: absolute;
+
+    left: 22px;
+    right: 22px;
+    bottom: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+.stat-footer i {
+    color: #c41e3a;
+}
+
+
+/* =========================================
+   DASHBOARD CARDS
+========================================= */
+
+.dashboard-card {
+    height: 100%;
+
+    overflow: hidden;
+
+    border: 1px solid #e9eef4;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 28px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.dashboard-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.dashboard-card-header > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.card-icon-small {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 17px;
+}
+
+.card-header-text h3 {
+    margin: 0 0 3px;
+
+    color: #172033;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+.card-header-text p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   CHART
+========================================= */
+
+.chart-card {
+    min-height: 365px;
+}
+
+.chart-container {
+    height: 275px;
+
+    padding: 20px 22px 25px;
+}
+
+.status-chart-container {
+    height: 275px;
+
+    padding: 15px 20px 20px;
+}
+
+
+/* =========================================
+   REQUEST TABLE
+========================================= */
+
+.requests-table-card {
+    min-height: 200px;
+
+    margin-bottom: 30px;
+}
+
+.table-card-header {
+    padding: 19px 22px;
+}
+
+.dashboard-table {
+    margin: 0;
+
+    vertical-align: middle;
+}
+
+.dashboard-table thead th {
+    padding: 14px 22px;
+
+    background: #f8fafc;
+
+    border-bottom: 1px solid #e9eef4;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.6px;
+
+    text-transform: uppercase;
+}
+
+.dashboard-table tbody td {
+    padding: 15px 22px;
+
+    border-color: #eef2f7;
+
+    color: #334155;
+
+    font-size: 12px;
+}
+
+.dashboard-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.dashboard-table tbody tr:hover {
+    background: #fffafb;
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+.table-date {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-weight: 600;
+}
+
+.date-icon {
+    width: 29px;
+    height: 29px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+}
+
+
+/* =========================================
+   BLOOD GROUP
+========================================= */
+
+.blood-group-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   UNITS
+========================================= */
+
+.units-value {
+    font-weight: 700;
+
+    color: #334155;
+}
+
+
+/* =========================================
+   REQUEST STATUS
+========================================= */
+
+.request-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+}
+
+.request-status.approved {
+    background: #ecfdf5;
+
+    color: #15803d;
+}
+
+.request-status.pending {
+    background: #fffbeb;
+
+    color: #b77900;
+}
+
+.request-status.rejected {
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+    padding: 45px 20px !important;
+
+    text-align: center;
+}
+
+.empty-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 12px;
+
+    border-radius: 14px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 22px;
+}
+
+.empty-state h4 {
+    margin: 0 0 5px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.empty-state p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-welcome {
+        padding: 30px;
+
+    }
+
+    .welcome-content h1 {
+        font-size: 27px;
+    }
+
+    .stat-card {
+        min-height: 185px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .dashboard-welcome {
+        min-height: 175px;
+
+        padding: 25px;
+
+        border-radius: 18px;
+    }
+
+    .welcome-content h1 {
+        font-size: 23px;
+    }
+
+    .welcome-content p {
+        font-size: 12px;
+    }
+
+    .welcome-image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .welcome-image img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .dashboard-section-title h2 {
+        font-size: 19px;
+    }
+
+    .chart-card {
+        min-height: 330px;
+    }
+
+    .chart-container,
+    .status-chart-container {
+        height: 245px;
+    }
+
+    .dashboard-table {
+        min-width: 650px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .dashboard-welcome {
+        min-height: auto;
+
+        padding: 23px 20px;
+    }
+
+    .welcome-image {
+        display: none;
+    }
+
+    .welcome-content h1 {
+        font-size: 22px;
+    }
+
+    .welcome-label {
+        font-size: 9px;
+    }
+
+    .stat-card {
+        min-height: 175px;
+
+        padding: 19px;
+    }
+
+    .stat-content h3 {
+        font-size: 24px;
+    }
+
+    .stat-footer {
+        left: 19px;
+        right: 19px;
+        bottom: 15px;
+    }
+
+    .dashboard-card-header {
+        padding: 17px;
+    }
+
+    .chart-container,
+    .status-chart-container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .dashboard-section-title {
+        margin-bottom: 14px;
+    }
+
+    .chart-section-title,
+    .recent-section-title {
+        margin-top: 30px;
+    }
+
+}

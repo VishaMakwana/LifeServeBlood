@@ -1,0 +1,348 @@
+/* =========================================
+   LIFE SERVE
+   PATIENT PROFILE PAGE
+========================================= */
+
+.patient-profile-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.profile-page-header {
+    position: relative;
+
+    min-height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+    padding: 30px 35px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c41e3a,
+            #a51632,
+            #7f1229
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 12px 35px rgba(196, 30, 58, 0.16);
+}
+
+.profile-page-header::before,
+.profile-page-header::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.profile-page-header::before {
+    width: 260px;
+    height: 260px;
+
+    right: -100px;
+    top: -150px;
+}
+
+.profile-page-header::after {
+    width: 180px;
+    height: 180px;
+
+    left: -90px;
+    bottom: -120px;
+}
+
+
+/* =========================================
+   HEADER CONTENT
+========================================= */
+
+.profile-page-header > div:first-child {
+    position: relative;
+
+    z-index: 2;
+}
+
+.profile-page-label {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 8px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.profile-page-header h1 {
+    margin: 0 0 7px;
+
+    font-size: 29px;
+
+    font-weight: 800;
+}
+
+.profile-page-header p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   HEADER ICON
+========================================= */
+
+.profile-header-icon {
+    position: relative;
+
+    z-index: 2;
+
+    width: 75px;
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    font-size: 32px;
+
+    backdrop-filter: blur(5px);
+}
+
+
+/* =========================================
+   PROFILE CONTENT
+========================================= */
+
+.profile-content-wrapper {
+    width: 100%;
+}
+
+
+/* =========================================
+   MAKE INCLUDED PROFILE CARDS MODERN
+========================================= */
+
+.profile-content-wrapper .card {
+    border: 1px solid #e9eef4;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 28px rgba(15, 23, 42, 0.05);
+
+    overflow: hidden;
+}
+
+.profile-content-wrapper .card-header {
+    padding: 18px 22px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.profile-content-wrapper .card-body {
+    padding: 25px;
+}
+
+
+/* =========================================
+   FORM LABELS
+========================================= */
+
+.profile-content-wrapper label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   FORM INPUTS
+========================================= */
+
+.profile-content-wrapper .form-control,
+.profile-content-wrapper .form-select {
+    min-height: 46px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    color: #172033;
+
+    box-shadow: none;
+
+    transition: all 0.2s ease;
+}
+
+.profile-content-wrapper .form-control:focus,
+.profile-content-wrapper .form-select:focus {
+    background: #ffffff;
+
+    border-color: #c41e3a;
+
+    box-shadow:
+        0 0 0 4px rgba(196, 30, 58, 0.09);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.profile-content-wrapper .btn-danger {
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c41e3a,
+            #a51632
+        );
+
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 18px rgba(196, 30, 58, 0.18);
+
+    transition: all 0.2s ease;
+}
+
+.profile-content-wrapper .btn-danger:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(196, 30, 58, 0.24);
+}
+
+
+/* =========================================
+   PROFILE IMAGE
+========================================= */
+
+.profile-content-wrapper img {
+    max-width: 100%;
+
+    border-radius: 14px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .profile-page-header {
+        min-height: 135px;
+
+        padding: 25px;
+
+        border-radius: 17px;
+    }
+
+    .profile-page-header h1 {
+        font-size: 25px;
+    }
+
+    .profile-header-icon {
+        width: 62px;
+        height: 62px;
+
+        border-radius: 16px;
+
+        font-size: 26px;
+    }
+
+    .profile-content-wrapper .card-body {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .profile-page-header {
+        padding: 23px 20px;
+    }
+
+    .profile-page-header h1 {
+        font-size: 22px;
+    }
+
+    .profile-page-header p {
+        font-size: 11px;
+    }
+
+    .profile-header-icon {
+        width: 52px;
+        height: 52px;
+
+        border-radius: 14px;
+
+        font-size: 22px;
+    }
+
+    .profile-content-wrapper .card {
+        border-radius: 15px;
+    }
+
+    .profile-content-wrapper .card-body {
+        padding: 17px;
+    }
+
+}

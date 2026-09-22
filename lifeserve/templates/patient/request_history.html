@@ -1,0 +1,343 @@
+{% extends "patient/base.html" %}
+{% load static %}
+
+{% block title %}
+Request History - LifeServe
+{% endblock %}
+
+
+{% block content %}
+
+<div class="request-history-page">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="history-page-header">
+
+        <div class="history-header-content">
+
+            <span class="history-eyebrow">
+                <i class="bi bi-clock-history"></i>
+                Patient Activity
+            </span>
+
+            <h1>
+                Blood Request History
+            </h1>
+
+            <p>
+                View all your submitted blood requests and their current status.
+            </p>
+
+        </div>
+
+        <div class="history-header-icon">
+            <i class="bi bi-journal-medical"></i>
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HISTORY CARD
+    ========================== -->
+
+    <div class="history-card">
+
+        <div class="history-card-header">
+
+            <div class="history-heading-left">
+
+                <div class="history-icon">
+                    <i class="bi bi-list-check"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Request History
+                    </h2>
+
+                    <p>
+                        Complete record of your blood requests
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="history-count">
+
+                <i class="bi bi-file-medical"></i>
+
+                {{ requests|length }} Requests
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TABLE
+        ========================== -->
+
+        <div class="history-table-wrapper">
+
+            <table class="table history-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th class="number-column">
+                            #
+                        </th>
+
+                        <th>
+                            Blood Group
+                        </th>
+
+                        <th>
+                            Units
+                        </th>
+
+                        <th>
+                            Hospital
+                        </th>
+
+                        <th>
+                            Reason
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for request in requests %}
+
+                    <tr>
+
+                        <!-- NUMBER -->
+
+                        <td>
+
+                            <span class="request-number">
+                                {{ forloop.counter }}
+                            </span>
+
+                        </td>
+
+
+                        <!-- BLOOD GROUP -->
+
+                        <td>
+
+                            <span class="history-blood-group">
+
+                                <i class="bi bi-droplet-fill"></i>
+
+                                {{ request.blood_group }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- UNITS -->
+
+                        <td>
+
+                            <span class="history-units">
+
+                                {{ request.units }}
+
+                                <small>
+                                    unit{{ request.units|pluralize }}
+                                </small>
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- HOSPITAL -->
+
+                        <td>
+
+                            <div class="hospital-info">
+
+                                <span class="hospital-icon">
+                                    <i class="bi bi-hospital-fill"></i>
+                                </span>
+
+                                <span class="hospital-name">
+                                    {{ request.hospital }}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- REASON -->
+
+                        <td>
+
+                            <div
+                                class="reason-text"
+                                title="{{ request.reason }}">
+
+                                <i class="bi bi-chat-left-text"></i>
+
+                                {{ request.reason }}
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- DATE -->
+
+                        <td>
+
+                            <div class="history-date">
+
+                                <span class="date-icon">
+                                    <i class="bi bi-calendar3"></i>
+                                </span>
+
+                                <span>
+                                    {{ request.request_date }}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- STATUS -->
+
+                        <td>
+
+                            {% if request.status == "Approved" %}
+
+                                <span class="history-status approved">
+
+                                    <span class="status-dot"></span>
+
+                                    Approved
+
+                                </span>
+
+                            {% elif request.status == "Pending" %}
+
+                                <span class="history-status pending">
+
+                                    <span class="status-dot"></span>
+
+                                    Pending
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="history-status rejected">
+
+                                    <span class="status-dot"></span>
+
+                                    Rejected
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+
+                    {% empty %}
+
+                    <!-- EMPTY STATE -->
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="history-empty">
+
+                            <div class="empty-history-icon">
+
+                                <i class="bi bi-file-earmark-medical"></i>
+
+                            </div>
+
+                            <h3>
+                                No Blood Requests Found
+                            </h3>
+
+                            <p>
+                                You haven't submitted any blood requests yet.
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- =========================
+             CARD FOOTER
+        ========================== -->
+
+        {% if requests %}
+
+        <div class="history-card-footer">
+
+            <div class="history-footer-info">
+
+                <i class="bi bi-info-circle"></i>
+
+                <span>
+                    Keep checking your request status for updates.
+                </span>
+
+            </div>
+
+            <div class="secure-history">
+
+                <i class="bi bi-shield-check"></i>
+
+                Secure Records
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

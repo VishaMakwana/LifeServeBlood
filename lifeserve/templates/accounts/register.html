@@ -1,0 +1,409 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}
+Register - LifeServe Blood Bank
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="register-page">
+
+    <div class="register-wrapper">
+
+        <div class="row g-0">
+
+            <!-- LEFT BRAND PANEL -->
+            <div class="col-lg-4">
+
+                <div class="register-brand h-100">
+
+                    <div class="brand-content">
+
+                        <div class="brand-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+
+                        <div class="brand-title">
+                            LifeServe
+                        </div>
+
+                        <p class="brand-description">
+                            Join our blood donation community and help connect
+                            people with the blood they need.
+                        </p>
+
+                        <div class="brand-feature">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Safe & secure registration</span>
+                        </div>
+
+                        <div class="brand-feature">
+                            <i class="bi bi-droplet-half"></i>
+                            <span>Help save lives through donation</span>
+                        </div>
+
+                        <div class="brand-feature">
+                            <i class="bi bi-people"></i>
+                            <span>Connect with the healthcare community</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT FORM -->
+            <div class="col-lg-8">
+
+                <div class="register-form-area">
+
+                    <div class="form-heading">
+                        <h2>Create your account</h2>
+                        <p>
+                            Fill in your details to get started with LifeServe.
+                        </p>
+                    </div>
+
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <!-- FULL NAME -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    Full Name
+                                    <span class="required-mark">*</span>
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-person"></i>
+
+                                    <input
+                                        type="text"
+                                        name="fullname"
+                                        class="form-control"
+                                        placeholder="Enter your full name"
+                                        required>
+                                </div>
+                            </div>
+
+
+                            <!-- USERNAME -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    Username
+                                    <span class="required-mark">*</span>
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-at"></i>
+
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        class="form-control"
+                                        placeholder="Choose a username"
+                                        required>
+                                </div>
+                            </div>
+
+
+                            <!-- EMAIL -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    Email
+                                    <span class="required-mark">*</span>
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-envelope"></i>
+
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        class="form-control"
+                                        placeholder="you@example.com"
+                                        required>
+                                </div>
+                            </div>
+
+
+                            <!-- PHONE -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    Phone
+                                    <span class="required-mark">*</span>
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-telephone"></i>
+
+                                    <input
+                                        type="text"
+                                        name="phone"
+                                        class="form-control"
+                                        placeholder="Enter phone number"
+                                        required>
+                                </div>
+                            </div>
+
+
+                            <!-- AGE -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    Age
+                                    <span class="required-mark">*</span>
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-calendar3"></i>
+
+                                    <input
+                                        type="number"
+                                        name="age"
+                                        class="form-control"
+                                        placeholder="Enter your age"
+                                        required>
+                                </div>
+                            </div>
+
+
+                            <!-- GENDER -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    Gender
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-person-vcard"></i>
+
+                                    <select
+                                        class="form-control"
+                                        name="gender">
+
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <!-- BLOOD GROUP -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    Blood Group
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-droplet"></i>
+
+                                    <select
+                                        class="form-control"
+                                        name="blood_group">
+
+                                        <option>A+</option>
+                                        <option>A-</option>
+                                        <option>B+</option>
+                                        <option>B-</option>
+                                        <option>AB+</option>
+                                        <option>AB-</option>
+                                        <option>O+</option>
+                                        <option>O-</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <!-- CITY -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    City
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-geo-alt"></i>
+
+                                    <input
+                                        type="text"
+                                        name="city"
+                                        class="form-control"
+                                        placeholder="Enter city">
+                                </div>
+                            </div>
+
+
+                            <!-- ADDRESS -->
+                            <div class="col-md-12 field-group">
+                                <label class="field-label">
+                                    Address
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-house"></i>
+
+                                    <textarea
+                                        class="form-control"
+                                        name="address"
+                                        placeholder="Enter your address"></textarea>
+                                </div>
+                            </div>
+
+
+                            <!-- STATE -->
+                            <div class="col-md-12 field-group">
+                                <label class="field-label">
+                                    State
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-map"></i>
+
+                                    <input
+                                        type="text"
+                                        name="state"
+                                        class="form-control"
+                                        placeholder="Enter state">
+                                </div>
+                            </div>
+
+
+                            <!-- PASSWORD -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    Password
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-lock"></i>
+
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        class="form-control"
+                                        placeholder="Create password">
+                                </div>
+                            </div>
+
+
+                            <!-- CONFIRM PASSWORD -->
+                            <div class="col-md-6 field-group">
+                                <label class="field-label">
+                                    Confirm Password
+                                </label>
+
+                                <div class="input-wrapper">
+                                    <i class="bi bi-lock-fill"></i>
+
+                                    <input
+                                        type="password"
+                                        name="confirm_password"
+                                        class="form-control"
+                                        placeholder="Confirm password">
+                                </div>
+                            </div>
+
+
+                            <!-- ROLE -->
+                            <div class="col-md-12 field-group">
+
+                                <div class="role-box">
+
+                                    <div class="role-title">
+                                        Select Account Type
+                                    </div>
+
+                                    <div class="role-options">
+
+                                        <div class="role-option">
+
+                                            <input
+                                                type="radio"
+                                                id="role-donor"
+                                                name="role"
+                                                value="Donor"
+                                                checked>
+
+                                            <label for="role-donor">
+                                                <i class="bi bi-droplet-half"></i>
+                                                <span>Donor</span>
+                                            </label>
+
+                                        </div>
+
+
+                                        <div class="role-option">
+
+                                            <input
+                                                type="radio"
+                                                id="role-patient"
+                                                name="role"
+                                                value="Patient">
+
+                                            <label for="role-patient">
+                                                <i class="bi bi-person-heart"></i>
+                                                <span>Patient</span>
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- SUBMIT -->
+                            <div class="col-12 mt-2">
+
+                                <button
+                                    type="submit"
+                                    class="register-button">
+
+                                    <i class="bi bi-person-plus me-2"></i>
+                                    Create Account
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- LOGIN -->
+                    <div class="login-link">
+
+                        Already have an account?
+
+                        <a href="{% url 'login' %}">
+                            Login
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

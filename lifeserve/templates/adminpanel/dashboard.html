@@ -1,0 +1,1255 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}
+LifeServe Admin Dashboard
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/admin-dashboard.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="admin-dashboard">
+
+    <!-- =========================================
+         WELCOME HEADER
+    ========================================== -->
+
+    <section class="admin-welcome">
+
+        <div class="welcome-content">
+
+            <div class="welcome-text">
+
+                <span class="welcome-label">
+                    <i class="bi bi-shield-check"></i>
+                    ADMIN CONTROL PANEL
+                </span>
+
+                <h1>
+                    Welcome Admin
+                    <img
+                        src="{% static 'images/welcome.png' %}"
+                        alt="Welcome">
+                </h1>
+
+                <p>
+                    LifeServe Blood Bank Management System
+                </p>
+
+            </div>
+
+            <div class="welcome-decoration">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SUMMARY CARDS
+    ========================================== -->
+
+    <section class="admin-summary-grid">
+
+        <!-- Total Donors -->
+        <div class="admin-stat-card donors-card">
+
+            <div class="admin-stat-top">
+
+                <div class="admin-stat-icon">
+                    <img
+                        src="{% static 'images/donor.png' %}"
+                        alt="Total Donors">
+                </div>
+
+                <span class="stat-tag">
+                    <i class="bi bi-people-fill"></i>
+                </span>
+
+            </div>
+
+            <div class="admin-stat-content">
+
+                <span>Total Donors</span>
+
+                <h2>{{ total_donors }}</h2>
+
+            </div>
+
+            <div class="stat-footer">
+                Registered blood donors
+            </div>
+
+        </div>
+
+
+        <!-- Total Patients -->
+        <div class="admin-stat-card patients-card">
+
+            <div class="admin-stat-top">
+
+                <div class="admin-stat-icon">
+                    <img
+                        src="{% static 'images/patients.png' %}"
+                        alt="Total Patients">
+                </div>
+
+                <span class="stat-tag">
+                    <i class="bi bi-person-heart"></i>
+                </span>
+
+            </div>
+
+            <div class="admin-stat-content">
+
+                <span>Total Patients</span>
+
+                <h2>{{ total_patients }}</h2>
+
+            </div>
+
+            <div class="stat-footer">
+                Registered patients
+            </div>
+
+        </div>
+
+
+        <!-- Blood Units -->
+        <div class="admin-stat-card units-card">
+
+            <div class="admin-stat-top">
+
+                <div class="admin-stat-icon">
+                    <img
+                        src="{% static 'images/blood.png' %}"
+                        alt="Blood Units">
+                </div>
+
+                <span class="stat-tag">
+                    <i class="bi bi-droplet-fill"></i>
+                </span>
+
+            </div>
+
+            <div class="admin-stat-content">
+
+                <span>Blood Units</span>
+
+                <h2>{{ total_blood_units }}</h2>
+
+            </div>
+
+            <div class="stat-footer">
+                Available blood units
+            </div>
+
+        </div>
+
+
+        <!-- Blood Stock -->
+        <div class="admin-stat-card stock-card">
+
+            <div class="admin-stat-top">
+
+                <div class="admin-stat-icon">
+                    <img
+                        src="{% static 'images/blood-group.png' %}"
+                        alt="Blood Stock">
+                </div>
+
+                <span class="stat-tag">
+                    <i class="bi bi-box-seam-fill"></i>
+                </span>
+
+            </div>
+
+            <div class="admin-stat-content">
+
+                <span>Blood Stock</span>
+
+                <h2>{{ total_blood_groups }}</h2>
+
+            </div>
+
+            <div class="stat-footer">
+                Active blood groups
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         PENDING REQUESTS
+    ========================================== -->
+
+    <section class="pending-grid">
+
+        <!-- Blood Requests -->
+        <div class="pending-stat-card pending-blood">
+
+            <div class="pending-icon">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div class="pending-content">
+
+                <span>Pending Blood Requests</span>
+
+                <strong>{{ pending_blood_requests }}</strong>
+
+                <small>
+                    <i class="bi bi-clock"></i>
+                    Requires attention
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Donation Requests -->
+        <div class="pending-stat-card pending-donation">
+
+            <div class="pending-icon">
+                <i class="bi bi-heart-pulse-fill"></i>
+            </div>
+
+            <div class="pending-content">
+
+                <span>Pending Donation Requests</span>
+
+                <strong>{{ pending_donation_requests }}</strong>
+
+                <small>
+                    <i class="bi bi-clock"></i>
+                    Requires attention
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ANALYTICS HEADER
+    ========================================== -->
+
+    <section class="analytics-section">
+
+        <div class="analytics-heading">
+
+            <div>
+
+                <span class="analytics-eyebrow">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    ADMIN ANALYTICS
+                </span>
+
+                <h2>Blood Bank Overview</h2>
+
+                <p>
+                    Overview of blood requests, demand and donation activity.
+                </p>
+
+            </div>
+
+            <div class="analytics-heading-icon">
+                <i class="bi bi-graph-up-arrow"></i>
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             CHARTS
+        ====================================== -->
+
+        <div class="charts-grid">
+
+
+            <!-- Blood Request Status -->
+
+            <div class="chart-card">
+
+                <div class="chart-card-header">
+
+                    <div class="chart-title">
+
+                        <div class="chart-icon red">
+                            <i class="bi bi-droplet-fill"></i>
+                        </div>
+
+                        <div>
+                            <h3>Blood Request Status</h3>
+                            <p>Current request distribution</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-container doughnut-container">
+                    <canvas id="bloodRequestStatusChart"></canvas>
+                </div>
+
+            </div>
+
+
+            <!-- Blood Group Demand -->
+
+            <div class="chart-card">
+
+                <div class="chart-card-header">
+
+                    <div class="chart-title">
+
+                        <div class="chart-icon blue">
+                            <i class="bi bi-bar-chart-fill"></i>
+                        </div>
+
+                        <div>
+                            <h3>Blood Group Demand</h3>
+                            <p>Requested blood groups</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="bloodGroupChart"></canvas>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Monthly Activity -->
+
+        <div class="chart-card monthly-chart-card">
+
+            <div class="chart-card-header">
+
+                <div class="chart-title">
+
+                    <div class="chart-icon green">
+                        <i class="bi bi-activity"></i>
+                    </div>
+
+                    <div>
+                        <h3>Monthly Blood Activity</h3>
+                        <p>Blood requests vs donation requests</p>
+                    </div>
+
+                </div>
+
+                <span class="live-badge">
+                    <i class="bi bi-circle-fill"></i>
+                    Database Data
+                </span>
+
+            </div>
+
+            <div class="chart-container monthly-container">
+                <canvas id="monthlyActivityChart"></canvas>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         RECENT BLOOD REQUESTS
+    ========================================== -->
+
+    <section class="data-card">
+
+        <div class="data-card-header blood-header">
+
+            <div class="data-heading">
+
+                <div class="data-icon">
+                    <i class="bi bi-droplet-fill"></i>
+                </div>
+
+                <div>
+                    <h2>Recent Blood Requests</h2>
+                    <p>Latest patient blood requests</p>
+                </div>
+
+            </div>
+
+            <span class="records-badge">
+                {{ recent_blood_requests|length }} Records
+            </span>
+
+        </div>
+
+
+        <div class="data-table-wrapper">
+
+            <table class="admin-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Patient</th>
+                        <th>Blood Group</th>
+                        <th>Units</th>
+                        <th>Hospital</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for request in recent_blood_requests %}
+
+                    <tr>
+
+                        <td>
+
+                            <div class="person-cell">
+
+                                <div class="person-avatar">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+
+                                <strong>
+                                    {{ request.patient.user.first_name }}
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="blood-group-badge">
+                                {{ request.blood_group }}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="units-badge">
+                                {{ request.units }} Units
+                            </span>
+
+                        </td>
+
+
+                        <td>
+                            <span class="hospital-name">
+                                {{ request.hospital }}
+                            </span>
+                        </td>
+
+
+                        <td>
+                            <span class="date-text">
+                                {{ request.request_date }}
+                            </span>
+                        </td>
+
+
+                        <td>
+
+                            {% if request.status == "Approved" %}
+
+                                <span class="status-badge approved">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Approved
+                                </span>
+
+                            {% elif request.status == "Pending" %}
+
+                                <span class="status-badge pending">
+                                    <i class="bi bi-clock-fill"></i>
+                                    Pending
+                                </span>
+
+                            {% else %}
+
+                                <span class="status-badge rejected">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                    Rejected
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if request.status == "Pending" %}
+
+                                <div class="action-buttons">
+
+                                    <a
+                                        href="{% url 'approve_blood_request' request.id %}"
+                                        class="action-btn approve-btn">
+
+                                        <i class="bi bi-check-lg"></i>
+                                        Approve
+
+                                    </a>
+
+                                    <a
+                                        href="{% url 'reject_blood_request' request.id %}"
+                                        class="action-btn reject-btn">
+
+                                        <i class="bi bi-x-lg"></i>
+                                        Reject
+
+                                    </a>
+
+                                </div>
+
+                            {% else %}
+
+                                <span class="completed-text">
+                                    <i class="bi bi-check-circle"></i>
+                                    Completed
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="7">
+
+                            <div class="empty-state">
+
+                                <i class="bi bi-inbox"></i>
+
+                                <strong>No Blood Requests Found</strong>
+
+                                <span>
+                                    There are no recent blood requests.
+                                </span>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         RECENT DONATION REQUESTS
+    ========================================== -->
+
+    <section class="data-card donation-data-card">
+
+        <div class="data-card-header donation-header">
+
+            <div class="data-heading">
+
+                <div class="data-icon">
+                    <i class="bi bi-heart-pulse-fill"></i>
+                </div>
+
+                <div>
+                    <h2>Recent Donation Requests</h2>
+                    <p>Latest donor donation activity</p>
+                </div>
+
+            </div>
+
+            <span class="records-badge">
+                {{ recent_donation_requests|length }} Records
+            </span>
+
+        </div>
+
+
+        <div class="data-table-wrapper">
+
+            <table class="admin-table donation-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Donor</th>
+                        <th>Blood Group</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for request in recent_donation_requests %}
+
+                    <tr>
+
+                        <td>
+
+                            <div class="person-cell">
+
+                                <div class="person-avatar donor-avatar">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+
+                                <strong>
+                                    {{ request.donor.user.get_full_name }}
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="blood-group-badge">
+                                {{ request.blood_group }}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="date-text">
+                                {{ request.donation_date|date:"F d, Y" }}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            {% if request.status == "Approved" %}
+
+                                <span class="status-badge approved">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Approved
+                                </span>
+
+                            {% elif request.status == "Rejected" %}
+
+                                <span class="status-badge rejected">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                    Rejected
+                                </span>
+
+                            {% else %}
+
+                                <span class="status-badge pending">
+                                    <i class="bi bi-clock-fill"></i>
+                                    Pending
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if request.status == "Pending" %}
+
+                                <div class="action-buttons">
+
+                                    <a
+                                        href="#"
+                                        class="action-btn approve-btn">
+
+                                        <i class="bi bi-check-lg"></i>
+                                        Approve
+
+                                    </a>
+
+                                    <a
+                                        href="#"
+                                        class="action-btn reject-btn">
+
+                                        <i class="bi bi-x-lg"></i>
+                                        Reject
+
+                                    </a>
+
+                                </div>
+
+                            {% else %}
+
+                                <span class="completed-text">
+                                    <i class="bi bi-check-circle"></i>
+                                    Completed
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="5">
+
+                            <div class="empty-state">
+
+                                <i class="bi bi-inbox"></i>
+
+                                <strong>No Donation Requests Found</strong>
+
+                                <span>
+                                    There are no recent donation requests.
+                                </span>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+     CHART.JS
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =================================================
+       GET REAL DJANGO DATA
+    ================================================= */
+
+    const bloodRequestStatuses = [];
+
+    {% for request in recent_blood_requests %}
+        bloodRequestStatuses.push(
+            "{{ request.status|escapejs }}"
+        );
+    {% endfor %}
+
+
+    const bloodGroups = [];
+
+    {% for request in recent_blood_requests %}
+        bloodGroups.push(
+            "{{ request.blood_group|escapejs }}"
+        );
+    {% endfor %}
+
+
+    const bloodRequestDates = [];
+
+    {% for request in recent_blood_requests %}
+        bloodRequestDates.push(
+            "{{ request.request_date|date:'Y-m-d' }}"
+        );
+    {% endfor %}
+
+
+    const donationRequestDates = [];
+
+    {% for request in recent_donation_requests %}
+        donationRequestDates.push(
+            "{{ request.donation_date|date:'Y-m-d' }}"
+        );
+    {% endfor %}
+
+
+    /* =================================================
+       COUNT VALUES
+    ================================================= */
+
+    function countValues(array) {
+
+        const counts = {};
+
+        array.forEach(function (value) {
+
+            if (!value) {
+                return;
+            }
+
+            counts[value] =
+                (counts[value] || 0) + 1;
+
+        });
+
+        return counts;
+    }
+
+
+    /* =================================================
+       1. BLOOD REQUEST STATUS
+    ================================================= */
+
+    const statusCounts =
+        countValues(bloodRequestStatuses);
+
+    const approvedCount =
+        statusCounts["Approved"] || 0;
+
+    const pendingCount =
+        statusCounts["Pending"] || 0;
+
+    const rejectedCount =
+        statusCounts["Rejected"] || 0;
+
+
+    new Chart(
+        document.getElementById("bloodRequestStatusChart"),
+        {
+
+            type: "doughnut",
+
+            data: {
+
+                labels: [
+                    "Approved",
+                    "Pending",
+                    "Rejected"
+                ],
+
+                datasets: [{
+
+                    data: [
+                        approvedCount,
+                        pendingCount,
+                        rejectedCount
+                    ],
+
+                    backgroundColor: [
+                        "#198754",
+                        "#ffb703",
+                        "#e63946"
+                    ],
+
+                    borderWidth: 0,
+
+                    hoverOffset: 8
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                cutout: "68%",
+
+                plugins: {
+
+                    legend: {
+
+                        position: "bottom",
+
+                        labels: {
+
+                            usePointStyle: true,
+
+                            padding: 18,
+
+                            font: {
+                                size: 13
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* =================================================
+       2. BLOOD GROUP DEMAND
+    ================================================= */
+
+    const groupCounts =
+        countValues(bloodGroups);
+
+    const groupLabels =
+        Object.keys(groupCounts);
+
+    const groupValues =
+        Object.values(groupCounts);
+
+
+    new Chart(
+        document.getElementById("bloodGroupChart"),
+        {
+
+            type: "bar",
+
+            data: {
+
+                labels: groupLabels,
+
+                datasets: [{
+
+                    label: "Blood Requests",
+
+                    data: groupValues,
+
+                    backgroundColor: "#dc3545",
+
+                    borderRadius: 8,
+
+                    borderSkipped: false
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        ticks: {
+                            precision: 0
+                        },
+
+                        grid: {
+                            color: "#edf0f4"
+                        }
+
+                    },
+
+                    x: {
+
+                        grid: {
+                            display: false
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* =================================================
+       3. MONTHLY ACTIVITY
+    ================================================= */
+
+    const monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+    ];
+
+
+    const monthlyRequests = {};
+    const monthlyDonations = {};
+
+
+    /* Blood Requests */
+
+    bloodRequestDates.forEach(function (date) {
+
+        if (!date) {
+            return;
+        }
+
+        const month =
+            parseInt(
+                date.split("-")[1],
+                10
+            );
+
+        const monthName =
+            monthNames[month - 1];
+
+        monthlyRequests[monthName] =
+            (monthlyRequests[monthName] || 0) + 1;
+
+    });
+
+
+    /* Donation Requests */
+
+    donationRequestDates.forEach(function (date) {
+
+        if (!date) {
+            return;
+        }
+
+        const month =
+            parseInt(
+                date.split("-")[1],
+                10
+            );
+
+        const monthName =
+            monthNames[month - 1];
+
+        monthlyDonations[monthName] =
+            (monthlyDonations[monthName] || 0) + 1;
+
+    });
+
+
+    /* Active months only */
+
+    const activeMonths = [];
+
+    monthNames.forEach(function (month) {
+
+        if (
+            monthlyRequests[month] ||
+            monthlyDonations[month]
+        ) {
+
+            activeMonths.push(month);
+
+        }
+
+    });
+
+
+    const requestData =
+        activeMonths.map(function (month) {
+
+            return monthlyRequests[month] || 0;
+
+        });
+
+
+    const donationData =
+        activeMonths.map(function (month) {
+
+            return monthlyDonations[month] || 0;
+
+        });
+
+
+    new Chart(
+        document.getElementById("monthlyActivityChart"),
+        {
+
+            type: "line",
+
+            data: {
+
+                labels: activeMonths,
+
+                datasets: [
+
+                    {
+
+                        label: "Blood Requests",
+
+                        data: requestData,
+
+                        borderColor: "#dc3545",
+
+                        backgroundColor:
+                            "rgba(220,53,69,0.08)",
+
+                        fill: true,
+
+                        tension: 0.4,
+
+                        borderWidth: 3,
+
+                        pointRadius: 4,
+
+                        pointHoverRadius: 7
+
+                    },
+
+                    {
+
+                        label: "Donation Requests",
+
+                        data: donationData,
+
+                        borderColor: "#198754",
+
+                        backgroundColor:
+                            "rgba(25,135,84,0.08)",
+
+                        fill: true,
+
+                        tension: 0.4,
+
+                        borderWidth: 3,
+
+                        pointRadius: 4,
+
+                        pointHoverRadius: 7
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                interaction: {
+
+                    intersect: false,
+
+                    mode: "index"
+
+                },
+
+                plugins: {
+
+                    legend: {
+
+                        position: "top",
+
+                        align: "end",
+
+                        labels: {
+
+                            usePointStyle: true,
+
+                            padding: 18
+
+                        }
+
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        ticks: {
+                            precision: 0
+                        },
+
+                        grid: {
+                            color: "#edf0f4"
+                        }
+
+                    },
+
+                    x: {
+
+                        grid: {
+                            display: false
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+});
+
+</script>
+
+{% endblock %}

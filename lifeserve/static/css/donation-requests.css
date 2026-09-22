@@ -1,0 +1,833 @@
+/* =========================================================
+   LIFESERVE - DONATION REQUESTS
+   UI / UX ONLY
+   ========================================================= */
+
+.donation-requests-page {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 3px 2px 30px;
+
+    color: #172033;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.donation-page-header {
+    width: 100%;
+
+    min-height: 120px;
+
+    padding: 22px 25px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #edf0f4;
+
+    border-left: 5px solid #d9213f;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 7px 22px rgba(31, 41, 55, 0.06);
+}
+
+.donation-header-left {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+}
+
+.donation-header-icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0f3;
+
+    color: #d9213f;
+
+    border-radius: 14px;
+
+    font-size: 22px;
+}
+
+.donation-eyebrow {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #d9213f;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+.donation-header-left h1 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    line-height: 1.15;
+}
+
+.donation-header-left p {
+    margin: 5px 0 0;
+
+    color: #8c98aa;
+
+    font-size: 11px;
+}
+
+
+/* Secure badge */
+
+.donation-header-badge {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 13px;
+
+    background: #effaf4;
+
+    color: #198754;
+
+    border: 1px solid #d9f0e3;
+
+    border-radius: 10px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.donation-header-badge i {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.donation-request-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #edf0f4;
+
+    border-radius: 17px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 7px 24px rgba(31, 41, 55, 0.06);
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.donation-card-header {
+    min-height: 78px;
+
+    padding: 14px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.donation-card-title {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+.donation-title-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0f3;
+
+    color: #d9213f;
+
+    border-radius: 11px;
+
+    font-size: 18px;
+}
+
+.donation-card-title h2 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.donation-card-title p {
+    margin: 3px 0 0;
+
+    color: #9aa5b5;
+
+    font-size: 10px;
+}
+
+
+/* Info */
+
+.donation-info-badge {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #98a2b3;
+
+    font-size: 9px;
+}
+
+.donation-info-badge i {
+    color: #d9213f;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.donation-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    padding: 0 16px 8px;
+}
+
+.donation-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.donation-table-wrapper::-webkit-scrollbar-thumb {
+    background: #dce1e8;
+
+    border-radius: 10px;
+}
+
+.donation-table {
+    width: 100%;
+
+    min-width: 950px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+
+/* Head */
+
+.donation-table thead th {
+    padding: 13px 10px;
+
+    background: #fff5f6;
+
+    color: #68768c;
+
+    border-bottom: 1px solid #f0e1e4;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    white-space: nowrap;
+}
+
+.donation-table thead th:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+.donation-table thead th:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+
+/* Body */
+
+.donation-table tbody td {
+    padding: 13px 10px;
+
+    border-bottom: 1px solid #f0f2f5;
+
+    color: #475467;
+
+    font-size: 11px;
+
+    vertical-align: middle;
+}
+
+.donation-table tbody tr {
+    transition: background 0.18s ease;
+}
+
+.donation-table tbody tr:hover {
+    background: #fffafb;
+}
+
+.donation-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   ID
+   ========================================================= */
+
+.donation-id {
+    display: inline-flex;
+
+    padding: 5px 8px;
+
+    background: #f5f7fa;
+
+    color: #7b8798;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   DONOR
+   ========================================================= */
+
+.donation-donor {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    min-width: 160px;
+}
+
+.donor-request-avatar {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #effaf4;
+
+    color: #198754;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+}
+
+.donor-request-name {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.donor-request-name strong {
+    max-width: 160px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #172033;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.donor-request-name span {
+    margin-top: 2px;
+
+    color: #9aa5b5;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   BLOOD GROUP
+   ========================================================= */
+
+.request-blood-group {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 6px 9px;
+
+    background: #fff0f3;
+
+    color: #d9213f;
+
+    border: 1px solid #f8dce2;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.request-blood-group i {
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   UNITS
+   ========================================================= */
+
+.donation-units {
+    display: flex;
+    align-items: baseline;
+
+    gap: 5px;
+}
+
+.donation-units strong {
+    color: #172033;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.donation-units span {
+    color: #9aa5b5;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.donation-date {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    white-space: nowrap;
+}
+
+.donation-date-icon {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f5f7fa;
+
+    color: #71819b;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+}
+
+.donation-date span {
+    color: #66748a;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.request-status {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.request-status i {
+    font-size: 9px;
+}
+
+
+/* Pending */
+
+.status-pending {
+    background: #fff6df;
+
+    color: #b77900;
+
+    border: 1px solid #f7e7bb;
+}
+
+
+/* Approved */
+
+.status-approved {
+    background: #eaf8f0;
+
+    color: #14834f;
+
+    border: 1px solid #d7efdf;
+}
+
+
+/* Rejected */
+
+.status-rejected {
+    background: #fff0f2;
+
+    color: #d9213f;
+
+    border: 1px solid #f7d9df;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.donation-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.donation-action {
+    width: 33px;
+    height: 33px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition: all 0.18s ease;
+}
+
+.donation-action:hover {
+    transform: translateY(-2px);
+}
+
+
+/* Approve */
+
+.approve-action {
+    background: #eaf8f0;
+
+    color: #198754;
+
+    border: 1px solid #d5efdf;
+}
+
+.approve-action:hover {
+    background: #d9f3e3;
+
+    color: #147344;
+}
+
+
+/* Reject */
+
+.reject-action {
+    background: #fff0f2;
+
+    color: #d9213f;
+
+    border: 1px solid #f6d8de;
+}
+
+.reject-action:hover {
+    background: #ffe0e5;
+
+    color: #bd1835;
+}
+
+
+/* No action */
+
+.no-action {
+    width: 33px;
+    height: 33px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f6f7f9;
+
+    color: #b0b8c5;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.donation-empty {
+    min-height: 260px;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.donation-empty-icon {
+    width: 60px;
+    height: 60px;
+
+    margin-bottom: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0f3;
+
+    color: #d9213f;
+
+    border-radius: 16px;
+
+    font-size: 24px;
+}
+
+.donation-empty h3 {
+    margin: 0;
+
+    color: #475467;
+
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.donation-empty p {
+    margin: 5px 0 0;
+
+    color: #98a2b3;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.donation-card-footer {
+    min-height: 50px;
+
+    padding: 10px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    background: #fafbfc;
+
+    border-top: 1px solid #edf0f4;
+}
+
+.donation-footer-info {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #98a2b3;
+
+    font-size: 9px;
+}
+
+.donation-footer-info i {
+    color: #198754;
+
+    font-size: 12px;
+}
+
+.donation-record-count {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #8c98aa;
+
+    font-size: 9px;
+}
+
+.donation-record-count strong {
+    min-width: 25px;
+    height: 23px;
+
+    padding: 0 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0f3;
+
+    color: #d9213f;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .donation-page-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .donation-header-badge {
+        align-self: flex-start;
+    }
+
+    .donation-card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .donation-requests-page {
+        padding: 0 0 25px;
+    }
+
+    .donation-page-header {
+        padding: 18px;
+
+        border-radius: 15px;
+    }
+
+    .donation-header-icon {
+        width: 45px;
+        height: 45px;
+
+        font-size: 19px;
+    }
+
+    .donation-header-left h1 {
+        font-size: 23px;
+    }
+
+    .donation-card-header {
+        padding: 13px;
+    }
+
+    .donation-info-badge {
+        display: none;
+    }
+
+    .donation-table-wrapper {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .donation-card-footer {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+}

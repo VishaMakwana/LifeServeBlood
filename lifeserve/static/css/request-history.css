@@ -1,0 +1,828 @@
+/* =========================================
+   LIFE SERVE
+   REQUEST HISTORY
+========================================= */
+
+.request-history-page {
+    width: 100%;
+    max-width: 1450px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.history-page-header {
+    position: relative;
+
+    min-height: 170px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 26px;
+
+    padding: 30px 38px;
+
+    overflow: hidden;
+
+    border-radius: 21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c41e3a,
+            #a51632,
+            #7f1229
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 14px 38px rgba(196, 30, 58, 0.17);
+}
+
+.history-page-header::before,
+.history-page-header::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.history-page-header::before {
+    width: 310px;
+    height: 310px;
+
+    right: -120px;
+    top: -180px;
+}
+
+.history-page-header::after {
+    width: 190px;
+    height: 190px;
+
+    left: -90px;
+    bottom: -125px;
+}
+
+
+/* =========================================
+   HEADER CONTENT
+========================================= */
+
+.history-header-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.history-eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 9px;
+
+    color: rgba(255, 255, 255, 0.73);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.history-page-header h1 {
+    margin: 0 0 8px;
+
+    font-size: 29px;
+
+    font-weight: 800;
+}
+
+.history-page-header p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   HEADER ICON
+========================================= */
+
+.history-header-icon {
+    position: relative;
+
+    z-index: 2;
+
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    font-size: 30px;
+
+    backdrop-filter: blur(5px);
+}
+
+
+/* =========================================
+   HISTORY CARD
+========================================= */
+
+.history-card {
+    overflow: hidden;
+
+    border: 1px solid #e8edf3;
+
+    border-radius: 19px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 9px 30px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.history-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 21px 25px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.history-heading-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.history-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 18px;
+}
+
+.history-heading-left h2 {
+    margin: 0 0 3px;
+
+    color: #172033;
+
+    font-size: 17px;
+
+    font-weight: 800;
+}
+
+.history-heading-left p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   REQUEST COUNT
+========================================= */
+
+.history-count {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.history-count i {
+    color: #c41e3a;
+}
+
+
+/* =========================================
+   TABLE WRAPPER
+========================================= */
+
+.history-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #cbd5e1
+        transparent;
+}
+
+.history-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.history-table-wrapper::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+
+.history-table-wrapper::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.history-table {
+    min-width: 1050px;
+
+    margin: 0;
+
+    vertical-align: middle;
+}
+
+
+/* =========================================
+   TABLE HEAD
+========================================= */
+
+.history-table thead th {
+    padding: 15px 17px;
+
+    border-bottom: 1px solid #e9eef4;
+
+    background: #f8fafc;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+.history-table .number-column {
+    width: 55px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   TABLE BODY
+========================================= */
+
+.history-table tbody td {
+    padding: 17px;
+
+    border-color: #eef2f7;
+
+    color: #334155;
+
+    font-size: 11px;
+}
+
+.history-table tbody tr {
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.history-table tbody tr:hover {
+    background: #fffafb;
+}
+
+
+/* =========================================
+   NUMBER
+========================================= */
+
+.request-number {
+    width: 28px;
+    height: 28px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   BLOOD GROUP
+========================================= */
+
+.history-blood-group {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.history-blood-group i {
+    font-size: 11px;
+}
+
+
+/* =========================================
+   UNITS
+========================================= */
+
+.history-units {
+    display: inline-flex;
+
+    align-items: baseline;
+
+    gap: 4px;
+
+    color: #334155;
+
+    font-weight: 800;
+}
+
+.history-units small {
+    color: #94a3b8;
+
+    font-size: 9px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   HOSPITAL
+========================================= */
+
+.hospital-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    max-width: 180px;
+}
+
+.hospital-icon {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 13px;
+}
+
+.hospital-name {
+    overflow: hidden;
+
+    color: #475569;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   REASON
+========================================= */
+
+.reason-text {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 7px;
+
+    max-width: 210px;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+.reason-text i {
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+.history-date {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #475569;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.date-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.history-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+}
+
+.history-status.approved {
+    background: #ecfdf5;
+
+    color: #15803d;
+}
+
+.history-status.pending {
+    background: #fffbeb;
+
+    color: #b77900;
+}
+
+.history-status.rejected {
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.history-empty {
+    padding: 65px 20px !important;
+
+    text-align: center;
+}
+
+.empty-history-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 14px;
+
+    border-radius: 17px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 25px;
+}
+
+.history-empty h3 {
+    margin: 0 0 6px;
+
+    color: #334155;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+.history-empty p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   CARD FOOTER
+========================================= */
+
+.history-card-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px 22px;
+
+    border-top: 1px solid #eef2f7;
+
+    background: #fafbfc;
+}
+
+.history-footer-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+.history-footer-info i {
+    color: #64748b;
+}
+
+.secure-history {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #16a34a;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .history-page-header {
+        min-height: 150px;
+
+        padding: 27px;
+
+        border-radius: 18px;
+    }
+
+    .history-page-header h1 {
+        font-size: 25px;
+    }
+
+    .history-header-icon {
+        width: 62px;
+        height: 62px;
+
+        border-radius: 16px;
+
+        font-size: 25px;
+    }
+
+    .history-card-header {
+        padding: 18px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .history-page-header {
+        min-height: auto;
+
+        padding: 23px 20px;
+    }
+
+    .history-page-header h1 {
+        font-size: 22px;
+    }
+
+    .history-page-header p {
+        font-size: 11px;
+
+        max-width: 280px;
+    }
+
+    .history-header-icon {
+        display: none;
+    }
+
+    .history-card {
+        border-radius: 15px;
+    }
+
+    .history-card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 17px;
+    }
+
+    .history-count {
+        align-self: flex-start;
+    }
+
+    .history-table thead th,
+    .history-table tbody td {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .history-card-footer {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .history-page-header {
+        padding: 21px 17px;
+    }
+
+    .history-card-header {
+        padding: 15px;
+    }
+
+    .history-heading-left h2 {
+        font-size: 15px;
+    }
+
+    .history-heading-left p {
+        font-size: 9px;
+    }
+
+}

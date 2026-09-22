@@ -1,0 +1,386 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}
+Blood Stock | LifeServe
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/blood-stock.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="blood-stock-page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="blood-stock-header">
+
+        <div class="blood-stock-header-left">
+
+            <div class="blood-stock-header-icon">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div>
+
+                <span class="blood-stock-eyebrow">
+                    INVENTORY MANAGEMENT
+                </span>
+
+                <h1>
+                    Blood Stock
+                </h1>
+
+                <p>
+                    Monitor and manage available blood inventory.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="blood-stock-header-right">
+
+            <div class="stock-secure-badge">
+
+                <i class="bi bi-shield-check"></i>
+
+                <span>
+                    Live Inventory
+                </span>
+
+            </div>
+
+
+            <a
+                href="{% url 'add_blood_stock' %}"
+                class="add-stock-btn">
+
+                <i class="bi bi-plus-lg"></i>
+
+                <span>
+                    Add Blood Stock
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         STOCK CARD
+    ========================================== -->
+
+    <section class="blood-stock-card">
+
+
+        <!-- CARD HEADER -->
+
+        <div class="blood-stock-card-header">
+
+            <div class="blood-stock-title">
+
+                <div class="blood-stock-title-icon">
+                    <i class="bi bi-droplet-half"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Blood Stock List
+                    </h2>
+
+                    <p>
+                        Current blood group inventory
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stock-info">
+
+                <i class="bi bi-info-circle"></i>
+
+                <span>
+                    Keep stock information updated
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             TABLE
+        ====================================== -->
+
+        <div class="blood-stock-table-wrapper">
+
+            <table class="blood-stock-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            BLOOD GROUP
+                        </th>
+
+                        <th>
+                            AVAILABLE UNITS
+                        </th>
+
+                        <th>
+                            LAST UPDATED
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for stock in stocks %}
+
+                <tr>
+
+
+                    <!-- ID -->
+
+                    <td>
+
+                        <span class="stock-id">
+                            #{{ stock.id }}
+                        </span>
+
+                    </td>
+
+
+                    <!-- BLOOD GROUP -->
+
+                    <td>
+
+                        <div class="blood-group-box">
+
+                            <div class="blood-group-icon">
+                                <i class="bi bi-droplet-fill"></i>
+                            </div>
+
+                            <div class="blood-group-text">
+
+                                <strong>
+                                    {{ stock.blood_group }}
+                                </strong>
+
+                                <span>
+                                    Blood Group
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- UNITS -->
+
+                    <td>
+
+                        <div class="units-box">
+
+                            <strong>
+                                {{ stock.units }}
+                            </strong>
+
+                            <span>
+                                units available
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- UPDATED -->
+
+                    <td>
+
+                        <div class="updated-box">
+
+                            <div class="updated-icon">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+
+                            <span>
+                                {{ stock.updated_at }}
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- ACTION -->
+
+                    <td>
+
+                        <div class="stock-actions">
+
+
+                            <!-- EDIT -->
+
+                            <a
+                                href="{% url 'edit_blood_stock' stock.id %}"
+                                class="stock-action stock-edit"
+                                title="Edit Blood Stock">
+
+                                <i class="bi bi-pencil-fill"></i>
+
+                            </a>
+
+
+                            <!-- DELETE -->
+
+                            <form
+                                method="post"
+                                action="{% url 'delete_blood_stock' stock.id %}"
+                                class="delete-stock-form">
+
+                                {% csrf_token %}
+
+                                <button
+                                    type="submit"
+                                    class="stock-action stock-delete"
+                                    title="Delete Blood Stock"
+                                    onclick="return confirm('Are you sure you want to delete this blood stock?');">
+
+                                    <i class="bi bi-trash3-fill"></i>
+
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+                    </td>
+
+
+                </tr>
+
+
+                {% empty %}
+
+
+                <!-- EMPTY STATE -->
+
+                <tr>
+
+                    <td colspan="5">
+
+                        <div class="blood-stock-empty">
+
+                            <div class="stock-empty-icon">
+                                <i class="bi bi-droplet"></i>
+                            </div>
+
+                            <h3>
+                                No Blood Stock Available
+                            </h3>
+
+                            <p>
+                                There is currently no blood inventory available.
+                            </p>
+
+                            <a
+                                href="{% url 'add_blood_stock' %}"
+                                class="empty-add-btn">
+
+                                <i class="bi bi-plus-circle"></i>
+
+                                Add Blood Stock
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <div class="blood-stock-card-footer">
+
+            <div class="stock-footer-info">
+
+                <i class="bi bi-database-check"></i>
+
+                <span>
+                    Blood inventory is securely managed by LifeServe.
+                </span>
+
+            </div>
+
+
+            <div class="stock-record-total">
+
+                <span>
+                    Blood Groups
+                </span>
+
+                <strong>
+                    {{ stocks|length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+</div>
+
+{% endblock %}

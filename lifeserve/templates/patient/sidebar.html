@@ -1,0 +1,190 @@
+{% load static %}
+
+<div class="patient-sidebar-content">
+
+    <!-- Profile -->
+    <div class="patient-profile">
+
+        <div class="patient-avatar-wrapper">
+
+            {% if patient.profile_photo %}
+
+                <img
+                    src="{{ patient.profile_photo.url }}"
+                    class="patient-profile-img"
+                    alt="Profile">
+
+            {% else %}
+
+                <div class="patient-profile-fallback" aria-label="Patient profile image missing">
+                    {{ request.user.first_name|default:request.user.username|slice:":1"|upper }}
+                </div>
+
+            {% endif %}
+
+            <span class="patient-online-dot"></span>
+
+        </div>
+
+
+        <h4>
+            {{ request.user.get_full_name|default:request.user.username }}
+        </h4>
+
+        <span class="patient-role">
+            <i class="bi bi-heart-pulse-fill"></i>
+            Patient
+        </span>
+
+    </div>
+
+
+    <!-- Navigation -->
+    <nav class="patient-menu">
+
+        <div class="patient-menu-label">
+            MAIN MENU
+        </div>
+
+
+        <!-- Dashboard -->
+        <a
+            href="{% url 'patient_dashboard' %}"
+            class="patient-sidebar-link {% if request.resolver_match.url_name == 'patient_dashboard' %}active{% endif %}">
+
+            <span class="patient-link-icon">
+                <i class="bi bi-grid-1x2-fill"></i>
+            </span>
+
+            <span class="patient-link-text">
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <!-- Profile -->
+        <a
+            href="{% url 'patient_profile' %}"
+            class="patient-sidebar-link {% if request.resolver_match.url_name == 'patient_profile' %}active{% endif %}">
+
+            <span class="patient-link-icon">
+                <i class="bi bi-person-circle"></i>
+            </span>
+
+            <span class="patient-link-text">
+                My Profile
+            </span>
+
+        </a>
+
+
+        <!-- Request Blood -->
+        <a
+            href="{% url 'blood_request' %}"
+            class="patient-sidebar-link {% if request.resolver_match.url_name == 'blood_request' %}active{% endif %}">
+
+            <span class="patient-link-icon">
+                <i class="bi bi-droplet-fill"></i>
+            </span>
+
+            <span class="patient-link-text">
+                Request Blood
+            </span>
+
+        </a>
+
+
+        <!-- Request History -->
+        <a
+            href="{% url 'blood_request_history' %}"
+            class="patient-sidebar-link {% if request.resolver_match.url_name == 'blood_request_history' %}active{% endif %}">
+
+            <span class="patient-link-icon">
+                <i class="bi bi-clock-history"></i>
+            </span>
+
+            <span class="patient-link-text">
+                Request History
+            </span>
+
+        </a>
+
+
+        <!-- Blood Availability -->
+        <a
+            href="{% url 'blood_availability' %}"
+            class="patient-sidebar-link {% if request.resolver_match.url_name == 'blood_availability' %}active{% endif %}">
+
+            <span class="patient-link-icon">
+                <i class="bi bi-box-seam-fill"></i>
+            </span>
+
+            <span class="patient-link-text">
+                Blood Availability
+            </span>
+
+        </a>
+
+
+        <!-- Notifications -->
+        <a
+            href="{% url 'patient_notifications' %}"
+            class="patient-sidebar-link patient-notification-link {% if request.resolver_match.url_name == 'patient_notifications' %}active{% endif %}">
+
+            <span class="patient-link-icon">
+                <i class="bi bi-bell-fill"></i>
+            </span>
+
+            <span class="patient-link-text">
+                Notifications
+            </span>
+
+            {% if notification_count > 0 %}
+
+                <span class="patient-notification-badge">
+                    {{ notification_count }}
+                </span>
+
+            {% endif %}
+
+        </a>
+
+    </nav>
+
+
+    <!-- Bottom -->
+    <div class="patient-sidebar-bottom">
+
+        <div class="patient-support-box">
+
+            <div class="support-icon">
+                <i class="bi bi-headset"></i>
+            </div>
+
+            <div>
+                <strong>Need Help?</strong>
+                <small>We're here for you</small>
+            </div>
+
+        </div>
+
+
+        <!-- Logout -->
+        <a
+            href="{% url 'logout' %}"
+            class="patient-sidebar-link patient-logout">
+
+            <span class="patient-link-icon">
+                <i class="bi bi-box-arrow-right"></i>
+            </span>
+
+            <span class="patient-link-text">
+                Logout
+            </span>
+
+        </a>
+
+    </div>
+
+</div>

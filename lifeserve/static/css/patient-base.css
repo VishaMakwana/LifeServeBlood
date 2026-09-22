@@ -1,0 +1,382 @@
+/* =========================================
+   LIFE SERVE
+   PATIENT BASE LAYOUT
+========================================= */
+
+:root {
+    --patient-primary: #c41e3a;
+    --patient-primary-dark: #a51632;
+    --patient-primary-light: #fff1f3;
+
+    --patient-bg: #f8fafc;
+    --patient-card: #ffffff;
+
+    --patient-text: #172033;
+    --patient-text-secondary: #64748b;
+    --patient-text-muted: #94a3b8;
+
+    --patient-border: #e8edf3;
+
+    --patient-sidebar-width: 260px;
+
+    --patient-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    min-height: 100vh;
+
+    background: var(--patient-bg);
+
+    color: var(--patient-text);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* =========================================
+   MAIN APPLICATION
+========================================= */
+
+.patient-app {
+    min-height: 100vh;
+
+    display: flex;
+
+    background: var(--patient-bg);
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.patient-sidebar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: var(--patient-sidebar-width);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: #ffffff;
+
+    border-right: 1px solid var(--patient-border);
+
+    z-index: 1000;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #d7dce3
+        transparent;
+}
+
+
+/* Chrome / Edge scrollbar */
+
+.patient-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.patient-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.patient-sidebar::-webkit-scrollbar-thumb {
+    background: #d7dce3;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.patient-main {
+    width: calc(100% - var(--patient-sidebar-width));
+
+    min-height: 100vh;
+
+    margin-left: var(--patient-sidebar-width);
+
+    padding: 30px;
+
+    background: var(--patient-bg);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   PAGE CONTAINER
+========================================= */
+
+.patient-main > .container,
+.patient-main > .container-fluid {
+    width: 100%;
+}
+
+
+/* =========================================
+   COMMON CARDS
+========================================= */
+
+.patient-main .card {
+    border: 1px solid var(--patient-border);
+
+    border-radius: 18px;
+
+    background: var(--patient-card);
+
+    box-shadow: var(--patient-shadow);
+
+    overflow: hidden;
+}
+
+.patient-main .card-header {
+    border-bottom: 1px solid var(--patient-border);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.patient-main .btn-danger {
+    background: var(--patient-primary);
+
+    border-color: var(--patient-primary);
+
+    border-radius: 10px;
+
+    font-weight: 600;
+}
+
+.patient-main .btn-danger:hover {
+    background: var(--patient-primary-dark);
+
+    border-color: var(--patient-primary-dark);
+}
+
+
+/* =========================================
+   FORM CONTROLS
+========================================= */
+
+.patient-main .form-control,
+.patient-main .form-select {
+    min-height: 46px;
+
+    border: 1px solid var(--patient-border);
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: var(--patient-text);
+
+    box-shadow: none;
+}
+
+.patient-main .form-control:focus,
+.patient-main .form-select:focus {
+    border-color: var(--patient-primary);
+
+    box-shadow:
+        0 0 0 3px rgba(196, 30, 58, 0.10);
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.patient-main .table {
+    margin-bottom: 0;
+
+    vertical-align: middle;
+}
+
+.patient-main .table thead th {
+    padding: 14px 16px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    border-bottom: 1px solid var(--patient-border);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+.patient-main .table tbody td {
+    padding: 14px 16px;
+
+    border-color: #eef2f7;
+
+    color: #334155;
+}
+
+.patient-main .table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.patient-main .table tbody tr:hover {
+    background: #fff8f9;
+}
+
+
+/* =========================================
+   ALERTS
+========================================= */
+
+.patient-main .alert {
+    border-radius: 12px;
+
+    border: none;
+}
+
+
+/* =========================================
+   BADGES
+========================================= */
+
+.patient-main .badge {
+    border-radius: 20px;
+
+    padding: 6px 10px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+.patient-main a {
+    transition: color 0.2s ease;
+}
+
+
+/* =========================================
+   SELECTION
+========================================= */
+
+::selection {
+    background: rgba(196, 30, 58, 0.18);
+
+    color: var(--patient-text);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+    :root {
+        --patient-sidebar-width: 230px;
+    }
+
+    .patient-main {
+        padding: 25px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .patient-sidebar {
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+
+        max-height: none;
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--patient-border);
+    }
+
+    .patient-app {
+        display: block;
+    }
+
+    .patient-main {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 20px 15px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .patient-main {
+        padding: 15px 10px;
+    }
+
+    .patient-main .card {
+        border-radius: 14px;
+    }
+
+    .patient-main .table {
+        min-width: 650px;
+    }
+
+}

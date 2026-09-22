@@ -1,0 +1,303 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>LifeServe Report</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+
+    padding:40px;
+
+    font-family:Arial;
+
+}
+
+.header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.summary-card{
+
+    border:1px solid #ddd;
+
+    padding:15px;
+
+    text-align:center;
+
+    border-radius:8px;
+
+}
+
+.table th{
+
+    background:#dc3545;
+
+    color:white;
+
+}
+
+@media print{
+
+    .no-print{
+
+        display:none;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+    <img src="{% static 'images/blood logo.jpg' %}"
+         alt="LifeServe Logo"
+         width="90"
+         height="90"
+         class="mb-3">
+
+    <h1 class="text-danger">
+        🩸 LifeServe Blood Bank
+    </h1>
+
+    <h4>
+        Administrative Report
+    </h4>
+
+</div>
+
+<button
+onclick="window.print()"
+class="btn btn-danger no-print mb-4">
+
+Print Report
+
+</button>
+
+<div class="row mb-4">
+
+<div class="col">
+
+<div class="summary-card">
+
+<h6>Total Donors</h6>
+
+<h2>{{ total_donors }}</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="summary-card">
+
+<h6>Total Patients</h6>
+
+<h2>{{ total_patients }}</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="summary-card">
+
+<h6>Blood Requests</h6>
+
+<h2>{{ total_blood_requests }}</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="summary-card">
+
+<h6>Donation Requests</h6>
+
+<h2>{{ total_donation_requests }}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+
+<h4 class="text-danger">
+
+🏆 Most Requested Blood Group
+
+</h4>
+
+{% if most_requested %}
+
+<p>
+
+<strong>
+
+{{ most_requested.blood_group }}
+
+</strong>
+
+({{ most_requested.total }} Requests)
+
+</p>
+
+{% endif %}
+
+<hr>
+
+<h4 class="text-success">
+
+👨‍⚕️ Most Active Donor
+
+</h4>
+
+{% if most_active_donor %}
+
+<p>
+
+{{ most_active_donor.donor__user__first_name }}
+
+{{ most_active_donor.donor__user__last_name }}
+
+({{ most_active_donor.total }} Donations)
+
+</p>
+
+{% endif %}
+
+<hr>
+
+<h4 class="text-danger">
+
+🚨 Low Stock Alerts
+
+</h4>
+
+{% for stock in low_stock %}
+
+<div class="alert alert-danger">
+
+{{ stock.blood_group }}
+
+-
+
+Only
+
+{{ stock.units }}
+
+Units Left
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-success">
+
+No Low Stock
+
+</div>
+
+{% endfor %}
+
+<hr>
+
+<h4 class="text-danger">
+
+Blood Stock
+
+</h4>
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+
+<th>Blood Group</th>
+
+<th>Units</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for stock in blood_stock %}
+
+<tr>
+
+<td>{{ stock.blood_group }}</td>
+
+<td>{{ stock.units }}</td>
+
+<td>
+
+{% if stock.units > 20 %}
+
+Good
+
+{% elif stock.units >= 10 %}
+
+Medium
+
+{% else %}
+
+Low
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+window.onload=function(){
+
+window.print();
+
+}
+
+</script>
+
+</body>
+
+</html>

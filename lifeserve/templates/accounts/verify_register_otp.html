@@ -1,0 +1,70 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<div class="row justify-content-center">
+
+<div class="col-md-5">
+
+<div class="card shadow">
+
+<div class="card-header bg-danger text-white">
+
+<h3>Email Verification</h3>
+
+</div>
+
+<div class="card-body">
+
+{% if messages %}
+{% for message in messages %}
+
+<div class="alert alert-info">
+
+{{ message }}
+
+</div>
+
+{% endfor %}
+{% endif %}
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label class="mb-2">
+
+Enter OTP
+
+</label>
+
+<input
+type="text"
+name="otp"
+class="form-control"
+maxlength="6"
+placeholder="Enter 6 Digit OTP"
+required>
+
+<button
+class="btn btn-danger w-100 mt-3">
+
+Verify OTP
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,267 @@
+msgid ""
+msgstr ""
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Select language"
+msgstr "भाषा चुनें"
+
+msgid "Home"
+msgstr "होम"
+
+msgid "About"
+msgstr "हमारे बारे में"
+
+msgid "Contact"
+msgstr "संपर्क"
+
+msgid "Login"
+msgstr "लॉगिन"
+
+msgid "Register"
+msgstr "रजिस्टर"
+
+msgid "My Profile"
+msgstr "मेरी प्रोफ़ाइल"
+
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+msgid "Logout"
+msgstr "लॉगआउट"
+
+msgid "Quick Links"
+msgstr "त्वरित लिंक"
+
+msgid "Contact Us"
+msgstr "हमसे संपर्क करें"
+
+msgid "Ahmedabad, Gujarat"
+msgstr "अहमदाबाद, गुजरात"
+
+msgid "All Rights Reserved."
+msgstr "सर्वाधिकार सुरक्षित।"
+
+msgid "LifeServe Blood Bank"
+msgstr "लाइफसर्व ब्लड बैंक"
+
+msgid "Every Drop"
+msgstr "हर बूंद"
+
+msgid "Can Save a Life."
+msgstr "एक जीवन बचा सकती है।"
+
+msgid "Connecting generous blood donors with patients in need. Together, we can build a healthier community where safe blood is available when it matters most."
+msgstr "जरूरतमंद मरीजों को उदार रक्तदाताओं से जोड़ना। साथ मिलकर हम एक स्वस्थ समुदाय बना सकते हैं, जहां जरूरत के समय सुरक्षित रक्त उपलब्ध हो।"
+
+msgid "Donate Blood"
+msgstr "रक्तदान करें"
+
+msgid "Request Blood"
+msgstr "रक्त का अनुरोध करें"
+
+msgid "Safe & Secure"
+msgstr "सुरक्षित और भरोसेमंद"
+
+msgid "Quick Response"
+msgstr "त्वरित प्रतिक्रिया"
+
+msgid "Community Driven"
+msgstr "समुदाय द्वारा संचालित"
+
+msgid "Save Lives"
+msgstr "जीवन बचाएं"
+
+msgid "One donation matters"
+msgstr "एक रक्तदान महत्वपूर्ण है"
+
+msgid "Emergency Support"
+msgstr "आपातकालीन सहायता"
+
+msgid "Registered Donors"
+msgstr "पंजीकृत रक्तदाता"
+
+msgid "Blood Units"
+msgstr "रक्त इकाइयां"
+
+msgid "Patients Helped"
+msgstr "मदद किए गए मरीज"
+
+msgid "Partner Hospitals"
+msgstr "साझेदार अस्पताल"
+
+msgid "ABOUT LIFESERVE"
+msgstr "लाइफसर्व के बारे में"
+
+msgid "Together We Can"
+msgstr "हम साथ मिलकर"
+
+msgid "Save More Lives"
+msgstr "और जीवन बचा सकते हैं"
+
+msgid "LifeServe Blood Bank is a modern blood bank management platform dedicated to connecting donors, patients, hospitals and blood bank administrators."
+msgstr "लाइफसर्व ब्लड बैंक एक आधुनिक रक्त बैंक प्रबंधन मंच है, जो रक्तदाताओं, मरीजों, अस्पतालों और रक्त बैंक प्रशासकों को जोड़ने के लिए समर्पित है।"
+
+msgid "Our platform makes blood donation and blood requests simple, fast and transparent while helping manage donors, patients, blood inventory and emergency requests."
+msgstr "हमारा मंच रक्तदान और रक्त अनुरोधों को सरल, तेज और पारदर्शी बनाता है तथा रक्तदाताओं, मरीजों, रक्त भंडार और आपातकालीन अनुरोधों के प्रबंधन में मदद करता है।"
+
+msgid "Safe blood management"
+msgstr "सुरक्षित रक्त प्रबंधन"
+
+msgid "Fast donor connection"
+msgstr "तेज रक्तदाता संपर्क"
+
+msgid "Real-time request tracking"
+msgstr "रीयल-टाइम अनुरोध ट्रैकिंग"
+
+msgid "Secure patient records"
+msgstr "सुरक्षित मरीज रिकॉर्ड"
+
+msgid "Every Drop Counts"
+msgstr "हर बूंद मायने रखती है"
+
+msgid "Donate today"
+msgstr "आज रक्तदान करें"
+
+msgid "WHAT WE DO"
+msgstr "हम क्या करते हैं"
+
+msgid "Our"
+msgstr "हमारी"
+
+msgid "Services"
+msgstr "सेवाएं"
+
+msgid "Everything you need for safe and efficient blood management."
+msgstr "सुरक्षित और प्रभावी रक्त प्रबंधन के लिए आपको जो कुछ चाहिए।"
+
+msgid "Blood Donation"
+msgstr "रक्तदान"
+
+msgid "Register as a donor and help someone who needs blood urgently."
+msgstr "रक्तदाता के रूप में पंजीकरण करें और तत्काल रक्त की जरूरत वाले व्यक्ति की मदद करें।"
+
+msgid "Learn More"
+msgstr "और जानें"
+
+msgid "Blood Request"
+msgstr "रक्त अनुरोध"
+
+msgid "Patients can submit blood requests quickly during their time of need."
+msgstr "मरीज जरूरत के समय जल्दी से रक्त अनुरोध भेज सकते हैं।"
+
+msgid "Blood Stock"
+msgstr "रक्त भंडार"
+
+msgid "Monitor available blood groups and maintain efficient inventory."
+msgstr "उपलब्ध रक्त समूहों पर नजर रखें और प्रभावी भंडार बनाए रखें।"
+
+msgid "View Stock"
+msgstr "भंडार देखें"
+
+msgid "Quick access to blood support for critical and emergency situations."
+msgstr "गंभीर और आपातकालीन स्थितियों में रक्त सहायता तक त्वरित पहुंच।"
+
+msgid "Get Help"
+msgstr "मदद लें"
+
+msgid "LIVE BLOOD STOCK"
+msgstr "लाइव रक्त भंडार"
+
+msgid "Blood Groups"
+msgstr "रक्त समूह"
+
+msgid "Availability"
+msgstr "उपलब्धता"
+
+msgid "Check the current availability of blood groups in our blood bank."
+msgstr "हमारे रक्त बैंक में रक्त समूहों की वर्तमान उपलब्धता जांचें।"
+
+msgid "Available"
+msgstr "उपलब्ध"
+
+msgid "Low Stock"
+msgstr "कम भंडार"
+
+msgid "Out of Stock"
+msgstr "भंडार समाप्त"
+
+msgid "Blood stock information is currently unavailable."
+msgstr "रक्त भंडार की जानकारी फिलहाल उपलब्ध नहीं है।"
+
+msgid "OUR ORGANIZATION"
+msgstr "हमारा संगठन"
+
+msgid "LifeServe"
+msgstr "लाइफसर्व"
+
+msgid "LifeServe Blood Bank is a trusted blood bank management organization dedicated to connecting blood donors with patients in need."
+msgstr "लाइफसर्व ब्लड बैंक एक विश्वसनीय रक्त बैंक प्रबंधन संगठन है, जो रक्तदाताओं को जरूरतमंद मरीजों से जोड़ने के लिए समर्पित है।"
+
+msgid "The system enables efficient management of blood donations, blood requests, donor information, patient records and blood inventory through a secure and user-friendly platform."
+msgstr "यह सिस्टम सुरक्षित और उपयोगकर्ता-अनुकूल मंच के माध्यम से रक्तदान, रक्त अनुरोध, रक्तदाता जानकारी, मरीज रिकॉर्ड और रक्त भंडार का प्रभावी प्रबंधन सक्षम बनाता है।"
+
+msgid "Our goal is to strengthen community participation in blood donation and contribute towards a healthier and more responsive healthcare system."
+msgstr "हमारा लक्ष्य रक्तदान में समुदाय की भागीदारी को मजबूत करना और एक स्वस्थ एवं अधिक उत्तरदायी स्वास्थ्य सेवा प्रणाली में योगदान देना है।"
+
+msgid "OUR PURPOSE"
+msgstr "हमारा उद्देश्य"
+
+msgid "Mission &"
+msgstr "मिशन और"
+
+msgid "Vision"
+msgstr "विजन"
+
+msgid "Our Mission"
+msgstr "हमारा मिशन"
+
+msgid "To make blood donation simple, fast and accessible for everyone while helping patients receive safe blood when they need it most."
+msgstr "रक्तदान को सभी के लिए सरल, तेज और सुलभ बनाना तथा मरीजों को जरूरत के समय सुरक्षित रक्त प्राप्त करने में मदद करना।"
+
+msgid "Our Vision"
+msgstr "हमारा विजन"
+
+msgid "To build a reliable, transparent and technology-driven blood donation network where every patient can quickly access safe blood."
+msgstr "एक विश्वसनीय, पारदर्शी और तकनीक-संचालित रक्तदान नेटवर्क बनाना, जहां हर मरीज सुरक्षित रक्त तक जल्दी पहुंच सके।"
+
+msgid "LEADERSHIP"
+msgstr "नेतृत्व"
+
+msgid "Leadership"
+msgstr "नेतृत्व"
+
+msgid "Hon'ble President of India"
+msgstr "भारत की माननीय राष्ट्रपति"
+
+msgid "President, Indian Red Cross Society"
+msgstr "अध्यक्ष, भारतीय रेड क्रॉस सोसाइटी"
+
+msgid "Hon'ble Union Minister of Health & Family Welfare"
+msgstr "माननीय केंद्रीय स्वास्थ्य एवं परिवार कल्याण मंत्री"
+
+msgid "Government of India"
+msgstr "भारत सरकार"
+
+msgid "Secretary General"
+msgstr "महासचिव"
+
+msgid "Indian Red Cross Society"
+msgstr "भारतीय रेड क्रॉस सोसाइटी"
+
+msgid "MAKE A DIFFERENCE TODAY"
+msgstr "आज बदलाव लाएं"
+
+msgid "Your Blood Can Give Someone"
+msgstr "आपका रक्त किसी को दे सकता है"
+
+msgid "Another Chance."
+msgstr "एक और मौका।"
+
+msgid "One donation can make a meaningful difference. Become a LifeServe donor today."
+msgstr "एक रक्तदान सार्थक बदलाव ला सकता है। आज लाइफसर्व रक्तदाता बनें।"
+
+msgid "Become a Donor"
+msgstr "रक्तदाता बनें"

@@ -1,0 +1,572 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}
+Contact Us | LifeServe Blood Bank
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= CONTACT HERO ================= -->
+
+<section class="contact-hero">
+
+    <div class="contact-hero-overlay"></div>
+
+    <div class="container position-relative">
+
+        <div class="contact-hero-content">
+
+            <span class="contact-label">
+                <i class="bi bi-chat-heart-fill"></i>
+                GET IN TOUCH
+            </span>
+
+            <h1>
+                We're Here
+                <span>To Help You</span>
+            </h1>
+
+            <p>
+                Have a question, suggestion or need assistance?
+                Contact the LifeServe Blood Bank team.
+            </p>
+
+            <div class="contact-breadcrumb">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <i class="bi bi-chevron-right"></i>
+
+                <span>Contact Us</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT SECTION ================= -->
+
+<section class="contact-section">
+
+    <div class="container">
+
+        <div class="row g-5">
+
+
+            <!-- ================= INFORMATION ================= -->
+
+            <div class="col-lg-5">
+
+                <span class="contact-section-label">
+                    CONTACT INFORMATION
+                </span>
+
+                <h2 class="contact-title">
+                    Let's Start a
+                    <span>Conversation</span>
+                </h2>
+
+                <p class="contact-description">
+                    Whether you have a question about blood donation,
+                    blood requests or our services, our team is ready
+                    to assist you.
+                </p>
+
+
+                <!-- Address -->
+
+                <div class="contact-info-card">
+
+                    <div class="contact-info-icon">
+
+                        <i class="bi bi-geo-alt-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h5>Our Address</h5>
+
+                        <p>
+                            LifeServe Blood Bank<br>
+                            Ahmedabad, Gujarat<br>
+                            India
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="contact-info-card">
+
+                    <div class="contact-info-icon">
+
+                        <i class="bi bi-telephone-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h5>Phone Number</h5>
+
+                        <p>
+                            +91 9876543210
+                        </p>
+
+                        <a href="tel:+919876543210">
+                            Call Us
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="contact-info-card">
+
+                    <div class="contact-info-icon">
+
+                        <i class="bi bi-envelope-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h5>Email Address</h5>
+
+                        <p>
+                            lifeserve@gmail.com
+                        </p>
+
+                        <a href="mailto:lifeserve@gmail.com">
+                            Send Email
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Social -->
+
+                <div class="contact-social">
+
+                    <h5>Connect With Us</h5>
+
+                    <div class="contact-social-icons">
+
+                        <a href="#">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CONTACT FORM ================= -->
+
+            <div class="col-lg-7">
+
+                <div class="contact-form-card">
+
+                    <div class="contact-form-header">
+
+                        <div>
+
+                            <span>
+                                SEND US A MESSAGE
+                            </span>
+
+                            <h3>
+                                How Can We Help?
+                            </h3>
+
+                        </div>
+
+                        <div class="contact-form-icon">
+
+                            <i class="bi bi-send-fill"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <div class="alert alert-success
+                                        alert-dismissible fade show">
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                {{ message }}
+
+                                <button type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="alert">
+                                </button>
+
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="row g-3">
+
+
+                            <!-- Name -->
+
+                            <div class="col-md-6">
+
+                                <label>
+                                    Your Name
+                                </label>
+
+                                <div class="contact-input">
+
+                                    <i class="bi bi-person-fill"></i>
+
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        placeholder="Enter your name"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Email -->
+
+                            <div class="col-md-6">
+
+                                <label>
+                                    Email Address
+                                </label>
+
+                                <div class="contact-input">
+
+                                    <i class="bi bi-envelope-fill"></i>
+
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="Enter your email"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Subject -->
+
+                            <div class="col-12">
+
+                                <label>
+                                    Subject
+                                </label>
+
+                                <div class="contact-input">
+
+                                    <i class="bi bi-chat-left-text-fill"></i>
+
+                                    <input
+                                        type="text"
+                                        name="subject"
+                                        placeholder="What is this about?"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Message -->
+
+                            <div class="col-12">
+
+                                <label>
+                                    Your Message
+                                </label>
+
+                                <div class="contact-input contact-textarea">
+
+                                    <i class="bi bi-pencil-fill"></i>
+
+                                    <textarea
+                                        name="message"
+                                        rows="6"
+                                        placeholder="Write your message here..."
+                                        required></textarea>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Button -->
+
+                            <div class="col-12">
+
+                                <button
+                                    type="submit"
+                                    class="contact-submit">
+
+                                    <i class="bi bi-send-fill"></i>
+
+                                    Send Message
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WORKING HOURS ================= -->
+
+<section class="contact-hours-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+
+            <div class="col-lg-5">
+
+                <span class="contact-section-label">
+                    WHEN TO REACH US
+                </span>
+
+                <h2 class="contact-title">
+                    Our Working
+                    <span>Hours</span>
+                </h2>
+
+                <p class="contact-description">
+
+                    Our team is available during the following hours
+                    to assist you with your questions and requests.
+
+                </p>
+
+                <div class="emergency-box">
+
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                    <div>
+
+                        <strong>Emergency Support</strong>
+
+                        <p>
+                            Sunday support is available for
+                            emergency blood requirements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-7">
+
+                <div class="hours-card">
+
+                    <div class="hours-row">
+
+                        <div>
+
+                            <i class="bi bi-calendar-week"></i>
+
+                            Monday - Saturday
+
+                        </div>
+
+                        <strong>
+                            9:00 AM - 6:00 PM
+                        </strong>
+
+                    </div>
+
+
+                    <div class="hours-row">
+
+                        <div>
+
+                            <i class="bi bi-calendar-x"></i>
+
+                            Sunday
+
+                        </div>
+
+                        <strong class="emergency-text">
+                            Emergency Only
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MAP ================= -->
+
+<section class="contact-map-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="contact-section-label">
+                FIND US
+            </span>
+
+            <h2 class="contact-title">
+                Our <span>Location</span>
+            </h2>
+
+            <p class="contact-description mx-auto">
+                Visit LifeServe Blood Bank in Ahmedabad, Gujarat.
+            </p>
+
+        </div>
+
+        <div class="map-card">
+
+            <iframe
+                src="https://www.google.com/maps?q=Ahmedabad,Gujarat&output=embed"
+                width="100%"
+                height="420"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FINAL CTA ================= -->
+
+<section class="contact-cta">
+
+    <div class="container">
+
+        <div class="contact-cta-box">
+
+            <div>
+
+                <span>
+                    NEED BLOOD?
+                </span>
+
+                <h2>
+                    We're Ready to
+                    <strong>Help You.</strong>
+                </h2>
+
+                <p>
+                    LifeServe connects patients with blood resources
+                    when they need them most.
+                </p>
+
+            </div>
+
+            <div>
+
+                {% if user.is_authenticated %}
+
+                    <a href="{% url 'blood_request' %}"
+                       class="contact-cta-btn">
+
+                        <i class="bi bi-heart-pulse-fill"></i>
+
+                        Request Blood
+
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}"
+                       class="contact-cta-btn">
+
+                        <i class="bi bi-box-arrow-in-right"></i>
+
+                        Login to Request
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,447 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}
+Manage Patients | LifeServe
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/manage-patients.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="patients-page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="patients-page-header">
+
+        <div class="patients-header-left">
+
+            <div class="patients-header-icon">
+                <i class="bi bi-people-fill"></i>
+            </div>
+
+            <div>
+
+                <span class="patients-eyebrow">
+                    PATIENT MANAGEMENT
+                </span>
+
+                <h1>
+                    Manage Patients
+                </h1>
+
+                <p>
+                    View, search and manage registered patients.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="patients-header-badge">
+
+            <i class="bi bi-shield-check"></i>
+
+            <span>
+                Secure Patient Records
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         PATIENTS CARD
+    ========================================== -->
+
+    <section class="patients-card">
+
+
+        <!-- CARD HEADER -->
+
+        <div class="patients-card-header">
+
+
+            <div class="patients-card-title">
+
+                <div class="patients-title-icon">
+                    <i class="bi bi-person-vcard-fill"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Patients List
+                    </h2>
+
+                    <p>
+                        Registered patient information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <form
+                method="GET"
+                class="patient-search-form">
+
+                <div class="patient-search">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        name="search"
+                        value="{{ request.GET.search|default:'' }}"
+                        placeholder="Search patients..."
+                        autocomplete="off">
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="search-btn">
+
+                    Search
+
+                </button>
+
+            </form>
+
+
+        </div>
+
+
+        <!-- =====================================
+             TABLE
+        ====================================== -->
+
+        <div class="patients-table-wrapper">
+
+            <table class="patients-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            PATIENT
+                        </th>
+
+                        <th>
+                            EMAIL
+                        </th>
+
+                        <th>
+                            PHONE
+                        </th>
+
+                        <th>
+                            BLOOD GROUP
+                        </th>
+
+                        <th>
+                            CITY
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for patient in patients %}
+
+                <tr>
+
+
+                    <!-- ID -->
+
+                    <td>
+
+                        <span class="patient-id">
+                            #{{ patient.id }}
+                        </span>
+
+                    </td>
+
+
+                    <!-- NAME -->
+
+                    <td>
+
+                        <div class="patient-person">
+
+                            <div class="patient-avatar">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+
+                            <div class="patient-name-box">
+
+                                <strong>
+                                    {{ patient.user.get_full_name }}
+                                </strong>
+
+                                <span>
+                                    Registered Patient
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- EMAIL -->
+
+                    <td>
+
+                        <div class="patient-email">
+
+                            <i class="bi bi-envelope"></i>
+
+                            <span>
+                                {{ patient.user.email }}
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- PHONE -->
+
+                    <td>
+
+                        <div class="patient-phone">
+
+                            <i class="bi bi-telephone"></i>
+
+                            <span>
+                                {{ patient.phone }}
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- BLOOD GROUP -->
+
+                    <td>
+
+                        <span class="blood-group">
+
+                            <i class="bi bi-droplet-fill"></i>
+
+                            {{ patient.blood_group }}
+
+                        </span>
+
+                    </td>
+
+
+                    <!-- CITY -->
+
+                    <td>
+
+                        <div class="patient-city">
+
+                            <i class="bi bi-geo-alt-fill"></i>
+
+                            <span>
+                                {{ patient.city }}
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- STATUS -->
+
+                    <td>
+
+                        <span class="patient-status">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Active
+
+                        </span>
+
+                    </td>
+
+
+                    <!-- ACTION -->
+
+                    <td>
+
+                        <div class="patient-actions">
+
+
+                            <!-- VIEW -->
+
+                            <a
+                                href="{% url 'view_patient' patient.id %}"
+                                class="patient-action view-action"
+                                title="View Patient">
+
+                                <i class="bi bi-eye-fill"></i>
+
+                            </a>
+
+
+                            <!-- EDIT -->
+
+                            <a
+                                href="{% url 'edit_patient' patient.id %}"
+                                class="patient-action edit-action"
+                                title="Edit Patient">
+
+                                <i class="bi bi-pencil-fill"></i>
+
+                            </a>
+
+
+                            <!-- DELETE -->
+
+                            <form
+                                method="post"
+                                action="{% url 'delete_patient' patient.id %}"
+                                class="delete-patient-form">
+
+                                {% csrf_token %}
+
+                                <button
+                                    type="submit"
+                                    class="patient-action delete-action"
+                                    title="Delete Patient"
+                                    onclick="return confirm('Are you sure you want to delete this patient?');">
+
+                                    <i class="bi bi-trash3-fill"></i>
+
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+                    </td>
+
+
+                </tr>
+
+
+                {% empty %}
+
+
+                <!-- EMPTY -->
+
+                <tr>
+
+                    <td colspan="8">
+
+                        <div class="patients-empty">
+
+                            <div class="empty-icon">
+                                <i class="bi bi-person-x"></i>
+                            </div>
+
+                            <h3>
+                                No Patients Found
+                            </h3>
+
+                            <p>
+                                There are no registered patients matching your search.
+                            </p>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- =====================================
+             CARD FOOTER
+        ====================================== -->
+
+        <div class="patients-card-footer">
+
+            <div class="patient-record-info">
+
+                <i class="bi bi-database-check"></i>
+
+                <span>
+                    Patient records are securely managed by LifeServe.
+                </span>
+
+            </div>
+
+
+            <div class="patient-total">
+
+                <span>
+                    Total Records
+                </span>
+
+                <strong>
+                    {{ patients|length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+</div>
+
+{% endblock %}

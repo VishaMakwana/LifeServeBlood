@@ -1,0 +1,201 @@
+{% extends "adminpanel/base.html" %}
+{% load static %}
+
+{% block title %}Notifications | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin-notifications.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="notifications-page">
+
+    <!-- ================= PAGE HEADER ================= -->
+     <section class="notifications-page-header">
+    <!-- <div class="notifications-page-header"> -->
+
+        <div class="notifications-header-content">
+
+            <div class="notifications-page-icon">
+                <i class="bi bi-bell-fill"></i>
+            </div>
+
+            <div>
+                <h2>Notifications</h2>
+                <p>Stay updated with important LifeServe system notifications</p>
+            </div>
+
+        </div>
+         <div class="reports-header-badge">
+        <!-- <div class="notifications-secure-badge"> -->
+            <i class="bi bi-shield-check"></i>
+            <span>Secure Admin Panel</span>
+        </div>
+         <!-- </div> -->
+
+    <!-- </div> -->
+    </section>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <div class="notifications-summary">
+
+        <div class="notifications-summary-left">
+
+            <div class="notifications-summary-icon">
+                <i class="bi bi-bell-fill"></i>
+            </div>
+
+            <div>
+                <span>Total Notifications</span>
+                <strong>{{ notifications|length }}</strong>
+            </div>
+
+        </div>
+
+        <div class="notifications-summary-divider"></div>
+
+        <div class="notifications-summary-info">
+            <i class="bi bi-info-circle-fill"></i>
+            <span>Important updates and system messages appear here.</span>
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN CARD ================= -->
+
+    <div class="notifications-card">
+
+        <!-- Card Header -->
+
+        <div class="notifications-card-header">
+
+            <div class="notifications-card-title">
+
+                <div class="notifications-card-title-icon">
+                    <i class="bi bi-chat-square-text-fill"></i>
+                </div>
+
+                <div>
+                    <h4>Notification Center</h4>
+                    <p>Recent system notifications and updates</p>
+                </div>
+
+            </div>
+
+            <div class="notifications-live-badge">
+                <span class="notifications-live-dot"></span>
+                Live Updates
+            </div>
+
+        </div>
+
+
+        <!-- Card Body -->
+
+        <div class="notifications-card-body">
+
+            {% for n in notifications %}
+
+            <div class="notification-item">
+
+                <!-- Notification Icon -->
+
+                <div class="notification-icon">
+                    <i class="bi bi-bell-fill"></i>
+                </div>
+
+
+                <!-- Notification Content -->
+
+                <div class="notification-content">
+
+                    <div class="notification-top">
+
+                        <h5>{{ n.title }}</h5>
+
+                        <span class="notification-status">
+                            <i class="bi bi-circle-fill"></i>
+                            New
+                        </span>
+
+                    </div>
+
+                    <p>
+                        {{ n.message }}
+                    </p>
+
+                    <div class="notification-date">
+                        <i class="bi bi-calendar3"></i>
+                        <span>
+                            {{ n.created_at|date:"d M Y h:i A" }}
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- Arrow -->
+
+                <!-- <div class="notification-arrow">
+                    <i class="bi bi-chevron-right"></i>
+                </div> -->
+
+            </div>
+
+            {% empty %}
+
+            <!-- ================= EMPTY STATE ================= -->
+
+            <div class="notifications-empty">
+
+                <div class="notifications-empty-icon">
+                    <i class="bi bi-bell-slash-fill"></i>
+                </div>
+
+                <h3>No Notifications</h3>
+
+                <p>
+                    You don't have any notifications at the moment.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <div class="notifications-card-footer">
+
+            <div class="notifications-records">
+
+                <i class="bi bi-database-check"></i>
+
+                <span>
+                    Total Records:
+                    <strong>{{ notifications|length }}</strong>
+                </span>
+
+            </div>
+
+            <div class="notifications-protected">
+
+                <i class="bi bi-lock-fill"></i>
+
+                Secure &amp; Protected
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

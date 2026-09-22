@@ -1,0 +1,333 @@
+{% extends "patient/base.html" %}
+{% load static %}
+
+{% block title %}
+Blood Availability - LifeServe
+{% endblock %}
+
+
+{% block content %}
+
+<div class="blood-availability-page">
+
+    <!-- =================================
+         PAGE HEADER
+    ================================== -->
+
+    <div class="availability-header">
+
+        <div class="availability-header-content">
+
+            <span class="availability-eyebrow">
+                <i class="bi bi-droplet-fill"></i>
+                LifeServe Blood Bank
+            </span>
+
+            <h1>
+                Blood Availability
+            </h1>
+
+            <p>
+                Check the current availability of different blood groups.
+            </p>
+
+        </div>
+
+        <div class="availability-header-icon">
+            <i class="bi bi-box-seam-fill"></i>
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         AVAILABILITY CARD
+    ================================== -->
+
+    <div class="availability-card">
+
+        <!-- Card Header -->
+
+        <div class="availability-card-header">
+
+            <div class="availability-heading">
+
+                <div class="availability-icon">
+                    <i class="bi bi-droplet-half"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Current Blood Stock
+                    </h2>
+
+                    <p>
+                        Available blood units by blood group
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="stock-live">
+
+                <span class="live-dot"></span>
+
+                Live Stock
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             TABLE
+        ================================== -->
+
+        <div class="availability-table-wrapper">
+
+            <table class="table availability-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th class="number-column">
+                            #
+                        </th>
+
+                        <th>
+                            Blood Group
+                        </th>
+
+                        <th>
+                            Available Units
+                        </th>
+
+                        <th>
+                            Availability Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for stock in blood_stock %}
+
+                    <tr>
+
+                        <!-- NUMBER -->
+
+                        <td>
+
+                            <span class="stock-number">
+                                {{ forloop.counter }}
+                            </span>
+
+                        </td>
+
+
+                        <!-- BLOOD GROUP -->
+
+                        <td>
+
+                            <div class="blood-group-cell">
+
+                                <div class="blood-group-icon">
+
+                                    <i class="bi bi-droplet-fill"></i>
+
+                                </div>
+
+                                <strong>
+                                    {{ stock.blood_group }}
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- UNITS -->
+
+                        <td>
+
+                            <div class="units-cell">
+
+                                <strong>
+                                    {{ stock.units }}
+                                </strong>
+
+                                <span>
+                                    units
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- STATUS -->
+
+                        <td>
+
+                            {% if stock.units > 10 %}
+
+                                <span class="availability-status available">
+
+                                    <span class="status-dot"></span>
+
+                                    Available
+
+                                </span>
+
+                            {% elif stock.units > 0 %}
+
+                                <span class="availability-status low">
+
+                                    <span class="status-dot"></span>
+
+                                    Low Stock
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="availability-status out">
+
+                                    <span class="status-dot"></span>
+
+                                    Out of Stock
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+
+                    {% empty %}
+
+                    <!-- EMPTY STATE -->
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="availability-empty">
+
+                            <div class="empty-stock-icon">
+
+                                <i class="bi bi-droplet"></i>
+
+                            </div>
+
+                            <h3>
+                                No Blood Stock Available
+                            </h3>
+
+                            <p>
+                                Blood availability information is currently unavailable.
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- =================================
+             FOOTER
+        ================================== -->
+
+        <div class="availability-footer">
+
+            <div class="availability-note">
+
+                <i class="bi bi-info-circle"></i>
+
+                <span>
+                    Stock availability may change as blood units are received or issued.
+                </span>
+
+            </div>
+
+            <div class="secure-stock">
+
+                <i class="bi bi-shield-check"></i>
+
+                Verified Stock
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         STATUS LEGEND
+    ================================== -->
+
+    <div class="stock-legend">
+
+        <div class="legend-title">
+            <i class="bi bi-info-circle"></i>
+            Availability Guide
+        </div>
+
+        <div class="legend-items">
+
+            <div class="legend-item">
+
+                <span class="legend-dot available-dot"></span>
+
+                <div>
+                    <strong>Available</strong>
+                    <small>More than 10 units</small>
+                </div>
+
+            </div>
+
+            <div class="legend-item">
+
+                <span class="legend-dot low-dot"></span>
+
+                <div>
+                    <strong>Low Stock</strong>
+                    <small>1–10 units</small>
+                </div>
+
+            </div>
+
+            <div class="legend-item">
+
+                <span class="legend-dot out-dot"></span>
+
+                <div>
+                    <strong>Out of Stock</strong>
+                    <small>No units available</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

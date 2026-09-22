@@ -1,0 +1,210 @@
+{% extends "patient/base.html" %}
+{% load static %}
+
+{% block title %}
+Notifications - LifeServe
+{% endblock %}
+
+
+{% block content %}
+
+<div class="notifications-page">
+
+    <!-- =================================
+         PAGE HEADER
+    ================================== -->
+
+    <div class="notifications-header">
+
+        <div class="notifications-header-content">
+
+            <span class="notifications-eyebrow">
+                <i class="bi bi-bell-fill"></i>
+                Patient Updates
+            </span>
+
+            <h1>
+                Notifications
+            </h1>
+
+            <p>
+                Stay updated with your blood requests and important information.
+            </p>
+
+        </div>
+
+        <div class="notifications-header-icon">
+            <i class="bi bi-bell-fill"></i>
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         NOTIFICATION CONTENT
+    ================================== -->
+
+    <div class="notifications-card">
+
+        <div class="notifications-card-header">
+
+            <div class="notifications-heading">
+
+                <div class="notifications-icon">
+                    <i class="bi bi-chat-square-text-fill"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Recent Notifications
+                    </h2>
+
+                    <p>
+                        Your latest account updates and alerts
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% if notifications %}
+
+            <div class="notification-count">
+
+                <i class="bi bi-bell"></i>
+
+                {{ notifications|length }} Updates
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =================================
+             NOTIFICATION LIST
+        ================================== -->
+
+        <div class="notification-list">
+
+            {% for n in notifications %}
+
+            <div class="notification-item">
+
+                <!-- Icon -->
+
+                <div class="notification-item-icon">
+
+                    <i class="bi bi-bell-fill"></i>
+
+                </div>
+
+
+                <!-- Content -->
+
+                <div class="notification-content">
+
+                    <div class="notification-top">
+
+                        <h3>
+                            {{ n.title }}
+                        </h3>
+
+                        <span class="notification-new">
+                            Update
+                        </span>
+
+                    </div>
+
+                    <p>
+                        {{ n.message }}
+                    </p>
+
+                    <div class="notification-time">
+
+                        <i class="bi bi-clock"></i>
+
+                        {{ n.created_at|date:"d M Y h:i A" }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- Arrow -->
+
+                <div class="notification-arrow">
+
+                    <i class="bi bi-chevron-right"></i>
+
+                </div>
+
+            </div>
+
+
+            {% empty %}
+
+            <!-- =================================
+                 EMPTY STATE
+            ================================== -->
+
+            <div class="notifications-empty">
+
+                <div class="empty-notification-icon">
+
+                    <i class="bi bi-bell-slash"></i>
+
+                </div>
+
+                <h3>
+                    No Notifications
+                </h3>
+
+                <p>
+                    You don't have any notifications at the moment.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% if notifications %}
+
+        <!-- =================================
+             FOOTER
+        ================================== -->
+
+        <div class="notifications-footer">
+
+            <div class="notification-footer-info">
+
+                <i class="bi bi-info-circle"></i>
+
+                <span>
+                    Notifications keep you informed about important updates.
+                </span>
+
+            </div>
+
+            <div class="secure-notifications">
+
+                <i class="bi bi-shield-check"></i>
+
+                Secure Updates
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,670 @@
+{% extends "donor/base.html" %}
+{% load static %}
+
+{% block title %}
+Donation History | LifeServe
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/donation-history.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="donation-history-page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="history-page-header">
+
+        <div class="history-header-content">
+
+            <span class="history-eyebrow">
+                <i class="bi bi-clock-history"></i>
+                LIFESERVE DONOR PORTAL
+            </span>
+
+            <h1>
+                Donation History
+            </h1>
+
+            <p>
+                Track your blood donations, request status,
+                remarks and certificates in one place.
+            </p>
+
+        </div>
+
+        <div class="history-header-icon">
+
+            <i class="bi bi-droplet-fill"></i>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         SUMMARY
+    ========================================== -->
+
+    <section class="history-summary">
+
+        <!-- Total -->
+
+        <div class="history-stat-card">
+
+            <div class="history-stat-icon red">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div class="history-stat-content">
+
+                <span>Total Donations</span>
+
+                <h2>
+                    {{ total }}
+                </h2>
+
+                <p>
+                    All donation records
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Approved -->
+
+        <div class="history-stat-card">
+
+            <div class="history-stat-icon green">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+
+            <div class="history-stat-content">
+
+                <span>Approved</span>
+
+                <h2 class="approved-number">
+                    {{ approved }}
+                </h2>
+
+                <p>
+                    Successful donations
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Pending -->
+
+        <div class="history-stat-card">
+
+            <div class="history-stat-icon yellow">
+                <i class="bi bi-hourglass-split"></i>
+            </div>
+
+            <div class="history-stat-content">
+
+                <span>Pending</span>
+
+                <h2 class="pending-number">
+                    {{ pending }}
+                </h2>
+
+                <p>
+                    Awaiting approval
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Rejected -->
+
+        <div class="history-stat-card">
+
+            <div class="history-stat-icon dark-red">
+                <i class="bi bi-x-circle-fill"></i>
+            </div>
+
+            <div class="history-stat-content">
+
+                <span>Rejected</span>
+
+                <h2 class="rejected-number">
+                    {{ rejected }}
+                </h2>
+
+                <p>
+                    Unapproved requests
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FILTER
+    ========================================== -->
+
+    <section class="history-filter-card">
+
+        <div class="filter-heading">
+
+            <div class="filter-icon">
+                <i class="bi bi-funnel-fill"></i>
+            </div>
+
+            <div>
+
+                <h3>
+                    Filter Donations
+                </h3>
+
+                <p>
+                    View donation records by status
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form method="GET" class="history-filter-form">
+
+            <div class="filter-field">
+
+                <label for="status">
+                    Donation Status
+                </label>
+
+                <select
+                    name="status"
+                    id="status"
+                    class="history-select">
+
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="Approved">
+                        Approved
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="filter-button">
+
+                <i class="bi bi-funnel-fill"></i>
+
+                Apply Filter
+
+            </button>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- =========================================
+         DONATION RECORDS
+    ========================================== -->
+
+    <section class="history-record-card">
+
+
+        <div class="history-record-header">
+
+            <div class="record-title">
+
+                <div class="record-icon">
+                    <i class="bi bi-list-check"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Donation Records
+                    </h2>
+
+                    <p>
+                        Your complete donation activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <span class="record-badge">
+                HISTORY
+            </span>
+
+        </div>
+
+
+
+        <div class="history-table-wrapper">
+
+            <table class="history-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Blood Group
+                        </th>
+
+                        <th>
+                            Units
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Remarks
+                        </th>
+
+                        <th>
+                            Certificate
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for donation in donations %}
+
+                    <tr>
+
+
+                        <!-- DATE -->
+
+                        <td>
+
+                            <div class="history-date">
+
+                                <div class="date-icon">
+                                    <i class="bi bi-calendar3"></i>
+                                </div>
+
+                                <span>
+                                    {{ donation.donation_date }}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- BLOOD GROUP -->
+
+                        <td>
+
+                            <span class="history-blood-group">
+
+                                <i class="bi bi-droplet-fill"></i>
+
+                                {{ donation.blood_group }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- UNITS -->
+
+                        <td>
+
+                            <div class="history-units">
+
+                                <strong>
+                                    {{ donation.units }}
+                                </strong>
+
+                                <span>
+                                    units
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- STATUS -->
+
+                        <td>
+
+                            {% if donation.status == "Approved" %}
+
+                                <span class="history-status approved">
+
+                                    <span class="status-dot"></span>
+
+                                    Approved
+
+                                </span>
+
+
+                            {% elif donation.status == "Pending" %}
+
+                                <span class="history-status pending">
+
+                                    <span class="status-dot"></span>
+
+                                    Pending
+
+                                </span>
+
+
+                            {% else %}
+
+                                <span class="history-status rejected">
+
+                                    <span class="status-dot"></span>
+
+                                    Rejected
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- REMARKS -->
+
+                        <td>
+
+                            <div class="history-remarks">
+
+                                {% if donation.remarks %}
+
+                                    {{ donation.remarks }}
+
+                                {% else %}
+
+                                    <span class="no-remarks">
+                                        No remarks
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- CERTIFICATE -->
+
+                        <td>
+
+                            {% if donation.status == "Approved" %}
+
+                                <a
+                                    href="{% url 'donation_certificate' donation.id %}"
+                                    class="certificate-button">
+
+                                    <i class="bi bi-download"></i>
+
+                                    Certificate
+
+                                </a>
+
+                            {% else %}
+
+                                <span class="certificate-disabled">
+                                    <i class="bi bi-dash"></i>
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% empty %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            class="empty-history">
+
+                            <div class="empty-history-icon">
+
+                                <i class="bi bi-droplet"></i>
+
+                            </div>
+
+                            <h3>
+                                No Donation History Found
+                            </h3>
+
+                            <p>
+                                Your donation records will appear here
+                                once you have donated blood.
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         ACHIEVEMENT
+    ========================================== -->
+
+    <section class="achievement-card">
+
+
+        <div class="achievement-header">
+
+            <div class="achievement-heading">
+
+                <div class="achievement-icon">
+                    <i class="bi bi-trophy-fill"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        DONOR MILESTONE
+                    </span>
+
+                    <h2>
+                        Achievement Badge
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="achievement-body">
+
+
+            {% if approved >= 50 %}
+
+                <div class="achievement-badge life-saver">
+                    ❤️
+                </div>
+
+                <h2 class="life-saver-title">
+                    Life Saver
+                </h2>
+
+                <p>
+                    You have saved hundreds of lives through blood donation.
+                </p>
+
+
+            {% elif approved >= 25 %}
+
+                <div class="achievement-badge gold">
+                    🥇
+                </div>
+
+                <h2 class="gold-title">
+                    Gold Donor
+                </h2>
+
+                <p>
+                    Thank you for your continuous support.
+                </p>
+
+
+            {% elif approved >= 10 %}
+
+                <div class="achievement-badge silver">
+                    🥈
+                </div>
+
+                <h2 class="silver-title">
+                    Silver Donor
+                </h2>
+
+                <p>
+                    Excellent contribution.
+                </p>
+
+
+            {% elif approved >= 3 %}
+
+                <div class="achievement-badge bronze">
+                    🥉
+                </div>
+
+                <h2 class="bronze-title">
+                    Bronze Donor
+                </h2>
+
+                <p>
+                    Keep donating and earn higher badges.
+                </p>
+
+
+            {% else %}
+
+                <div class="achievement-badge new-donor">
+                    🌱
+                </div>
+
+                <h2 class="new-donor-title">
+                    New Donor
+                </h2>
+
+                <p>
+                    Your donation journey has just begun.
+                </p>
+
+            {% endif %}
+
+
+
+            <!-- =================================
+                 NEXT BADGE PROGRESS
+            ================================== -->
+
+            <div class="next-badge">
+
+                <div class="next-badge-heading">
+
+                    <span>
+                        NEXT BADGE PROGRESS
+                    </span>
+
+                    <strong>
+                        {{ approved }} / {{ next_badge }}
+                    </strong>
+
+                </div>
+
+
+                <div class="achievement-progress">
+
+                    <div
+                        class="achievement-progress-fill"
+                        style="width: {% widthratio approved next_badge 100 %}">
+
+                        {{ approved }} / {{ next_badge }} Donations
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

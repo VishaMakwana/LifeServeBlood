@@ -1,0 +1,293 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#d21f3e">
+
+    <title>
+        {% block title %}LifeServe Admin{% endblock %}
+    </title>
+
+
+    <!-- =========================================
+         BOOTSTRAP
+    ========================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- =========================================
+         BOOTSTRAP ICONS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- =========================================
+         ADMIN BASE CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/admin.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/language-switcher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skeleton-loading.css' %}">
+
+
+    <!-- =========================================
+         ADMIN SIDEBAR CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/admin-sidebar.css' %}">
+
+
+    <!-- =========================================
+         PAGE SPECIFIC CSS
+    ========================================== -->
+
+    {% block extra_css %}
+       
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+<div class="site-skeleton" aria-hidden="true">
+    <div class="site-skeleton-inner">
+        <div class="site-skeleton-nav"><span></span><span></span><span></span><span></span></div>
+        <div class="site-skeleton-hero"><div></div><div></div><div></div></div>
+        <div class="site-skeleton-toolbar"><span></span><span></span><span></span></div>
+        <div class="site-skeleton-cards"><div></div><div></div><div></div></div>
+    </div>
+</div>
+
+
+<div class="admin-app">
+
+
+    <!-- =========================================
+         SIDEBAR
+         Loaded from separate file
+    ========================================== -->
+
+    {% include "adminpanel/sidebar.html" %}
+
+
+    <!-- =========================================
+         MAIN AREA
+    ========================================== -->
+
+    <div class="admin-main">
+
+
+        <!-- =====================================
+             MOBILE HEADER
+        ====================================== -->
+
+        <header class="admin-mobile-header">
+
+            <div class="mobile-admin-brand">
+
+                <div class="mobile-brand-icon">
+                    <i class="bi bi-droplet-fill"></i>
+                </div>
+
+                <div class="mobile-brand-text">
+
+                    <strong>
+                        LifeServe
+                    </strong>
+
+                    <span>
+                        Admin Panel
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="mobile-header-right">
+
+                <i class="bi bi-shield-check"></i>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             PAGE CONTENT
+        ====================================== -->
+
+        <main class="admin-content">
+
+
+            <!-- Django Messages -->
+
+            {% if messages %}
+
+                <div class="admin-messages">
+
+                    {% for message in messages %}
+
+                        <div
+                            class="admin-message
+                            {% if message.tags %}
+                                {{ message.tags }}
+                            {% else %}
+                                success
+                            {% endif %}"
+                            role="alert">
+
+                            <div class="message-icon">
+
+                                {% if message.tags == "error" %}
+
+                                    <i class="bi bi-exclamation-circle-fill"></i>
+
+                                {% elif message.tags == "warning" %}
+
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                                {% elif message.tags == "info" %}
+
+                                    <i class="bi bi-info-circle-fill"></i>
+
+                                {% else %}
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="message-text">
+
+                                {{ message }}
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="message-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Close">
+
+                                <i class="bi bi-x-lg"></i>
+
+                            </button>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- =================================
+                 CHILD PAGE CONTENT
+            ================================== -->
+
+            {% block content %}
+
+            {% endblock %}
+
+
+        </main>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <footer class="admin-footer">
+
+            <div class="admin-footer-left">
+
+                <i class="bi bi-droplet-fill"></i>
+
+                <span>
+                    LifeServe Blood Bank
+                </span>
+
+            </div>
+
+
+            <div class="admin-footer-right">
+
+                <span>
+                    Admin Panel
+                </span>
+
+                <span class="footer-dot">
+                    •
+                </span>
+
+                <span>
+                    Secure Management System
+                </span>
+
+            </div>
+
+        </footer>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     BOOTSTRAP JS
+========================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+</script>
+    <script src="{% static 'js/skeleton-loading.js' %}"></script>
+
+
+<!-- =========================================
+     CHART.JS
+========================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+
+
+<!-- =========================================
+     PAGE SPECIFIC JS
+========================================== -->
+
+{% block extra_js %}
+
+{% endblock %}
+
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+.language-switcher {
+    min-width: 128px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 9px;
+    background: transparent;
+    color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.language-switcher:hover {
+    background: #ffffff;
+    color: #d92540;
+    transform: translateY(-1px);
+}
+
+.language-switcher-icon {
+    font-size: 21px;
+    line-height: 1;
+}
+
+.language-switcher select {
+    width: 72px;
+    border: 0;
+    outline: 0;
+    appearance: none;
+    background: transparent;
+    color: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.language-switcher:hover select {
+    color: #d92540;
+}
+
+.language-switcher select option {
+    color: #222222;
+    background: #ffffff;
+    font-weight: 400;
+}
+
+@media (max-width: 575px) {
+    .language-switcher {
+        min-width: 112px;
+        height: 38px;
+        padding: 0 10px;
+    }
+
+    .language-switcher select {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,407 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}
+Donation Requests | LifeServe
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/donation-requests.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="donation-requests-page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="donation-page-header">
+
+        <div class="donation-header-left">
+
+            <div class="donation-header-icon">
+                <i class="bi bi-heart-pulse-fill"></i>
+            </div>
+
+            <div>
+
+                <span class="donation-eyebrow">
+                    DONATION MANAGEMENT
+                </span>
+
+                <h1>
+                    Donation Requests
+                </h1>
+
+                <p>
+                    Review and manage blood donation requests from donors.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="donation-header-badge">
+
+            <i class="bi bi-shield-check"></i>
+
+            <span>
+                Secure Request Management
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         REQUEST CARD
+    ========================================== -->
+
+    <section class="donation-request-card">
+
+
+        <!-- CARD HEADER -->
+
+        <div class="donation-card-header">
+
+            <div class="donation-card-title">
+
+                <div class="donation-title-icon">
+                    <i class="bi bi-clipboard2-pulse-fill"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Donation Request List
+                    </h2>
+
+                    <p>
+                        Review donor requests and update their status
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="donation-info-badge">
+
+                <i class="bi bi-info-circle"></i>
+
+                <span>
+                    Pending requests require action
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             TABLE
+        ====================================== -->
+
+        <div class="donation-table-wrapper">
+
+            <table class="donation-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>DONOR</th>
+
+                        <th>BLOOD GROUP</th>
+
+                        <th>UNITS</th>
+
+                        <th>DATE</th>
+
+                        <th>STATUS</th>
+
+                        <th>ACTION</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for request in requests %}
+
+                <tr>
+
+
+                    <!-- ID -->
+
+                    <td>
+
+                        <span class="donation-id">
+                            #{{ request.id }}
+                        </span>
+
+                    </td>
+
+
+                    <!-- DONOR -->
+
+                    <td>
+
+                        <div class="donation-donor">
+
+                            <div class="donor-request-avatar">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+
+                            <div class="donor-request-name">
+
+                                <strong>
+                                    {{ request.donor.user.get_full_name }}
+                                </strong>
+
+                                <span>
+                                    Blood Donor
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- BLOOD GROUP -->
+
+                    <td>
+
+                        <span class="request-blood-group">
+
+                            <i class="bi bi-droplet-fill"></i>
+
+                            {{ request.blood_group }}
+
+                        </span>
+
+                    </td>
+
+
+                    <!-- UNITS -->
+
+                    <td>
+
+                        <div class="donation-units">
+
+                            <strong>
+                                {{ request.units }}
+                            </strong>
+
+                            <span>
+                                units
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- DATE -->
+
+                    <td>
+
+                        <div class="donation-date">
+
+                            <div class="donation-date-icon">
+                                <i class="bi bi-calendar3"></i>
+                            </div>
+
+                            <span>
+                                {{ request.donation_date }}
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- STATUS -->
+
+                    <td>
+
+                        {% if request.status == "Pending" %}
+
+                            <span class="request-status status-pending">
+
+                                <i class="bi bi-hourglass-split"></i>
+
+                                Pending
+
+                            </span>
+
+                        {% elif request.status == "Approved" %}
+
+                            <span class="request-status status-approved">
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Approved
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="request-status status-rejected">
+
+                                <i class="bi bi-x-circle-fill"></i>
+
+                                Rejected
+
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- ACTION -->
+
+                    <td>
+
+                        {% if request.status == "Pending" %}
+
+                            <div class="donation-actions">
+
+
+                                <!-- APPROVE -->
+
+                                <a
+                                    href="{% url 'approve_donation_request' request.id %}"
+                                    class="donation-action approve-action"
+                                    title="Approve Donation">
+
+                                    <i class="bi bi-check-lg"></i>
+
+                                </a>
+
+
+                                <!-- REJECT -->
+
+                                <a
+                                    href="{% url 'reject_donation_request' request.id %}"
+                                    class="donation-action reject-action"
+                                    title="Reject Donation">
+
+                                    <i class="bi bi-x-lg"></i>
+
+                                </a>
+
+
+                            </div>
+
+                        {% else %}
+
+                            <span class="no-action">
+                                <i class="bi bi-dash"></i>
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                </tr>
+
+
+                {% empty %}
+
+
+                <!-- EMPTY STATE -->
+
+                <tr>
+
+                    <td colspan="7">
+
+                        <div class="donation-empty">
+
+                            <div class="donation-empty-icon">
+                                <i class="bi bi-clipboard-x"></i>
+                            </div>
+
+                            <h3>
+                                No Donation Requests Found
+                            </h3>
+
+                            <p>
+                                There are currently no donation requests to display.
+                            </p>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <div class="donation-card-footer">
+
+            <div class="donation-footer-info">
+
+                <i class="bi bi-database-check"></i>
+
+                <span>
+                    Donation requests are securely managed by LifeServe.
+                </span>
+
+            </div>
+
+
+            <div class="donation-record-count">
+
+                <span>
+                    Total Requests
+                </span>
+
+                <strong>
+                    {{ requests|length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+</div>
+
+{% endblock %}

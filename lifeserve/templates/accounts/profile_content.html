@@ -1,0 +1,680 @@
+{% load static %}
+
+<div class="profile-content">
+
+    <!-- =========================================
+         PROFILE HERO
+    ========================================== -->
+
+    <div class="profile-hero">
+
+        <div class="profile-hero-content">
+
+            <div class="profile-avatar">
+
+                {% if profile.profile_photo %}
+
+                    <img
+                        src="{{ profile.profile_photo.url }}"
+                        alt="Profile Photo">
+
+                {% else %}
+
+                    <div class="profile-avatar-fallback" aria-label="Profile image missing">
+                        {{ request.user.first_name|default:request.user.username|slice:":1"|upper }}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="profile-hero-info">
+
+                <span class="profile-role">
+                    <i class="bi bi-heart-pulse-fill"></i>
+                    {{ request.user.userprofile.role|default:'User' }} Account
+                </span>
+
+                <h2>
+                    {{ request.user.first_name|default:request.user.username }}
+                </h2>
+
+                <p>
+                    <i class="bi bi-person-badge"></i>
+                    @{{ request.user.username }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-hero-icon">
+
+            <i class="bi bi-person-vcard"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         PROFILE FORM CARD
+    ========================================== -->
+
+    <div class="profile-form-card">
+
+        <div class="profile-form-header">
+
+            <div class="profile-form-header-icon">
+                <i class="bi bi-pencil-square"></i>
+            </div>
+
+            <div>
+
+                <h3>
+                    Personal Information
+                </h3>
+
+                <p>
+                    Update your personal and contact information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-form-body">
+
+            <form
+                method="POST"
+                enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+
+                <!-- =================================
+                     PROFILE PHOTO
+                ================================== -->
+
+                <div class="photo-section">
+
+                    <div class="photo-preview">
+
+                        {% if profile.profile_photo %}
+
+                            <img
+                                src="{{ profile.profile_photo.url }}"
+                                alt="Profile Photo">
+
+                        {% else %}
+
+                            <div class="photo-preview-fallback" aria-label="Profile image missing">
+                                {{ request.user.first_name|default:request.user.username|slice:":1"|upper }}
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="photo-info">
+
+                        <h4>
+                            Profile Photo
+                        </h4>
+
+                        <p>
+                            Choose a clear photo for your profile.
+                        </p>
+
+                        <label
+                            for="profile_photo"
+                            class="photo-upload-btn">
+
+                            <i class="bi bi-camera"></i>
+
+                            Change Photo
+
+                        </label>
+
+                        <input
+                            type="file"
+                            id="profile_photo"
+                            class="photo-file-input"
+                            name="profile_photo"
+                            accept="image/*">
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     PERSONAL DETAILS
+                ================================== -->
+
+                <div class="profile-section-heading">
+
+                    <div class="section-heading-icon">
+                        <i class="bi bi-person"></i>
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Personal Details
+                        </h4>
+
+                        <p>
+                            Your basic account information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-4">
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="col-md-6">
+
+                        <div class="profile-field">
+
+                            <label for="fullname">
+                                Full Name
+                            </label>
+
+                            <div class="profile-input">
+
+                                <i class="bi bi-person"></i>
+
+                                <input
+                                    type="text"
+                                    id="fullname"
+                                    class="form-control"
+                                    name="fullname"
+                                    value="{{ request.user.first_name }}">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- USERNAME -->
+
+                    <div class="col-md-6">
+
+                        <div class="profile-field">
+
+                            <label for="username">
+                                Username
+                            </label>
+
+                            <div class="profile-input">
+
+                                <i class="bi bi-at"></i>
+
+                                <input
+                                    type="text"
+                                    id="username"
+                                    class="form-control"
+                                    value="{{ request.user.username }}"
+                                    readonly>
+
+                                <span class="readonly-icon">
+                                    <i class="bi bi-lock-fill"></i>
+                                </span>
+
+                            </div>
+
+                            <small class="field-help">
+                                Username cannot be changed.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="col-md-6">
+
+                        <div class="profile-field">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <div class="profile-input">
+
+                                <i class="bi bi-envelope"></i>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    class="form-control"
+                                    name="email"
+                                    value="{{ request.user.email }}">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="col-md-6">
+
+                        <div class="profile-field">
+
+                            <label for="phone">
+                                Phone Number
+                            </label>
+
+                            <div class="profile-input">
+
+                                <i class="bi bi-telephone"></i>
+
+                                <input
+                                    type="text"
+                                    id="phone"
+                                    class="form-control"
+                                    name="phone"
+                                    value="{{ user_profile.phone }}">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AGE -->
+
+                    <div class="col-md-6">
+
+                        <div class="profile-field">
+
+                            <label for="age">
+                                Age
+                            </label>
+
+                            <div class="profile-input">
+
+                                <i class="bi bi-calendar3"></i>
+
+                                <input
+                                    type="number"
+                                    id="age"
+                                    class="form-control"
+                                    name="age"
+                                    value="{{ profile.age }}">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GENDER -->
+
+                    <div class="col-md-6">
+
+                        <div class="profile-field">
+
+                            <label for="gender">
+                                Gender
+                            </label>
+
+                            <div class="profile-input">
+
+                                <i class="bi bi-person-vcard"></i>
+
+                                <select
+                                    id="gender"
+                                    class="form-control"
+                                    name="gender">
+
+                                    <option
+                                        value="Male"
+                                        {% if profile.gender == "Male" %}selected{% endif %}>
+                                        Male
+                                    </option>
+
+                                    <option
+                                        value="Female"
+                                        {% if profile.gender == "Female" %}selected{% endif %}>
+                                        Female
+                                    </option>
+
+                                    <option
+                                        value="Other"
+                                        {% if profile.gender == "Other" %}selected{% endif %}>
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================
+                     MEDICAL INFORMATION
+                ================================== -->
+
+                <div class="profile-section-heading medical-heading">
+
+                    <div class="section-heading-icon blood-icon">
+                        <i class="bi bi-droplet-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Medical Information
+                        </h4>
+
+                        <p>
+                            Blood group information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-4">
+
+
+                    <!-- BLOOD GROUP -->
+
+                    <div class="col-md-6">
+
+                        <div class="profile-field">
+
+                            <label for="blood_group">
+                                Blood Group
+                            </label>
+
+                            <div class="profile-input blood-input">
+
+                                <i class="bi bi-droplet-fill"></i>
+
+                                <select
+                                    id="blood_group"
+                                    class="form-control"
+                                    name="blood_group">
+
+                                    <option
+                                        value="A+"
+                                        {% if profile.blood_group == "A+" %}selected{% endif %}>
+                                        A+
+                                    </option>
+
+                                    <option
+                                        value="A-"
+                                        {% if profile.blood_group == "A-" %}selected{% endif %}>
+                                        A-
+                                    </option>
+
+                                    <option
+                                        value="B+"
+                                        {% if profile.blood_group == "B+" %}selected{% endif %}>
+                                        B+
+                                    </option>
+
+                                    <option
+                                        value="B-"
+                                        {% if profile.blood_group == "B-" %}selected{% endif %}>
+                                        B-
+                                    </option>
+
+                                    <option
+                                        value="AB+"
+                                        {% if profile.blood_group == "AB+" %}selected{% endif %}>
+                                        AB+
+                                    </option>
+
+                                    <option
+                                        value="AB-"
+                                        {% if profile.blood_group == "AB-" %}selected{% endif %}>
+                                        AB-
+                                    </option>
+
+                                    <option
+                                        value="O+"
+                                        {% if profile.blood_group == "O+" %}selected{% endif %}>
+                                        O+
+                                    </option>
+
+                                    <option
+                                        value="O-"
+                                        {% if profile.blood_group == "O-" %}selected{% endif %}>
+                                        O-
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================
+                     LOCATION
+                ================================== -->
+
+                <div class="profile-section-heading location-heading">
+
+                    <div class="section-heading-icon location-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Location Details
+                        </h4>
+
+                        <p>
+                            Your current contact location
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-4">
+
+
+                    <!-- CITY -->
+
+                    <div class="col-md-6">
+
+                        <div class="profile-field">
+
+                            <label for="city">
+                                City
+                            </label>
+
+                            <div class="profile-input">
+
+                                <i class="bi bi-building"></i>
+
+                                <input
+                                    type="text"
+                                    id="city"
+                                    class="form-control"
+                                    name="city"
+                                    value="{{ profile.city }}">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STATE -->
+
+                    <div class="col-md-6">
+
+                        <div class="profile-field">
+
+                            <label for="state">
+                                State
+                            </label>
+
+                            <div class="profile-input">
+
+                                <i class="bi bi-map"></i>
+
+                                <input
+                                    type="text"
+                                    id="state"
+                                    class="form-control"
+                                    name="state"
+                                    value="{{ profile.state }}">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="col-12">
+
+                        <div class="profile-field">
+
+                            <label for="address">
+                                Address
+                            </label>
+
+                            <div class="profile-textarea">
+
+                                <i class="bi bi-house"></i>
+
+                                <textarea
+                                    id="address"
+                                    class="form-control"
+                                    name="address"
+                                    rows="4">{{ profile.address }}</textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================
+                     SAVE
+                ================================== -->
+
+                <div class="profile-form-footer">
+
+                    <div class="save-info">
+
+                        <i class="bi bi-shield-check"></i>
+
+                        <span>
+                            Your information is securely stored.
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="update-profile-btn">
+
+                        <i class="bi bi-check2-circle"></i>
+
+                        Update Profile
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const photoInput =
+        document.getElementById("profile_photo");
+
+    const photoImages =
+        document.querySelectorAll(".photo-preview img, .profile-avatar img");
+
+
+    if (photoInput) {
+
+        photoInput.addEventListener("change", function () {
+
+            const file = this.files[0];
+
+            if (!file) {
+                return;
+            }
+
+            if (!file.type.startsWith("image/")) {
+                return;
+            }
+
+            const imageURL =
+                URL.createObjectURL(file);
+
+            photoImages.forEach(function (image) {
+
+                image.src = imageURL;
+
+            });
+
+        });
+
+    }
+
+});
+
+</script>

@@ -1,0 +1,745 @@
+{% extends "adminpanel/base.html" %}
+{% load static %}
+
+{% block title %}Reports Dashboard | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/reports.css' %}">
+{% endblock %}
+
+{% block content %}
+ 
+<div class="reports-page">
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+    
+    <div class="reports-page-header">
+       <!-- <section class="patients-page-header"> -->
+        <div class="reports-header-content">
+
+            <div class="reports-page-icon">
+                <i class="bi bi-bar-chart-fill"></i>
+            </div>
+
+            <div>
+                <h2>Reports Dashboard</h2>
+                <p>Monitor blood bank activity, stock and request analytics</p>
+            </div>
+
+        </div>
+        
+        <div class="reports-header-badge">
+        <!-- <div class="reports-secure-badge"> -->
+            <i class="bi bi-shield-check"></i>
+            <span>Secure Admin Panel</span>
+        <!-- </div> -->
+        </div>
+         </section>
+    </div>
+   
+
+
+    <!-- =====================================================
+         SUMMARY CARDS
+    ====================================================== -->
+
+    <div class="reports-summary-grid">
+
+        <!-- Donors -->
+
+        <div class="report-stat-card">
+
+            <div class="report-stat-icon donors">
+                <img src="{% static 'images/donor.png' %}"
+                     alt="Total Donors">
+            </div>
+
+            <div class="report-stat-content">
+                <span>Total Donors</span>
+                <strong>{{ total_donors }}</strong>
+                <small>
+                    <i class="bi bi-person-heart"></i>
+                    Registered donors
+                </small>
+            </div>
+
+        </div>
+
+
+        <!-- Patients -->
+
+        <div class="report-stat-card">
+
+            <div class="report-stat-icon patients">
+                <img src="{% static 'images/patients.png' %}"
+                     alt="Total Patients">
+            </div>
+
+            <div class="report-stat-content">
+                <span>Total Patients</span>
+                <strong>{{ total_patients }}</strong>
+                <small>
+                    <i class="bi bi-people-fill"></i>
+                    Registered patients
+                </small>
+            </div>
+
+        </div>
+
+
+        <!-- Blood Requests -->
+
+        <div class="report-stat-card">
+
+            <div class="report-stat-icon blood">
+                <img src="{% static 'images/blood.png' %}"
+                     alt="Blood Requests">
+            </div>
+
+            <div class="report-stat-content">
+                <span>Blood Requests</span>
+                <strong>{{ total_blood_requests }}</strong>
+                <small>
+                    <i class="bi bi-droplet-fill"></i>
+                    Patient requests
+                </small>
+            </div>
+
+        </div>
+
+
+        <!-- Donation Requests -->
+
+        <div class="report-stat-card">
+
+            <div class="report-stat-icon donations">
+                <img src="{% static 'images/donation-requests.png' %}"
+                     alt="Donation Requests">
+            </div>
+
+            <div class="report-stat-content">
+                <span>Donation Requests</span>
+                <strong>{{ total_donation_requests }}</strong>
+                <small>
+                    <i class="bi bi-heart-pulse-fill"></i>
+                    Donation activity
+                </small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOP ANALYTICS
+    ====================================================== -->
+
+    <div class="reports-section-grid top-charts">
+
+        <!-- Blood Stock -->
+
+        <div class="report-chart-card large">
+
+            <div class="report-card-header">
+
+                <div class="report-card-title">
+
+                    <div class="report-card-icon">
+                        <i class="bi bi-droplet-fill"></i>
+                    </div>
+
+                    <div>
+                        <h4>Blood Stock Overview</h4>
+                        <p>Current blood availability by group</p>
+                    </div>
+
+                </div>
+
+                <span class="report-card-badge">
+                    <i class="bi bi-activity"></i>
+                    Analytics
+                </span>
+
+            </div>
+
+            <div class="report-chart-body">
+                <div class="report-chart-wrapper">
+                    <canvas id="stockChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Request Status -->
+
+        <div class="report-chart-card">
+
+            <div class="report-card-header">
+
+                <div class="report-card-title">
+
+                    <div class="report-card-icon">
+                        <i class="bi bi-pie-chart-fill"></i>
+                    </div>
+
+                    <div>
+                        <h4>Blood Request Status</h4>
+                        <p>Request approval overview</p>
+                    </div>
+
+                </div>
+
+                <span class="report-card-badge">
+                    <i class="bi bi-bar-chart"></i>
+                    Status
+                </span>
+
+            </div>
+
+            <div class="report-chart-body">
+                <div class="report-chart-wrapper">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FILTER & EXPORT
+    ====================================================== -->
+
+    <div class="report-filter-card">
+
+        <div class="report-filter-header">
+
+            <div class="report-card-title">
+
+                <div class="report-card-icon">
+                    <i class="bi bi-funnel-fill"></i>
+                </div>
+
+                <div>
+                    <h4>Report Filters</h4>
+                    <p>Select a date range and export your report</p>
+                </div>
+
+            </div>
+
+            <div class="report-filter-label">
+                <i class="bi bi-calendar-range"></i>
+                Date Range
+            </div>
+
+        </div>
+
+
+        <div class="report-filter-body">
+
+            <form method="GET">
+
+                <div class="report-filter-grid">
+
+                    <div class="report-input-group">
+
+                        <label for="from_date">
+                            From Date
+                        </label>
+
+                        <div class="report-input-wrap">
+
+                            <i class="bi bi-calendar3"></i>
+
+                            <input
+                                type="date"
+                                id="from_date"
+                                name="from_date"
+                                value="{{ from_date }}"
+                                class="report-date-input">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-input-group">
+
+                        <label for="to_date">
+                            To Date
+                        </label>
+
+                        <div class="report-input-wrap">
+
+                            <i class="bi bi-calendar3"></i>
+
+                            <input
+                                type="date"
+                                id="to_date"
+                                name="to_date"
+                                value="{{ to_date }}"
+                                class="report-date-input">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-filter-actions">
+
+                        <button type="submit"
+                                class="report-btn filter">
+
+                            <i class="bi bi-funnel-fill"></i>
+                            Filter
+
+                        </button>
+
+
+                        <a href="{% url 'export_report_excel' %}"
+                           class="report-btn excel">
+
+                            <i class="bi bi-file-earmark-excel-fill"></i>
+                            Excel
+
+                        </a>
+
+
+                        <a href="{% url 'export_report_pdf' %}"
+                           class="report-btn pdf">
+
+                            <i class="bi bi-file-earmark-pdf-fill"></i>
+                            PDF
+
+                        </a>
+
+
+                        <a href="{% url 'print_report' %}"
+                           target="_blank"
+                           class="report-btn print">
+
+                            <i class="bi bi-printer-fill"></i>
+                            Print
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         BLOOD STOCK ANALYTICS
+    ====================================================== -->
+
+    <div class="report-data-card">
+
+        <div class="report-data-header">
+
+            <div class="report-card-title">
+
+                <div class="report-card-icon">
+                    <i class="bi bi-droplet-half"></i>
+                </div>
+
+                <div>
+                    <h4>Blood Stock Analytics</h4>
+                    <p>Current availability and stock health</p>
+                </div>
+
+            </div>
+
+            <span class="report-card-badge stock">
+                <i class="bi bi-box-seam-fill"></i>
+                Inventory
+            </span>
+
+        </div>
+
+
+        <div class="report-table-container">
+
+            <table class="report-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Blood Group</th>
+                        <th>Available Units</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for stock in blood_stock %}
+
+                <tr>
+
+                    <td>
+
+                        <span class="report-blood-badge">
+                            <i class="bi bi-droplet-fill"></i>
+                            {{ stock.blood_group }}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="report-units">
+
+                            <strong>{{ stock.units }}</strong>
+
+                            <span>Units Available</span>
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        {% if stock.units > 20 %}
+
+                            <span class="report-status good">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Good
+                            </span>
+
+                        {% elif stock.units >= 10 %}
+
+                            <span class="report-status medium">
+                                <i class="bi bi-exclamation-circle-fill"></i>
+                                Medium
+                            </span>
+
+                        {% else %}
+
+                            <span class="report-status low">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                Low
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="3">
+
+                        <div class="report-empty-row">
+                            <i class="bi bi-droplet"></i>
+                            <span>No Blood Stock Found</span>
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         LOW STOCK ALERTS
+    ====================================================== -->
+
+    <div class="report-alert-card">
+
+        <div class="report-alert-header">
+
+            <div class="report-card-title">
+
+                <div class="report-card-icon alert">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+
+                <div>
+                    <h4>Low Stock Alerts</h4>
+                    <p>Blood groups that require attention</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-alert-body">
+
+            {% for stock in low_stock %}
+
+                <div class="stock-alert">
+
+                    <div class="stock-alert-icon">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                    </div>
+
+                    <div class="stock-alert-content">
+
+                        <strong>{{ stock.blood_group }}</strong>
+
+                        <span>
+                            has only
+                            <b>{{ stock.units }}</b>
+                            units remaining.
+                        </span>
+
+                    </div>
+
+                    <span class="stock-alert-label">
+                        Low Stock
+                    </span>
+
+                </div>
+
+            {% empty %}
+
+                <div class="stock-alert success-alert">
+
+                    <div class="stock-alert-icon">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+
+                    <div class="stock-alert-content">
+
+                        <strong>Stock Levels Healthy</strong>
+
+                        <span>
+                            All blood groups have sufficient stock.
+                        </span>
+
+                    </div>
+
+                    <span class="stock-alert-label">
+                        Healthy
+                    </span>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         INSIGHT CARDS
+    ====================================================== -->
+
+    <div class="reports-section-grid insight-grid">
+
+        <!-- Most Requested -->
+
+        <div class="report-insight-card">
+
+            <div class="insight-card-header">
+
+                <div class="insight-icon blood">
+                    <i class="bi bi-droplet-half"></i>
+                </div>
+
+                <span>Top Demand</span>
+
+            </div>
+
+            <div class="insight-card-body">
+
+                <small>Most Requested Blood Group</small>
+
+                {% if most_requested %}
+
+                    <h2>{{ most_requested.blood_group }}</h2>
+
+                    <div class="insight-value">
+                        <strong>{{ most_requested.total }}</strong>
+                        <span>Requests</span>
+                    </div>
+
+                {% else %}
+
+                    <div class="insight-no-data">
+                        <i class="bi bi-database"></i>
+                        No Data
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- Most Active Donor -->
+
+        <div class="report-insight-card">
+
+            <div class="insight-card-header">
+
+                <div class="insight-icon donor">
+                    <i class="bi bi-person-check-fill"></i>
+                </div>
+
+                <span>Top Donor</span>
+
+            </div>
+
+            <div class="insight-card-body">
+
+                <small>Most Active Donor</small>
+
+                {% if most_active_donor %}
+
+                    <h3>
+                        {{ most_active_donor.donor__user__first_name }}
+                        {{ most_active_donor.donor__user__last_name }}
+                    </h3>
+
+                    <div class="insight-value">
+                        <strong>{{ most_active_donor.total }}</strong>
+                        <span>Donations</span>
+                    </div>
+
+                {% else %}
+
+                    <div class="insight-no-data">
+                        <i class="bi bi-database"></i>
+                        No Data
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MONTHLY CHARTS
+    ====================================================== -->
+
+    <div class="reports-section-grid monthly-grid">
+
+        <!-- Donations -->
+
+        <div class="report-chart-card">
+
+            <div class="report-card-header">
+
+                <div class="report-card-title">
+
+                    <div class="report-card-icon">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                    </div>
+
+                    <div>
+                        <h4>Monthly Donations</h4>
+                        <p>Donation activity over time</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="report-chart-body">
+
+                <div class="report-chart-wrapper">
+                    <canvas id="donationChart"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Requests -->
+
+        <div class="report-chart-card">
+
+            <div class="report-card-header">
+
+                <div class="report-card-title">
+
+                    <div class="report-card-icon">
+                        <i class="bi bi-clipboard2-pulse-fill"></i>
+                    </div>
+
+                    <div>
+                        <h4>Monthly Blood Requests</h4>
+                        <p>Blood request activity over time</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="report-chart-body">
+
+                <div class="report-chart-wrapper">
+                    <canvas id="requestChart"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CHART DATA
+====================================================== -->
+
+<script>
+
+const bloodGroups = {{ blood_groups|safe }};
+const stockUnits = {{ stock_units|safe }};
+
+const approvedRequests = {{ approved_requests }};
+const pendingRequests = {{ pending_requests }};
+const rejectedRequests = {{ rejected_requests }};
+
+const months = {{ months|safe }};
+const donationCounts = {{ donation_counts|safe }};
+
+const requestMonths = {{ request_months|safe }};
+const requestCounts = {{ request_counts|safe }};
+
+</script>
+
+
+<!-- Chart.js is already loaded in adminpanel/base.html -->
+
+<script src="{% static 'js/reports.js' %}"></script>
+
+{% endblock %}

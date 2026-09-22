@@ -1,0 +1,373 @@
+{% extends "adminpanel/base.html" %}
+{% load static %}
+
+{% block title %}Contact Message Details | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact-message-detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="cmd-page">
+
+    <!-- Page Header -->
+    <!-- <div class="cmd-page-header"> -->
+        <section class="cmd-page-header">
+
+        <div class="cmd-header-left">
+
+            <div class="cmd-title-icon">
+                <i class="bi bi-envelope-open-fill"></i>
+            </div>
+
+            <div>
+                <h1>Contact Message Details</h1>
+                <p>View and manage incoming contact messages</p>
+            </div>
+
+        </div>
+
+        <div class="cmd-secure-badge">
+            <i class="bi bi-shield-check-fill"></i>
+            Secure Admin Area
+        </div>
+        </section>
+
+    <!-- </div> -->
+
+
+    <!-- Main Card -->
+    <div class="cmd-card">
+
+        <!-- Card Header -->
+        <div class="cmd-card-header">
+
+            <div class="cmd-card-heading">
+
+                <div class="cmd-heading-icon">
+                    <i class="bi bi-chat-left-text-fill"></i>
+                </div>
+
+                <div>
+                    <h2>Message Information</h2>
+                    <p>Contact message received through LifeServe</p>
+                </div>
+
+            </div>
+
+            <a
+                href="{% url 'contact_messages' %}"
+                class="cmd-back-top"
+            >
+                <i class="bi bi-arrow-left"></i>
+                Back to Messages
+            </a>
+
+        </div>
+
+
+        <!-- Card Body -->
+        <div class="cmd-card-body">
+
+            <!-- Sender Profile -->
+            <div class="cmd-profile-section">
+
+                <div class="cmd-avatar">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+
+                <div class="cmd-profile-info">
+
+                    <span class="cmd-profile-label">
+                        MESSAGE FROM
+                    </span>
+
+                    <h3>{{ message.name }}</h3>
+
+                    <a href="mailto:{{ message.email }}" class="cmd-email">
+                        <i class="bi bi-envelope-fill"></i>
+                        {{ message.email }}
+                    </a>
+
+                </div>
+
+                <div class="cmd-message-status">
+                    <i class="bi bi-envelope-open-fill"></i>
+                    Message Received
+                </div>
+
+            </div>
+
+
+            <!-- Message Details -->
+            <div class="cmd-section-title">
+
+                <i class="bi bi-info-circle-fill"></i>
+
+                <span>Message Details</span>
+
+            </div>
+
+
+            <div class="cmd-details-grid">
+
+                <!-- Name -->
+                <div class="cmd-detail-item">
+
+                    <div class="cmd-detail-icon">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+
+                    <div class="cmd-detail-content">
+                        <span>Name</span>
+                        <strong>{{ message.name }}</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- Email -->
+                <div class="cmd-detail-item">
+
+                    <div class="cmd-detail-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+
+                    <div class="cmd-detail-content">
+                        <span>Email Address</span>
+                        <strong>{{ message.email }}</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- Subject -->
+                <div class="cmd-detail-item">
+
+                    <div class="cmd-detail-icon">
+                        <i class="bi bi-chat-square-text-fill"></i>
+                    </div>
+
+                    <div class="cmd-detail-content">
+                        <span>Subject</span>
+                        <strong>{{ message.subject }}</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- Received -->
+                <div class="cmd-detail-item">
+
+                    <div class="cmd-detail-icon">
+                        <i class="bi bi-calendar-event-fill"></i>
+                    </div>
+
+                    <div class="cmd-detail-content">
+                        <span>Received On</span>
+                        <strong>
+                            {{ message.created_at|date:"d M Y, h:i A" }}
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Message -->
+            <div class="cmd-section-title cmd-message-title">
+
+                <i class="bi bi-chat-left-dots-fill"></i>
+
+                <span>Message</span>
+
+            </div>
+
+
+            <div class="cmd-message-box">
+
+                <div class="cmd-message-box-header">
+
+                    <div>
+                        <i class="bi bi-envelope-paper-fill"></i>
+                        <span>Message Content</span>
+                    </div>
+
+                    <span class="cmd-content-badge">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Received
+                    </span>
+
+                </div>
+
+                <div class="cmd-message-content">
+                    {{ message.message|linebreaks }}
+                </div>
+
+            </div>
+
+
+            <!-- Security Note -->
+            <div class="cmd-security-note">
+
+                <div class="cmd-security-icon">
+                    <i class="bi bi-shield-lock-fill"></i>
+                </div>
+
+                <div>
+                    <strong>Confidential Information</strong>
+                    <p>
+                        This message contains contact information and should
+                        be handled securely by authorized administrators.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Reply Form -->
+            <div class="mt-4 p-4 border rounded-4 bg-light-subtle">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="cmd-heading-icon" style="width: 36px; height: 36px; font-size: 16px;">
+                        <i class="bi bi-reply-fill"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">Reply to Sender</h4>
+                        <p class="mb-0 text-muted small">Send a direct response to this user</p>
+                    </div>
+                </div>
+
+                <form method="post" action="{% url 'reply_contact_message' message.id %}">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Reply Subject</label>
+                        <input
+                            type="text"
+                            name="reply_subject"
+                            class="form-control rounded-3"
+                            value="Re: {{ message.subject }}"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Message</label>
+                        <textarea
+                            name="reply_message"
+                            class="form-control rounded-3"
+                            rows="6"
+                            placeholder="Write your reply here..."
+                            required></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-danger rounded-3 px-4 py-2">
+                            <i class="bi bi-send-fill me-2"></i>
+                            Send Reply
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+        <!-- Card Footer -->
+        <div class="cmd-card-footer">
+
+            <a
+                href="{% url 'contact_messages' %}"
+                class="cmd-cancel-btn"
+            >
+                <i class="bi bi-arrow-left"></i>
+                Back to Messages
+            </a>
+
+            <button
+                type="button"
+                class="cmd-delete-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteModal"
+            >
+                <i class="bi bi-trash-fill"></i>
+                Delete Message
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Page Footer -->
+    <div class="cmd-page-footer">
+
+        <div>
+            <i class="bi bi-envelope-check-fill"></i>
+            Contact Message Management
+        </div>
+
+        <div>
+            <i class="bi bi-shield-lock-fill"></i>
+            Secure & Confidential
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Delete Modal -->
+<div
+    class="modal fade cmd-delete-modal"
+    id="deleteModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="cmd-modal-icon">
+                <i class="bi bi-trash-fill"></i>
+            </div>
+
+            <div class="cmd-modal-content">
+
+                <h4>Delete Message?</h4>
+
+                <p>
+                    Are you sure you want to delete this contact message from
+                    <strong>{{ message.name }}</strong>?
+                </p>
+
+            </div>
+
+            <div class="cmd-modal-actions">
+
+                <button
+                    type="button"
+                    class="cmd-modal-cancel"
+                    data-bs-dismiss="modal"
+                >
+                    Cancel
+                </button>
+
+                <a
+                    href="{% url 'delete_contact_message' message.id %}"
+                    class="cmd-modal-delete"
+                >
+                    <i class="bi bi-trash-fill"></i>
+                    Delete Message
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

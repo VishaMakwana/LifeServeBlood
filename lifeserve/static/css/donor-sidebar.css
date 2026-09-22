@@ -1,0 +1,658 @@
+/* =========================================
+   LIFE SERVE
+   DONOR SIDEBAR
+========================================= */
+
+.donor-sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 255px;
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 24px 15px 18px;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #fffafb 100%
+        );
+
+    border-right: 1px solid #edf0f4;
+
+    box-shadow:
+        5px 0 25px rgba(15, 23, 42, 0.035);
+
+    z-index: 1000;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #e2e8f0
+        transparent;
+}
+
+.donor-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.donor-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.donor-sidebar::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   PROFILE SECTION
+========================================= */
+
+.donor-profile {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 4px 10px 23px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.donor-avatar-wrapper {
+    position: relative;
+
+    width: 78px;
+    height: 78px;
+
+    margin-bottom: 10px;
+
+    padding: 3px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c41e3a,
+            #ef476f
+        );
+
+    box-shadow:
+        0 7px 20px rgba(196, 30, 58, 0.18);
+}
+
+.donor-profile-img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border: 3px solid #ffffff;
+
+    border-radius: 50%;
+}
+
+.donor-profile-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f5f5f5 0%, #dfe7ee 100%);
+    color: #c41e3a;
+    font-size: 28px;
+    font-weight: 800;
+    border: 3px solid #ffffff;
+}
+
+
+/* =========================================
+   ONLINE DOT
+========================================= */
+
+.donor-online-dot {
+    position: absolute;
+
+    right: 2px;
+    bottom: 4px;
+
+    width: 14px;
+    height: 14px;
+
+    border: 3px solid #ffffff;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+}
+
+
+/* =========================================
+   PROFILE NAME
+========================================= */
+
+.donor-profile h5 {
+    margin: 0 0 7px;
+
+    color: #172033;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    max-width: 190px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   ROLE
+========================================= */
+
+.donor-role {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    background: #fff1f3;
+
+    color: #c41e3a;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+}
+
+.donor-role i {
+    font-size: 10px;
+}
+
+
+/* =========================================
+   MENU TITLE
+========================================= */
+
+.donor-menu-title {
+    padding: 22px 11px 10px;
+}
+
+.donor-menu-title span {
+    color: #a0aabd;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.donor-menu {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+.donor-menu li {
+    width: 100%;
+}
+
+
+/* =========================================
+   SIDEBAR LINK
+========================================= */
+
+.donor-sidebar-link {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 47px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 7px 11px;
+
+    border-radius: 11px;
+
+    color: #64748b;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.donor-sidebar-link:hover {
+    color: #c41e3a;
+
+    background: #fff6f7;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================
+   LINK ICON
+========================================= */
+
+.donor-link-icon {
+    width: 35px;
+    height: 35px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.donor-sidebar-link:hover .donor-link-icon {
+    background: #ffffff;
+
+    color: #c41e3a;
+}
+
+
+/* =========================================
+   LINK TEXT
+========================================= */
+
+.donor-link-text {
+    flex: 1;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   ACTIVE LINK
+========================================= */
+
+.donor-sidebar-link.active {
+    color: #c41e3a;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff0f3,
+            #fff8f9
+        );
+
+    box-shadow:
+        inset 3px 0 0 #c41e3a;
+}
+
+.donor-sidebar-link.active .donor-link-icon {
+    background: #c41e3a;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 12px rgba(196, 30, 58, 0.18);
+}
+
+.donor-sidebar-link.active .donor-arrow {
+    color: #c41e3a;
+
+    opacity: 1;
+}
+
+
+/* =========================================
+   ARROW
+========================================= */
+
+.donor-arrow {
+    color: #cbd5e1;
+
+    font-size: 9px;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.donor-sidebar-link:hover .donor-arrow {
+    opacity: 1;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================
+   NOTIFICATION
+========================================= */
+
+.notification-icon {
+    position: relative;
+}
+
+.donor-notification-badge {
+    min-width: 20px;
+    height: 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 4px;
+
+    padding: 0 5px;
+
+    border-radius: 20px;
+
+    background: #c41e3a;
+
+    color: #ffffff;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 3px 8px rgba(196, 30, 58, 0.20);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.donor-sidebar-footer {
+    margin-top: auto;
+
+    padding-top: 14px;
+}
+
+.donor-footer-line {
+    width: 100%;
+
+    height: 1px;
+
+    margin-bottom: 12px;
+
+    background: #eef2f7;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.donor-logout-btn {
+    width: 100%;
+
+    min-height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 6px 11px;
+
+    border-radius: 10px;
+
+    color: #64748b;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.donor-logout-btn:hover {
+    color: #dc2626;
+
+    background: #fef2f2;
+
+    transform: translateX(2px);
+}
+
+.logout-icon {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.donor-logout-btn:hover .logout-icon {
+    background: #ffffff;
+
+    color: #dc2626;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.donor-footer-brand {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-top: 13px;
+
+    color: #cbd5e1;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+}
+
+.donor-footer-brand i {
+    color: #c41e3a;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   MAIN CONTENT SUPPORT
+========================================= */
+
+.donor-sidebar + .main-content {
+    margin-left: 255px;
+
+    min-height: 100vh;
+
+    padding: 25px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 992px) {
+
+    .donor-sidebar {
+        width: 225px;
+    }
+
+    .donor-sidebar + .main-content {
+        margin-left: 225px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .donor-sidebar {
+        position: relative;
+
+        width: 100%;
+        height: auto;
+
+        min-height: auto;
+
+        border-right: none;
+
+        border-bottom: 1px solid #edf0f4;
+
+        box-shadow:
+            0 5px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .donor-profile {
+        padding-bottom: 18px;
+    }
+
+    .donor-menu-title {
+        padding-top: 17px;
+    }
+
+    .donor-menu {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 6px;
+    }
+
+    .donor-sidebar-link {
+        min-height: 45px;
+    }
+
+    .donor-sidebar + .main-content {
+        margin-left: 0;
+
+        padding: 18px;
+    }
+
+    .donor-sidebar-footer {
+        margin-top: 15px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .donor-avatar-wrapper {
+        width: 68px;
+        height: 68px;
+    }
+
+    .donor-menu {
+        grid-template-columns: 1fr;
+    }
+
+    .donor-sidebar-link {
+        min-height: 44px;
+    }
+
+    .donor-arrow {
+        opacity: 1;
+    }
+
+}
+
+

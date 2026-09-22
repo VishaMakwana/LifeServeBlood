@@ -1,0 +1,1390 @@
+/* =========================================================
+   LIFESERVE - DONOR DASHBOARD
+   Modern UI / UX
+   Backend & Django Logic: UNCHANGED
+========================================================= */
+
+
+/* =========================================================
+   MAIN DASHBOARD
+========================================================= */
+
+.donor-dashboard {
+    width: 100%;
+    max-width: 1480px;
+
+    margin: 0 auto;
+
+    padding: 4px 2px 25px;
+}
+
+
+/* =========================================================
+   WELCOME BANNER
+========================================================= */
+
+.donor-welcome {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-height: 185px;
+
+    margin-bottom: 24px;
+
+    padding: 32px 40px;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #9f1239 0%,
+            #c41e3a 45%,
+            #e11d48 100%
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 18px 45px rgba(159, 18, 57, 0.18);
+}
+
+
+/* Decorative circles */
+
+.donor-welcome::before {
+    content: "";
+
+    position: absolute;
+
+    width: 360px;
+    height: 360px;
+
+    right: -130px;
+    top: -230px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.07);
+}
+
+
+.donor-welcome::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    left: -120px;
+    bottom: -170px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.05);
+}
+
+
+/* =========================================================
+   WELCOME CONTENT
+========================================================= */
+
+.welcome-content {
+    position: relative;
+
+    z-index: 3;
+
+    max-width: 760px;
+}
+
+
+.welcome-label {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 10px;
+
+    padding: 7px 12px;
+
+    border:
+        1px solid rgba(255,255,255,0.14);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.09);
+
+    color:
+        rgba(255,255,255,0.82);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.9px;
+
+    text-transform: uppercase;
+}
+
+
+.welcome-label i {
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   WELCOME HEADING
+========================================================= */
+
+.welcome-content h1 {
+    margin: 0 0 9px;
+
+    color: #ffffff;
+
+    font-size: 31px;
+
+    line-height: 1.2;
+
+    font-weight: 850;
+
+    letter-spacing: -0.5px;
+}
+
+
+.welcome-content p {
+    margin: 0;
+
+    max-width: 650px;
+
+    color:
+        rgba(255,255,255,0.82);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   WELCOME IMAGE
+========================================================= */
+
+.welcome-decoration {
+    position: relative;
+
+    z-index: 3;
+
+    width: 105px;
+    height: 105px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    margin-right: 15px;
+
+    border:
+        1px solid rgba(255,255,255,0.15);
+
+    border-radius: 28px;
+
+    background:
+        rgba(255,255,255,0.09);
+
+    backdrop-filter: blur(8px);
+}
+
+
+.welcome-decoration img {
+    width: 78px;
+    height: 78px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 8px 10px
+            rgba(0,0,0,0.08)
+        );
+}
+
+
+/* =========================================================
+   SUMMARY GRID
+========================================================= */
+
+.donor-summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 17px;
+
+    margin-bottom: 24px;
+}
+
+
+/* =========================================================
+   STAT CARD
+========================================================= */
+
+.donor-stat-card {
+    position: relative;
+
+    min-height: 175px;
+
+    padding: 21px;
+
+    overflow: hidden;
+
+    border:
+        1px solid #e7ecf2;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 7px 25px
+        rgba(15,23,42,0.045);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.donor-stat-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    right: -40px;
+    bottom: -40px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(196,30,58,0.025);
+
+    pointer-events: none;
+}
+
+
+.donor-stat-card:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #f0cbd2;
+
+    box-shadow:
+        0 15px 35px
+        rgba(15,23,42,0.075);
+}
+
+
+/* =========================================================
+   STAT TOP
+========================================================= */
+
+.stat-top {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+/* =========================================================
+   STAT ICON
+========================================================= */
+
+.stat-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    font-size: 17px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.donor-stat-card:hover
+.stat-icon {
+    transform:
+        scale(1.06);
+}
+
+
+.stat-icon.red {
+    background: #fff0f3;
+
+    color: #c41e3a;
+}
+
+
+.stat-icon.blue {
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+
+.stat-icon.green {
+    background: #ecfdf5;
+
+    color: #15803d;
+}
+
+
+.stat-icon.blood {
+    background: #fef2f2;
+
+    color: #b91c1c;
+}
+
+
+/* =========================================================
+   STAT LABEL
+========================================================= */
+
+.stat-label {
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   STAT VALUE
+========================================================= */
+
+.stat-value {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 20px;
+
+    color: #172033;
+
+    font-size: 31px;
+
+    line-height: 1;
+
+    font-weight: 850;
+}
+
+
+.stat-date {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 21px;
+
+    color: #263449;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   BLOOD GROUP
+========================================================= */
+
+.blood-group-value {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 16px;
+
+    color: #c41e3a;
+
+    font-size: 32px;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   STAT FOOTER
+========================================================= */
+
+.stat-footer {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 13px;
+
+    color: #9aa6b6;
+
+    font-size: 8px;
+
+    font-weight: 600;
+}
+
+
+.stat-footer i {
+    color: #c41e3a;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   STATUS AREA
+========================================================= */
+
+.donor-status-area {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    min-height: 48px;
+
+    margin-top: 9px;
+}
+
+
+.donor-status-area img {
+    width: 37px;
+    height: 37px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.dashboard-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+.dashboard-status > span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+}
+
+
+.dashboard-status.approved {
+    color: #15803d;
+
+    background:
+        #ecfdf5;
+}
+
+
+.dashboard-status.pending {
+    color: #a16207;
+
+    background:
+        #fffbeb;
+}
+
+
+.dashboard-status.rejected {
+    color: #dc2626;
+
+    background:
+        #fef2f2;
+}
+
+
+.dashboard-status.neutral {
+    color: #64748b;
+
+    background:
+        #f8fafc;
+}
+
+
+/* =========================================================
+   CHARTS GRID
+========================================================= */
+
+.dashboard-charts {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.85fr)
+        minmax(310px, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   CHART CARD
+========================================================= */
+
+.dashboard-chart-card {
+    min-height: 365px;
+
+    overflow: hidden;
+
+    border:
+        1px solid #e7ecf2;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 7px 25px
+        rgba(15,23,42,0.045);
+}
+
+
+/* =========================================================
+   CHART HEADER
+========================================================= */
+
+.chart-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 18px 21px;
+
+    border-bottom:
+        1px solid #edf1f5;
+}
+
+
+.chart-title-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.chart-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: #fff0f3;
+
+    color: #c41e3a;
+
+    font-size: 15px;
+}
+
+
+.chart-title-area h2 {
+    margin: 0 0 3px;
+
+    color: #172033;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+
+.chart-title-area p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   CHART BADGE
+========================================================= */
+
+.chart-badge,
+.history-badge {
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #f8fafc;
+
+    color: #8b98a9;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CHART BODY
+========================================================= */
+
+.chart-body {
+    position: relative;
+
+    height: 285px;
+
+    padding: 18px 21px;
+}
+
+
+.status-chart-body {
+    position: relative;
+
+    height: 285px;
+
+    padding: 20px 25px 12px;
+}
+
+
+/* =========================================================
+   ELIGIBILITY CARD
+========================================================= */
+
+.eligibility-card {
+    display: grid;
+
+    grid-template-columns:
+        minmax(290px, 1fr)
+        minmax(350px, 1.5fr);
+
+    align-items: center;
+
+    gap: 35px;
+
+    margin-bottom: 20px;
+
+    padding: 23px 25px;
+
+    border:
+        1px solid #e7ecf2;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 7px 25px
+        rgba(15,23,42,0.045);
+}
+
+
+/* =========================================================
+   ELIGIBILITY LEFT
+========================================================= */
+
+.eligibility-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.eligibility-icon {
+    width: 49px;
+    height: 49px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background: #fff0f3;
+
+    color: #c41e3a;
+
+    font-size: 19px;
+}
+
+
+.section-mini-title {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #a0aabd;
+
+    font-size: 7px;
+
+    font-weight: 850;
+
+    letter-spacing: 1px;
+}
+
+
+.eligibility-left h2 {
+    margin: 0 0 4px;
+
+    color: #172033;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+
+.eligibility-left p {
+    margin: 0;
+
+    color: #c41e3a;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ELIGIBILITY PROGRESS
+========================================================= */
+
+.progress-info {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    color: #64748b;
+
+    font-size: 8px;
+
+    font-weight: 700;
+}
+
+
+.progress-info strong {
+    color: #c41e3a;
+
+    font-size: 10px;
+}
+
+
+.eligibility-progress-bar {
+    width: 100%;
+
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #f1f5f9;
+}
+
+
+.eligibility-progress-fill {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #9f1239,
+            #c41e3a,
+            #ef476f
+        );
+
+    box-shadow:
+        0 2px 8px
+        rgba(196,30,58,0.18);
+}
+
+
+.eligibility-progress small {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #94a3b8;
+
+    font-size: 7px;
+}
+
+
+/* =========================================================
+   RECENT DONATIONS CARD
+========================================================= */
+
+.recent-donations-card {
+    overflow: hidden;
+
+    border:
+        1px solid #e7ecf2;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 7px 25px
+        rgba(15,23,42,0.045);
+}
+
+
+/* =========================================================
+   HISTORY HEADER
+========================================================= */
+
+.recent-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 18px 21px;
+
+    border-bottom:
+        1px solid #edf1f5;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.donation-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.donation-table {
+    width: 100%;
+
+    min-width: 650px;
+
+    border-collapse: collapse;
+}
+
+
+.donation-table thead th {
+    padding: 13px 21px;
+
+    background:
+        #f8fafc;
+
+    color: #8d99aa;
+
+    font-size: 8px;
+
+    font-weight: 850;
+
+    letter-spacing: 0.7px;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    border-bottom:
+        1px solid #edf1f5;
+}
+
+
+.donation-table tbody td {
+    padding: 15px 21px;
+
+    color: #475569;
+
+    font-size: 10px;
+
+    vertical-align: middle;
+
+    border-top:
+        1px solid #eef2f6;
+}
+
+
+.donation-table tbody tr {
+    transition:
+        background 0.2s ease;
+}
+
+
+.donation-table tbody tr:hover {
+    background:
+        #fffafb;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.date-cell {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    white-space: nowrap;
+}
+
+
+.date-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   BLOOD GROUP BADGE
+========================================================= */
+
+.dashboard-blood-group {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 6px 10px;
+
+    border-radius: 18px;
+
+    background:
+        #fff0f3;
+
+    color:
+        #c41e3a;
+
+    font-size: 8px;
+
+    font-weight: 800;
+}
+
+
+.dashboard-blood-group i {
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   UNITS
+========================================================= */
+
+.units-value {
+    color: #172033;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+
+.units-label {
+    margin-left: 4px;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-donations {
+    padding: 55px 20px !important;
+
+    text-align: center;
+}
+
+
+.empty-history-icon {
+    width: 57px;
+    height: 57px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin:
+        0 auto 12px;
+
+    border-radius: 15px;
+
+    background:
+        #fff0f3;
+
+    color:
+        #c41e3a;
+
+    font-size: 22px;
+}
+
+
+.empty-donations h3 {
+    margin: 0 0 5px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+
+.empty-donations p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1200px
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .donor-summary-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 992px
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .dashboard-charts {
+        grid-template-columns: 1fr;
+    }
+
+
+    .eligibility-card {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 768px
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .donor-dashboard {
+        padding:
+            0 0 20px;
+    }
+
+
+    .donor-welcome {
+        min-height: 165px;
+
+        padding:
+            27px 25px;
+
+        border-radius: 18px;
+    }
+
+
+    .welcome-content h1 {
+        font-size: 25px;
+    }
+
+
+    .welcome-decoration {
+        width: 78px;
+        height: 78px;
+
+        margin-right: 0;
+
+        border-radius: 20px;
+    }
+
+
+    .welcome-decoration img {
+        width: 57px;
+        height: 57px;
+    }
+
+
+    .donor-summary-grid {
+        gap: 13px;
+    }
+
+
+    .donor-stat-card {
+        min-height: 160px;
+
+        padding: 18px;
+    }
+
+
+    .dashboard-chart-card {
+        min-height: 340px;
+    }
+
+
+    .chart-body,
+    .status-chart-body {
+        height: 255px;
+
+        padding:
+            15px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 560px
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .donor-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .donor-welcome {
+        padding:
+            24px 20px;
+    }
+
+
+    .welcome-decoration {
+        display: none;
+    }
+
+
+    .welcome-content h1 {
+        font-size: 22px;
+    }
+
+
+    .welcome-content p {
+        font-size: 10px;
+
+        line-height: 1.6;
+    }
+
+
+    .welcome-label {
+        font-size: 7px;
+    }
+
+
+    .donor-stat-card {
+        min-height: 145px;
+    }
+
+
+    .chart-card-header,
+    .recent-card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding:
+            16px;
+    }
+
+
+    .chart-body,
+    .status-chart-body {
+        height: 240px;
+    }
+
+
+    .eligibility-card {
+        padding:
+            19px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 400px
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .donor-welcome {
+        border-radius: 15px;
+
+        padding:
+            21px 17px;
+    }
+
+
+    .welcome-content h1 {
+        font-size: 20px;
+    }
+
+
+    .stat-icon {
+        width: 39px;
+        height: 39px;
+
+        font-size: 15px;
+    }
+
+
+    .stat-value {
+        font-size: 27px;
+    }
+
+
+    .blood-group-value {
+        font-size: 29px;
+    }
+
+
+    .chart-title-area h2 {
+        font-size: 12px;
+    }
+
+}

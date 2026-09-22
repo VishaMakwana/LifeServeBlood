@@ -1,0 +1,390 @@
+{% extends "patient/base.html" %}
+{% load static %}
+
+{% block title %}
+Request Blood - LifeServe
+{% endblock %}
+
+
+{% block content %}
+
+<div class="blood-request-page">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="blood-request-header">
+
+        <div class="blood-request-header-content">
+
+            <span class="request-eyebrow">
+                <i class="bi bi-droplet-fill"></i>
+                LifeServe Blood Bank
+            </span>
+
+            <h1>
+                Request Blood
+            </h1>
+
+            <p>
+                Submit a blood request and provide the required details
+                for processing.
+            </p>
+
+        </div>
+
+        <div class="request-header-icon">
+            <i class="bi bi-heart-pulse-fill"></i>
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN FORM
+    ========================== -->
+
+    <div class="blood-request-card">
+
+        <!-- Form Header -->
+
+        <div class="request-card-header">
+
+            <div class="request-header-icon-small">
+                <i class="bi bi-file-earmark-medical-fill"></i>
+            </div>
+
+            <div>
+
+                <h2>
+                    Blood Request Form
+                </h2>
+
+                <p>
+                    Please provide accurate information for your request.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="request-card-body">
+
+
+            <!-- =========================
+                 MESSAGES
+            ========================== -->
+
+            {% if messages %}
+
+                <div class="request-messages">
+
+                    {% for message in messages %}
+
+                        <div class="request-message">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                {{ message }}
+                            </span>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- =========================
+                 FORM
+            ========================== -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- Section -->
+
+                <div class="request-section-title">
+
+                    <div class="section-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Blood Requirement
+                        </h3>
+
+                        <p>
+                            Select the blood type and required quantity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-4">
+
+
+                    <!-- BLOOD GROUP -->
+
+                    <div class="col-md-6">
+
+                        <div class="request-field">
+
+                            <label for="blood_group">
+                                Blood Group
+                            </label>
+
+                            <div class="request-input blood-select">
+
+                                <i class="bi bi-droplet-fill"></i>
+
+                                <select
+                                    id="blood_group"
+                                    class="form-control"
+                                    name="blood_group">
+
+                                    <option value="A+">
+                                        A+
+                                    </option>
+
+                                    <option value="A-">
+                                        A-
+                                    </option>
+
+                                    <option value="B+">
+                                        B+
+                                    </option>
+
+                                    <option value="B-">
+                                        B-
+                                    </option>
+
+                                    <option value="AB+">
+                                        AB+
+                                    </option>
+
+                                    <option value="AB-">
+                                        AB-
+                                    </option>
+
+                                    <option value="O+">
+                                        O+
+                                    </option>
+
+                                    <option value="O-">
+                                        O-
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- UNITS -->
+
+                    <div class="col-md-6">
+
+                        <div class="request-field">
+
+                            <label for="units">
+                                Units Required
+                            </label>
+
+                            <div class="request-input">
+
+                                <i class="bi bi-droplet"></i>
+
+                                <input
+                                    type="number"
+                                    id="units"
+                                    class="form-control"
+                                    name="units"
+                                    min="1"
+                                    placeholder="Enter number of units"
+                                    required>
+
+                            </div>
+
+                            <small class="request-help">
+                                Enter the number of blood units required.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =========================
+                     HOSPITAL SECTION
+                ========================== -->
+
+                <div class="request-section-title request-section-space">
+
+                    <div class="section-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Hospital Information
+                        </h3>
+
+                        <p>
+                            Provide the hospital where the blood is required.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <div class="request-field">
+
+                            <label for="hospital">
+                                Hospital Name
+                            </label>
+
+                            <div class="request-input">
+
+                                <i class="bi bi-hospital-fill"></i>
+
+                                <input
+                                    type="text"
+                                    id="hospital"
+                                    class="form-control"
+                                    name="hospital"
+                                    placeholder="Enter hospital name"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     REASON SECTION
+                ========================== -->
+
+                <div class="request-section-title request-section-space">
+
+                    <div class="section-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Request Details
+                        </h3>
+
+                        <p>
+                            Tell us why the blood is required.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-field">
+
+                    <label for="reason">
+                        Reason
+                    </label>
+
+                    <div class="request-textarea">
+
+                        <i class="bi bi-chat-left-text-fill"></i>
+
+                        <textarea
+                            id="reason"
+                            class="form-control"
+                            rows="5"
+                            name="reason"
+                            placeholder="Describe the reason for your blood request..."
+                            required></textarea>
+
+                    </div>
+
+                    <small class="request-help">
+                        Please provide relevant information about the requirement.
+                    </small>
+
+                </div>
+
+
+                <!-- =========================
+                     SUBMIT
+                ========================== -->
+
+                <div class="request-submit-area">
+
+                    <div class="request-security">
+
+                        <i class="bi bi-shield-check"></i>
+
+                        <div>
+
+                            <strong>
+                                Secure Request
+                            </strong>
+
+                            <span>
+                                Your information is handled securely.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="submit-request-btn">
+
+                        <i class="bi bi-send-fill"></i>
+
+                        Submit Request
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

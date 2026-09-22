@@ -1,0 +1,587 @@
+{% extends "donor/base.html" %}
+{% load static %}
+
+{% block title %}
+Donate Blood | LifeServe
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/donate-blood.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="donate-page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="donate-page-header">
+
+        <div class="donate-header-content">
+
+            <span class="donate-eyebrow">
+                <i class="bi bi-heart-pulse-fill"></i>
+                LIFESERVE DONOR PORTAL
+            </span>
+
+            <h1>
+                Donate Blood
+            </h1>
+
+            <p>
+                Your donation can make a difference.
+                Check your eligibility and submit a donation request.
+            </p>
+
+        </div>
+
+
+        <div class="donate-header-icon">
+
+            <i class="bi bi-droplet-fill"></i>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         DONATION STATUS CARDS
+    ========================================== -->
+
+    <section class="donation-overview">
+
+        <!-- Last Donation -->
+
+        <div class="donation-info-card">
+
+            <div class="donation-info-icon red">
+
+                <i class="bi bi-calendar-heart-fill"></i>
+
+            </div>
+
+            <div class="donation-info-content">
+
+                <span>
+                    LAST DONATION
+                </span>
+
+                {% if last_donation %}
+
+                    <h3>
+                        {{ last_donation.donation_date }}
+                    </h3>
+
+                {% else %}
+
+                    <h3>
+                        No Donation
+                    </h3>
+
+                {% endif %}
+
+                <p>
+                    Previous donation record
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Next Eligible -->
+
+        <div class="donation-info-card">
+
+            <div class="donation-info-icon blue">
+
+                <i class="bi bi-calendar-check-fill"></i>
+
+            </div>
+
+            <div class="donation-info-content">
+
+                <span>
+                    NEXT ELIGIBLE DATE
+                </span>
+
+                {% if next_date %}
+
+                    <h3>
+                        {{ next_date }}
+                    </h3>
+
+                {% else %}
+
+                    <h3>
+                        Today
+                    </h3>
+
+                {% endif %}
+
+                <p>
+                    Based on your donation history
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Eligibility -->
+
+        <div class="donation-info-card eligibility-info">
+
+            <div class="donation-info-icon green">
+
+                <i class="bi bi-shield-check-fill"></i>
+
+            </div>
+
+            <div class="donation-info-content">
+
+                <span>
+                    DONATION STATUS
+                </span>
+
+                {% if eligible %}
+
+                    <h3 class="eligible-text">
+                        Eligible
+                    </h3>
+
+                    <p>
+                        You can donate blood
+                    </p>
+
+                {% else %}
+
+                    <h3 class="not-eligible-text">
+                        Not Eligible
+                    </h3>
+
+                    <p>
+                        Please wait until eligible
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <section class="donation-main-grid">
+
+
+        <!-- =====================================
+             DONATION FORM
+        ====================================== -->
+
+        <div class="donation-form-card">
+
+            <div class="donation-card-header">
+
+                <div class="donation-card-title">
+
+                    <div class="donation-card-icon">
+
+                        <i class="bi bi-droplet-half"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Donation Request
+                        </h2>
+
+                        <p>
+                            Submit your blood donation details
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="form-badge">
+                    DONATE
+                </span>
+
+            </div>
+
+
+            <div class="donation-form-body">
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+
+                    <!-- Blood Group -->
+
+                    <div class="form-group-custom">
+
+                        <label>
+                            Blood Group
+                        </label>
+
+                        <div class="input-with-icon">
+
+                            <i class="bi bi-droplet-fill"></i>
+
+                            <input
+                                type="text"
+                                class="custom-input"
+                                value="{{ donor.blood_group }}"
+                                readonly>
+
+                            <span class="readonly-badge">
+                                Registered
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Units -->
+
+                    <div class="form-group-custom">
+
+                        <label>
+                            Units
+                        </label>
+
+                        <div class="input-with-icon">
+
+                            <i class="bi bi-box-seam-fill"></i>
+
+                            <input
+                                type="number"
+                                name="units"
+                                value="1"
+                                min="1"
+                                max="3"
+                                class="custom-input">
+
+                        </div>
+
+                        <small>
+                            You can donate between 1 and 3 units.
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- Remarks -->
+
+                    <div class="form-group-custom">
+
+                        <label>
+                            Remarks
+                        </label>
+
+                        <div class="textarea-wrapper">
+
+                            <i class="bi bi-chat-left-text-fill"></i>
+
+                            <textarea
+                                name="remarks"
+                                rows="5"
+                                class="custom-textarea"
+                                placeholder="Add any additional information..."></textarea>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Submit -->
+
+                    <div class="donation-submit-area">
+
+                        <button
+                            type="submit"
+                            class="donation-submit-btn">
+
+                            <i class="bi bi-heart-pulse-fill"></i>
+
+                            Submit Donation Request
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             GUIDELINES
+        ====================================== -->
+
+        <div class="donation-side-area">
+
+
+            <div class="guidelines-card">
+
+                <div class="guidelines-header">
+
+                    <div class="guidelines-icon">
+
+                        <i class="bi bi-clipboard2-check-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Donation Guidelines
+                        </h2>
+
+                        <p>
+                            Before donating blood
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="guidelines-list">
+
+
+                    <div class="guideline-item">
+
+                        <div class="guideline-number">
+                            01
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Age 18–60 Years
+                            </strong>
+
+                            <span>
+                                Donor should be within the recommended age range.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="guideline-item">
+
+                        <div class="guideline-number">
+                            02
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Weight Above 50kg
+                            </strong>
+
+                            <span>
+                                Maintain the required minimum body weight.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="guideline-item">
+
+                        <div class="guideline-number">
+                            03
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Healthy Person
+                            </strong>
+
+                            <span>
+                                Donate only when you are feeling healthy.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="guideline-item">
+
+                        <div class="guideline-number">
+                            04
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Sleep Minimum 8 Hours
+                            </strong>
+
+                            <span>
+                                Get enough rest before donating.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="guideline-item">
+
+                        <div class="guideline-number">
+                            05
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Drink Water
+                            </strong>
+
+                            <span>
+                                Stay hydrated before your donation.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="guidelines-footer">
+
+                    <i class="bi bi-info-circle-fill"></i>
+
+                    Please follow all donation guidelines before submitting your request.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 CURRENT REQUEST
+            ================================== -->
+
+            {% if current_request %}
+
+            <div class="current-request-card">
+
+                <div class="current-request-header">
+
+                    <div>
+
+                        <span>
+                            CURRENT REQUEST
+                        </span>
+
+                        <h2>
+                            Donation Request
+                        </h2>
+
+                    </div>
+
+                    <i class="bi bi-hourglass-split"></i>
+
+                </div>
+
+
+                <div class="current-request-body">
+
+
+                    <div class="request-detail">
+
+                        <span>
+                            Status
+                        </span>
+
+                        <strong>
+                            {{ current_request.status }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="request-detail">
+
+                        <span>
+                            Units
+                        </span>
+
+                        <strong>
+                            {{ current_request.units }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="request-detail">
+
+                        <span>
+                            Date
+                        </span>
+
+                        <strong>
+                            {{ current_request.donation_date }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

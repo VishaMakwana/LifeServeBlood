@@ -1,0 +1,222 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}
+Login Verification - LifeServe Blood Bank
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login-verification.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="otp-page">
+
+    <div class="otp-wrapper">
+
+        <!-- LEFT SIDE -->
+        <div class="otp-info">
+
+            <div class="otp-info-content">
+
+                <div class="otp-brand-icon">
+                    <i class="bi bi-shield-lock-fill"></i>
+                </div>
+
+                <span class="otp-eyebrow">
+                    Secure Login
+                </span>
+
+                <h1>
+                    Verify your
+                    <span>identity.</span>
+                </h1>
+
+                <p>
+                    We've added an extra layer of security to protect
+                    your LifeServe Blood Bank account.
+                </p>
+
+                <div class="otp-features">
+
+                    <div class="otp-feature">
+                        <div class="otp-feature-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+
+                        <div>
+                            <strong>Secure Verification</strong>
+                            <small>Protecting your account</small>
+                        </div>
+                    </div>
+
+                    <div class="otp-feature">
+                        <div class="otp-feature-icon">
+                            <i class="bi bi-clock"></i>
+                        </div>
+
+                        <div>
+                            <strong>One-Time Code</strong>
+                            <small>Use your latest verification code</small>
+                        </div>
+                    </div>
+
+                    <div class="otp-feature">
+                        <div class="otp-feature-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+
+                        <div>
+                            <strong>LifeServe Security</strong>
+                            <small>Your account is protected</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="otp-form-section">
+
+            <div class="otp-form-container">
+
+                <div class="otp-heading">
+
+                    <div class="mobile-otp-icon">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </div>
+
+                    <h2>
+                        Login Verification
+                    </h2>
+
+                    <p>
+                        Enter the 6-digit OTP to continue.
+                    </p>
+
+                </div>
+
+
+                <!-- MESSAGES -->
+                {% if messages %}
+
+                    <div class="otp-messages">
+
+                        {% for message in messages %}
+
+                            <div class="otp-message">
+
+                                <i class="bi bi-info-circle-fill"></i>
+
+                                <span>
+                                    {{ message }}
+                                </span>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="otp-field">
+
+                        <label for="otp">
+                            Enter Login OTP
+                        </label>
+
+                        <div class="otp-input-wrapper">
+
+                            <i class="bi bi-key"></i>
+
+                            <input
+                                type="text"
+                                id="otp"
+                                name="otp"
+                                class="otp-input"
+                                maxlength="6"
+                                inputmode="numeric"
+                                pattern="[0-9]{6}"
+                                autocomplete="one-time-code"
+                                placeholder="000000"
+                                required>
+
+                        </div>
+
+                        <div class="otp-hint">
+                            <i class="bi bi-info-circle"></i>
+                            Enter the 6-digit verification code you received.
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="verify-button">
+
+                        <span>
+                            <i class="bi bi-shield-check"></i>
+                            Verify OTP
+                        </span>
+
+                        <i class="bi bi-arrow-right verify-arrow"></i>
+
+                    </button>
+
+                </form>
+
+
+                <div class="otp-security">
+
+                    <i class="bi bi-lock-fill"></i>
+
+                    <span>
+                        Never share your OTP with anyone.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const otpInput = document.getElementById("otp");
+
+    if (otpInput) {
+
+        otpInput.addEventListener("input", function () {
+
+            this.value = this.value
+                .replace(/\D/g, "")
+                .slice(0, 6);
+
+        });
+
+        otpInput.focus();
+
+    }
+
+});
+</script>
+
+{% endblock %}

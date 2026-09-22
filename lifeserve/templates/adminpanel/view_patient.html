@@ -1,0 +1,393 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}Patient Details | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/patient-views.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="patient-details-page">
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+    <div class="pd-page-header">
+    <!-- <div class="pd-page-header"> -->
+
+        <div class="pd-header-content">
+
+            <div class="pd-page-icon">
+                <i class="bi bi-person-vcard-fill"></i>
+            </div>
+
+            <div>
+                <h2>Patient Details</h2>
+                <p>View complete patient profile and information</p>
+            </div>
+
+        </div>
+         
+        <div class="pd-header-badge">
+        <!-- <div class="pd-secure-badge"> -->
+            <i class="bi bi-shield-check"></i>
+            <span>Secure Admin Panel</span>
+        </div>
+        <!-- </div> -->
+
+    </div>
+    <!-- </div> -->
+    
+
+
+    <!-- =====================================================
+         MAIN CARD
+    ====================================================== -->
+
+    <div class="pd-card">
+
+        <!-- Card Header -->
+
+        <div class="pd-card-header">
+
+            <div class="pd-card-title">
+
+                <div class="pd-card-title-icon">
+                    <i class="bi bi-person-lines-fill"></i>
+                </div>
+
+                <div>
+                    <h4>Patient Information</h4>
+                    <p>Personal and contact details</p>
+                </div>
+
+            </div>
+
+            <div class="pd-status-badge">
+                <i class="bi bi-check-circle-fill"></i>
+                Patient Profile
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CARD BODY
+        ================================================== -->
+
+        <div class="pd-card-body">
+
+            <div class="pd-profile-layout">
+
+
+                <!-- =========================================
+                     PROFILE SECTION
+                ========================================== -->
+
+                <div class="pd-profile-section">
+
+                    <div class="pd-profile-photo">
+
+                        {% if patient.profile_photo %}
+
+                            <img src="{{ patient.profile_photo.url }}"
+                                 alt="Patient Profile Photo">
+
+                        {% else %}
+
+                            <div class="pd-default-avatar">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="pd-profile-name">
+
+                        <h3>
+                            {{ patient.user.get_full_name }}
+                        </h3>
+
+                        <span>
+                            <i class="bi bi-person-badge-fill"></i>
+                            Registered Patient
+                        </span>
+
+                    </div>
+
+
+                    <div class="pd-blood-group">
+
+                        <div class="pd-blood-icon">
+                            <i class="bi bi-droplet-fill"></i>
+                        </div>
+
+                        <div>
+                            <span>Blood Group</span>
+                            <strong>{{ patient.blood_group }}</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="pd-profile-security">
+
+                        <i class="bi bi-shield-lock-fill"></i>
+
+                        <span>
+                            Patient information is securely protected
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     INFORMATION SECTION
+                ========================================== -->
+
+                <div class="pd-information-section">
+
+                    <div class="pd-info-grid">
+
+
+                        <!-- Full Name -->
+
+                        <div class="pd-info-item">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>Full Name</span>
+                                <strong>
+                                    {{ patient.user.get_full_name }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Username -->
+
+                        <div class="pd-info-item">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-at"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>Username</span>
+                                <strong>
+                                    {{ patient.user.username }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="pd-info-item">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>Email Address</span>
+                                <strong>
+                                    {{ patient.user.email }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Phone -->
+
+                        <div class="pd-info-item">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>Phone Number</span>
+                                <strong>
+                                    {{ patient.phone }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Age -->
+
+                        <div class="pd-info-item">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-calendar2-heart-fill"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>Age</span>
+                                <strong>
+                                    {{ patient.age }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Gender -->
+
+                        <div class="pd-info-item">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-gender-ambiguous"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>Gender</span>
+                                <strong>
+                                    {{ patient.gender }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Blood Group -->
+
+                        <div class="pd-info-item blood-info">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-droplet-fill"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>Blood Group</span>
+                                <strong>
+                                    {{ patient.blood_group }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- City -->
+
+                        <div class="pd-info-item">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>City</span>
+                                <strong>
+                                    {{ patient.city }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- State -->
+
+                        <div class="pd-info-item">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-map-fill"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>State</span>
+                                <strong>
+                                    {{ patient.state }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Address -->
+
+                        <div class="pd-info-item pd-address-item">
+
+                            <div class="pd-info-icon">
+                                <i class="bi bi-house-fill"></i>
+                            </div>
+
+                            <div class="pd-info-content">
+                                <span>Address</span>
+                                <strong>
+                                    {{ patient.address }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Back Button -->
+
+                    <div class="pd-actions">
+
+                        <a href="{% url 'manage_patients' %}"
+                           class="pd-back-btn">
+
+                            <i class="bi bi-arrow-left"></i>
+
+                            <span>Back to Patients</span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CARD FOOTER
+        ================================================== -->
+
+        <div class="pd-card-footer">
+
+            <div class="pd-footer-record">
+
+                <i class="bi bi-person-check-fill"></i>
+
+                <span>
+                    Patient Profile
+                </span>
+
+            </div>
+
+            <div class="pd-footer-secure">
+
+                <i class="bi bi-lock-fill"></i>
+
+                Secure &amp; Protected
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

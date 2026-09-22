@@ -1,0 +1,773 @@
+{% extends "donor/base.html" %}
+{% load static %}
+
+{% block title %}
+Donor Dashboard | LifeServe
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/donor-dashboard.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="donor-dashboard">
+
+    <!-- =================================
+         WELCOME
+    ================================== -->
+
+    <section class="donor-welcome">
+
+        <div class="welcome-content">
+
+            <span class="welcome-label">
+                <i class="bi bi-heart-pulse-fill"></i>
+                LifeServe Donor Portal
+            </span>
+
+            <h1>
+                Welcome, {{ donor.user.first_name }}
+                <!-- <img
+                    src="{% static 'images/welcome.png' %}"
+                    alt="Welcome"> -->
+            </h1>
+
+            <p>
+                Thank you for being a LifeServe blood donor.
+                Your donation can help save lives.
+            </p>
+
+        </div>
+
+        <div class="welcome-decoration">
+
+            <!-- <i class="bi bi-droplet-fill"></i> -->
+             <img
+                    src="{% static 'images/welcome.png' %}"
+                    alt="Welcome">
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         SUMMARY CARDS
+    ================================== -->
+
+    <section class="donor-summary-grid">
+
+
+        <!-- Total Donations -->
+
+        <div class="donor-stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon red">
+                    <i class="bi bi-droplet-fill"></i>
+                </div>
+
+                <span class="stat-label">
+                    Total Donations
+                </span>
+
+            </div>
+
+            <div class="stat-value">
+                {{ total_donations }}
+            </div>
+
+            <div class="stat-footer">
+                <i class="bi bi-activity"></i>
+                Blood donations completed
+            </div>
+
+        </div>
+
+
+        <!-- Last Donation -->
+
+        <div class="donor-stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon blue">
+                    <i class="bi bi-calendar-heart"></i>
+                </div>
+
+                <span class="stat-label">
+                    Last Donation
+                </span>
+
+            </div>
+
+            <div class="stat-date">
+
+                {% if last_donation %}
+
+                    {{ last_donation.donation_date }}
+
+                {% else %}
+
+                    No Donation Yet
+
+                {% endif %}
+
+            </div>
+
+            <div class="stat-footer">
+                <i class="bi bi-calendar-check"></i>
+                Donation record
+            </div>
+
+        </div>
+
+
+        <!-- Status -->
+
+        <div class="donor-stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon green">
+                    <i class="bi bi-heart-pulse-fill"></i>
+                </div>
+
+                <span class="stat-label">
+                    Latest Status
+                </span>
+
+            </div>
+
+            <div class="donor-status-area">
+
+                {% if last_donation %}
+
+                    {% if last_donation.status == "Approved" %}
+
+                        <span class="dashboard-status approved">
+                            <span></span>
+                            Approved
+                        </span>
+
+                        <img
+                            src="{% static 'images/approved.png' %}"
+                            alt="Approved">
+
+                    {% elif last_donation.status == "Pending" %}
+
+                        <span class="dashboard-status pending">
+                            <span></span>
+                            Pending
+                        </span>
+
+                        <img
+                            src="{% static 'images/pending.png' %}"
+                            alt="Pending">
+
+                    {% else %}
+
+                        <span class="dashboard-status rejected">
+                            <span></span>
+                            Rejected
+                        </span>
+
+                        <img
+                            src="{% static 'images/reject.png' %}"
+                            alt="Rejected">
+
+                    {% endif %}
+
+                {% else %}
+
+                    <span class="dashboard-status neutral">
+                        No Status
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- Blood Group -->
+
+        <div class="donor-stat-card blood-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon blood">
+                    <i class="bi bi-droplet-fill"></i>
+                </div>
+
+                <span class="stat-label">
+                    Blood Group
+                </span>
+
+            </div>
+
+            <div class="blood-group-value">
+                {{ donor.blood_group }}
+            </div>
+
+            <div class="stat-footer">
+                <i class="bi bi-shield-check"></i>
+                Donor blood type
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         CHARTS
+    ================================== -->
+
+    <section class="dashboard-charts">
+
+
+        <!-- Monthly Donations -->
+
+        <div class="dashboard-chart-card monthly-chart">
+
+            <div class="chart-card-header">
+
+                <div class="chart-title-area">
+
+                    <div class="chart-icon">
+                        <i class="bi bi-bar-chart-line-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Monthly Donations
+                        </h2>
+
+                        <p>
+                            Your donation activity
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="chart-badge">
+                    Activity
+                </span>
+
+            </div>
+
+            <div class="chart-body">
+
+                <canvas id="donationChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <!-- Donation Status -->
+
+        <div class="dashboard-chart-card status-chart">
+
+            <div class="chart-card-header">
+
+                <div class="chart-title-area">
+
+                    <div class="chart-icon">
+                        <i class="bi bi-pie-chart-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Donation Status
+                        </h2>
+
+                        <p>
+                            Donation overview
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="chart-badge">
+                    Overview
+                </span>
+
+            </div>
+
+            <div class="status-chart-body">
+
+                <canvas id="statusChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         NEXT ELIGIBLE DONATION
+    ================================== -->
+
+    <section class="eligibility-card">
+
+        <div class="eligibility-left">
+
+            <div class="eligibility-icon">
+                <i class="bi bi-calendar2-heart-fill"></i>
+            </div>
+
+            <div>
+
+                <span class="section-mini-title">
+                    DONATION ELIGIBILITY
+                </span>
+
+                <h2>
+                    Next Eligible Donation
+                </h2>
+
+                <p>
+                    90 Days After Last Donation
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="eligibility-progress">
+
+            <div class="progress-info">
+
+                <span>
+                    Eligibility Progress
+                </span>
+
+                <strong>
+                    40%
+                </strong>
+
+            </div>
+
+            <div class="eligibility-progress-bar">
+
+                <div
+                    class="eligibility-progress-fill"
+                    style="width:40%;">
+                </div>
+
+            </div>
+
+            <small>
+                Continue your journey as a LifeServe donor.
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         RECENT HISTORY
+    ================================== -->
+
+    <section class="recent-donations-card">
+
+        <div class="recent-card-header">
+
+            <div class="chart-title-area">
+
+                <div class="chart-icon">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Recent Donation History
+                    </h2>
+
+                    <p>
+                        Your latest blood donation records
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="history-badge">
+                Recent Activity
+            </span>
+
+        </div>
+
+
+        <div class="donation-table-wrapper">
+
+            <table class="donation-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Blood Group
+                        </th>
+
+                        <th>
+                            Units
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for donation in recent_donations %}
+
+                    <tr>
+
+                        <td>
+
+                            <div class="date-cell">
+
+                                <span class="date-icon">
+                                    <i class="bi bi-calendar3"></i>
+                                </span>
+
+                                {{ donation.donation_date }}
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="dashboard-blood-group">
+
+                                <i class="bi bi-droplet-fill"></i>
+
+                                {{ donation.blood_group }}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong class="units-value">
+                                {{ donation.units }}
+                            </strong>
+
+                            <small class="units-label">
+                                units
+                            </small>
+
+                        </td>
+
+
+                        <td>
+
+                            {% if donation.status == "Approved" %}
+
+                                <span class="dashboard-status approved">
+                                    <span></span>
+                                    Approved
+                                </span>
+
+                            {% elif donation.status == "Rejected" %}
+
+                                <span class="dashboard-status rejected">
+                                    <span></span>
+                                    Rejected
+                                </span>
+
+                            {% else %}
+
+                                <span class="dashboard-status pending">
+                                    <span></span>
+                                    Pending
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="empty-donations">
+
+                            <div class="empty-history-icon">
+                                <i class="bi bi-droplet"></i>
+                            </div>
+
+                            <h3>
+                                No Donation History
+                            </h3>
+
+                            <p>
+                                Your donation records will appear here.
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =================================
+       MONTHLY DONATION CHART
+    ================================= */
+
+    const donationCanvas =
+        document.getElementById("donationChart");
+
+    if (donationCanvas) {
+
+        new Chart(
+            donationCanvas,
+            {
+                type: "line",
+
+                data: {
+
+                    labels: [
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul"
+                    ],
+
+                    datasets: [
+
+                        {
+                            label: "Donations",
+
+                            data: [
+                                2,
+                                3,
+                                1,
+                                4,
+                                2,
+                                5,
+                                3
+                            ],
+
+                            borderColor: "#c41e3a",
+
+                            backgroundColor:
+                                "rgba(196,30,58,0.08)",
+
+                            fill: true,
+
+                            tension: 0.4,
+
+                            borderWidth: 2,
+
+                            pointRadius: 3,
+
+                            pointHoverRadius: 5
+                        }
+
+                    ]
+
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+                            display: false
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true,
+
+                            grid: {
+                                color: "#eef2f7"
+                            },
+
+                            ticks: {
+                                color: "#94a3b8",
+
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        },
+
+                        x: {
+
+                            grid: {
+                                display: false
+                            },
+
+                            ticks: {
+                                color: "#94a3b8",
+
+                                font: {
+                                    size: 10
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =================================
+       STATUS CHART
+    ================================= */
+
+    const statusCanvas =
+        document.getElementById("statusChart");
+
+    if (statusCanvas) {
+
+        new Chart(
+            statusCanvas,
+            {
+                type: "doughnut",
+
+                data: {
+
+                    labels: [
+                        "Approved",
+                        "Pending",
+                        "Rejected"
+                    ],
+
+                    datasets: [
+
+                        {
+                            data: [
+                                12,
+                                3,
+                                1
+                            ],
+
+                            backgroundColor: [
+                                "#198754",
+                                "#ffc107",
+                                "#dc3545"
+                            ],
+
+                            borderWidth: 0,
+
+                            hoverOffset: 5
+                        }
+
+                    ]
+
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    cutout: "70%",
+
+                    plugins: {
+
+                        legend: {
+
+                            position: "bottom",
+
+                            labels: {
+
+                                usePointStyle: true,
+
+                                padding: 15,
+
+                                color: "#64748b",
+
+                                font: {
+                                    size: 10
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

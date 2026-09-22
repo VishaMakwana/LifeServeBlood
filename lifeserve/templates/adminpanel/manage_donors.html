@@ -1,0 +1,431 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}
+Manage Donors | LifeServe
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/manage-donors.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="donors-page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="donors-page-header">
+
+        <div class="donors-header-left">
+
+            <div class="donors-header-icon">
+                <i class="bi bi-people-fill"></i>
+            </div>
+
+            <div>
+
+                <span class="donors-eyebrow">
+                    DONOR MANAGEMENT
+                </span>
+
+                <h1>
+                    Manage Donors
+                </h1>
+
+                <p>
+                    View, search and manage registered blood donors.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="donors-header-badge">
+
+            <i class="bi bi-shield-check"></i>
+
+            <span>
+                Secure Donor Records
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         DONOR CARD
+    ========================================== -->
+
+    <section class="donors-card">
+
+
+        <!-- CARD HEADER -->
+
+        <div class="donors-card-header">
+
+
+            <div class="donors-card-title">
+
+                <div class="donors-title-icon">
+                    <i class="bi bi-person-heart"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Donor List
+                    </h2>
+
+                    <p>
+                        Registered blood donor information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <form
+                method="GET"
+                class="donor-search-form">
+
+                <div class="donor-search">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        name="search"
+                        value="{{ request.GET.search|default:'' }}"
+                        placeholder="Search donors..."
+                        autocomplete="off">
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="donor-search-btn">
+
+                    Search
+
+                </button>
+
+            </form>
+
+
+        </div>
+
+
+        <!-- =====================================
+             TABLE
+        ====================================== -->
+
+        <div class="donors-table-wrapper">
+
+            <table class="donors-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>DONOR</th>
+
+                        <th>EMAIL</th>
+
+                        <th>PHONE</th>
+
+                        <th>BLOOD GROUP</th>
+
+                        <th>CITY</th>
+
+                        <th>STATUS</th>
+
+                        <th>ACTION</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% for donor in donors %}
+
+                <tr>
+
+
+                    <!-- ID -->
+
+                    <td>
+
+                        <span class="donor-id">
+                            #{{ donor.id }}
+                        </span>
+
+                    </td>
+
+
+                    <!-- NAME -->
+
+                    <td>
+
+                        <div class="donor-person">
+
+                            <div class="donor-avatar">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+
+                            <div class="donor-name-box">
+
+                                <strong>
+                                    {{ donor.user.get_full_name }}
+                                </strong>
+
+                                <span>
+                                    Registered Donor
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- EMAIL -->
+
+                    <td>
+
+                        <div class="donor-email">
+
+                            <i class="bi bi-envelope"></i>
+
+                            <span>
+                                {{ donor.user.email }}
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- PHONE -->
+
+                    <td>
+
+                        <div class="donor-phone">
+
+                            <i class="bi bi-telephone"></i>
+
+                            <span>
+                                {{ donor.phone }}
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- BLOOD GROUP -->
+
+                    <td>
+
+                        <span class="donor-blood-group">
+
+                            <i class="bi bi-droplet-fill"></i>
+
+                            {{ donor.blood_group }}
+
+                        </span>
+
+                    </td>
+
+
+                    <!-- CITY -->
+
+                    <td>
+
+                        <div class="donor-city">
+
+                            <i class="bi bi-geo-alt-fill"></i>
+
+                            <span>
+                                {{ donor.city }}
+                            </span>
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- STATUS -->
+
+                    <td>
+
+                        <span class="donor-status">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            Active
+
+                        </span>
+
+                    </td>
+
+
+                    <!-- ACTION -->
+
+                    <td>
+
+                        <div class="donor-actions">
+
+
+                            <!-- VIEW -->
+
+                            <a
+                                href="{% url 'view_donor' donor.id %}"
+                                class="donor-action donor-view"
+                                title="View Donor">
+
+                                <i class="bi bi-eye-fill"></i>
+
+                            </a>
+
+
+                            <!-- EDIT -->
+
+                            <a
+                                href="{% url 'edit_donor' donor.id %}"
+                                class="donor-action donor-edit"
+                                title="Edit Donor">
+
+                                <i class="bi bi-pencil-fill"></i>
+
+                            </a>
+
+
+                            <!-- DELETE -->
+
+                            <form
+                                method="post"
+                                action="{% url 'delete_donor' donor.id %}"
+                                class="delete-donor-form">
+
+                                {% csrf_token %}
+
+                                <button
+                                    type="submit"
+                                    class="donor-action donor-delete"
+                                    title="Delete Donor"
+                                    onclick="return confirm('Are you sure you want to delete this donor?');">
+
+                                    <i class="bi bi-trash3-fill"></i>
+
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+                    </td>
+
+
+                </tr>
+
+
+                {% empty %}
+
+
+                <!-- EMPTY STATE -->
+
+                <tr>
+
+                    <td colspan="8">
+
+                        <div class="donors-empty">
+
+                            <div class="donors-empty-icon">
+                                <i class="bi bi-person-x"></i>
+                            </div>
+
+                            <h3>
+                                No Donors Found
+                            </h3>
+
+                            <p>
+                                There are no registered donors matching your search.
+                            </p>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <div class="donors-card-footer">
+
+            <div class="donor-record-info">
+
+                <i class="bi bi-database-check"></i>
+
+                <span>
+                    Donor records are securely managed by LifeServe.
+                </span>
+
+            </div>
+
+
+            <div class="donor-total">
+
+                <span>
+                    Total Records
+                </span>
+
+                <strong>
+                    {{ donors|length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+</div>
+
+{% endblock %}

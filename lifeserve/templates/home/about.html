@@ -1,0 +1,549 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}
+About Us | LifeServe Blood Bank
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= ABOUT HERO ================= -->
+
+<section class="about-hero-modern">
+
+    <div class="about-hero-overlay"></div>
+
+    <div class="container position-relative">
+
+        <div class="about-hero-content">
+
+            <span class="about-label">
+                <i class="bi bi-heart-pulse-fill"></i>
+                LIFE SERVE BLOOD BANK
+            </span>
+
+            <h1>
+                Saving Lives
+                <span>Through Blood Donation</span>
+            </h1>
+
+            <p>
+                Connecting donors, patients and healthcare services
+                through a secure and reliable blood bank management system.
+            </p>
+
+            <div class="about-breadcrumb">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <i class="bi bi-chevron-right"></i>
+
+                <span>About Us</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= COMPANY OVERVIEW ================= -->
+
+<section class="about-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-7">
+
+                <span class="about-section-label">
+                    WHO WE ARE
+                </span>
+
+                <h2 class="about-title">
+                    Building a Better
+                    <span>Blood Donation Network</span>
+                </h2>
+
+                <p class="about-text">
+
+                    LifeServe Blood Bank is a trusted blood bank management
+                    organization dedicated to connecting blood donors with
+                    patients in need. Our mission is to ensure the timely
+                    availability of safe blood while promoting voluntary blood
+                    donation and supporting healthcare services.
+
+                </p>
+
+                <p class="about-text">
+
+                    The system enables efficient management of blood donations,
+                    blood requests, donor information, patient records, and
+                    blood inventory through a secure and user-friendly platform.
+
+                </p>
+
+                <p class="about-text">
+
+                    Inspired by the humanitarian values of the Indian Red Cross
+                    Society, LifeServe aims to strengthen community participation
+                    in blood donation and contribute to building a healthier and
+                    more responsive healthcare system.
+
+                </p>
+
+                <div class="about-features">
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Safe Blood Management
+                    </div>
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Secure Patient Records
+                    </div>
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Fast Blood Requests
+                    </div>
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Reliable Donor Network
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-5">
+
+                <div class="about-image-card">
+
+                    <div class="about-image-bg"></div>
+
+                    <img src="{% static 'images/Company.png' %}"
+                         alt="LifeServe Blood Bank">
+
+                    <div class="about-image-badge">
+
+                        <i class="bi bi-heart-fill"></i>
+
+                        <div>
+                            <strong>Every Drop Matters</strong>
+                            <small>Every donor makes a difference</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MISSION & VISION ================= -->
+
+<section class="about-section about-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="about-section-label">
+                OUR PURPOSE
+            </span>
+
+            <h2 class="about-title">
+                Mission & <span>Vision</span>
+            </h2>
+
+            <p class="about-subtitle">
+                Our commitment towards creating a stronger and more responsive
+                blood donation system.
+            </p>
+
+        </div>
+
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-5">
+
+                <div class="vision-image-card">
+
+                    <img src="{% static 'images/vision.png' %}"
+                         alt="Mission and Vision">
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-7">
+
+                <div class="mission-card">
+
+                    <div class="mission-icon">
+
+                        <i class="bi bi-bullseye"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>Our Mission</h3>
+
+                        <p>
+
+                            Our mission is to make blood donation simple, fast,
+                            and accessible for everyone. We aim to reduce delays
+                            in finding blood donors, support hospitals during
+                            emergencies, and ensure that every patient receives
+                            safe blood when needed.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mission-card">
+
+                    <div class="mission-icon">
+
+                        <i class="bi bi-eye-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>Our Vision</h3>
+
+                        <p>
+
+                            We envision a future where every patient can quickly
+                            access safe blood whenever needed. By using modern
+                            technology, we strive to build a reliable,
+                            transparent, and efficient blood donation network
+                            that saves lives and strengthens healthcare services.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="about-stats-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="about-stat-label">
+                LIFE SERVE IMPACT
+            </span>
+
+            <h2>
+                Making a Difference
+                <span>Every Day</span>
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-6 col-lg-3">
+
+                <div class="about-stat-card">
+
+                    <div class="about-stat-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                    <h3>5000+</h3>
+
+                    <p>Registered Donors</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="about-stat-card">
+
+                    <div class="about-stat-icon">
+                        <i class="bi bi-droplet-fill"></i>
+                    </div>
+
+                    <h3>2500+</h3>
+
+                    <p>Blood Units</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="about-stat-card">
+
+                    <div class="about-stat-icon">
+                        <i class="bi bi-heart-fill"></i>
+                    </div>
+
+                    <h3>3000+</h3>
+
+                    <p>Patients Helped</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="about-stat-card">
+
+                    <div class="about-stat-icon">
+                        <i class="bi bi-hospital-fill"></i>
+                    </div>
+
+                    <h3>100+</h3>
+
+                    <p>Partner Hospitals</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LEADERSHIP ================= -->
+
+<section class="about-section about-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="about-section-label">
+                LEADERSHIP
+            </span>
+
+            <h2 class="about-title">
+                Our <span>Leadership</span>
+            </h2>
+
+            <p class="about-subtitle">
+                Leadership committed to strengthening humanitarian
+                healthcare and blood donation services.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4 justify-content-center">
+
+
+            <!-- Leader 1 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="leader-card">
+
+                    <div class="leader-image">
+
+                        <img src="{% static 'images/Droupadi Murmu.jpg' %}"
+                             alt="Droupadi Murmu">
+
+                    </div>
+
+                    <span class="leader-role">
+                        President
+                    </span>
+
+                    <h3>
+                        Smt. Droupadi Murmu
+                    </h3>
+
+                    <p>
+                        Hon'ble President of India
+                    </p>
+
+                    <small>
+                        President, Indian Red Cross Society
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- Leader 2 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="leader-card">
+
+                    <div class="leader-image">
+
+                        <img src="{% static 'images/jp Nadda.jpg' %}"
+                             alt="Jagat Prakash Nadda">
+
+                    </div>
+
+                    <span class="leader-role">
+                        Health & Family Welfare
+                    </span>
+
+                    <h3>
+                        Shri Jagat Prakash Nadda
+                    </h3>
+
+                    <p>
+                        Hon'ble Union Minister
+                    </p>
+
+                    <small>
+                        Government of India
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- Leader 3 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="leader-card">
+
+                    <div class="leader-image">
+
+                        <img src="{% static 'images/RK Jain.jpg' %}"
+                             alt="R K Jain">
+
+                    </div>
+
+                    <span class="leader-role">
+                        Secretary General
+                    </span>
+
+                    <h3>
+                        Shri R K Jain (IAS) Retd
+                    </h3>
+
+                    <p>
+                        Secretary General
+                    </p>
+
+                    <small>
+                        Indian Red Cross Society
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="about-cta">
+
+    <div class="container">
+
+        <div class="about-cta-box">
+
+            <div>
+
+                <span>
+                    BE A LIFE SAVER
+                </span>
+
+                <h2>
+                    Your One Donation
+                    <strong>Can Save Lives.</strong>
+                </h2>
+
+                <p>
+                    Join LifeServe and become part of a community
+                    committed to helping patients in need.
+                </p>
+
+            </div>
+
+            <div>
+
+                {% if user.is_authenticated %}
+
+                    <a href="{% url 'donate_blood' %}"
+                       class="about-cta-btn">
+
+                        <i class="bi bi-droplet-fill"></i>
+                        Donate Blood
+
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}"
+                       class="about-cta-btn">
+
+                        <i class="bi bi-heart-fill"></i>
+                        Become a Donor
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

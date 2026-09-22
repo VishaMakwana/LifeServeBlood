@@ -1,0 +1,262 @@
+{% extends 'adminpanel/base.html' %}
+{% load static %}
+
+{% block title %}Edit Donor | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/edit-donor.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-donor-page">
+
+    <!-- Page Header -->
+    
+    <div class="ed-page-header">
+        <section class="reports-page-header">
+        <div class="ed-header-left">
+            <div class="ed-title-icon">
+                <i class="bi bi-person-vcard-fill"></i>
+            </div>
+
+            <div>
+                <h1>Edit Donor</h1>
+                <p>Update donor information and contact details</p>
+            </div>
+        </div>
+
+        <div class="ed-secure-badge">
+            <i class="bi bi-shield-check-fill"></i>
+            <span>Secure Admin Area</span>
+        </div>
+      </section>
+    </div>
+    
+
+
+    <!-- Main Card -->
+    <div class="ed-card">
+
+        <!-- Card Header -->
+        <div class="ed-card-header">
+
+            <div class="ed-card-heading">
+                <div class="ed-heading-icon">
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+
+                <div>
+                    <h2>Update Donor Details</h2>
+                    <p>Modify the registered donor information below</p>
+                </div>
+            </div>
+
+            <div class="ed-edit-badge">
+                <i class="bi bi-pencil-fill"></i>
+                Edit Mode
+            </div>
+
+        </div>
+
+
+        <!-- Form -->
+        <div class="ed-card-body">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <!-- Contact & Blood Information -->
+                <div class="ed-section-title">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <span>Donor Information</span>
+                </div>
+
+                <div class="ed-form-grid">
+
+                    <!-- Phone -->
+                    <div class="ed-form-group">
+
+                        <label for="phone">
+                            <i class="bi bi-telephone-fill"></i>
+                            Phone Number
+                        </label>
+
+                        <div class="ed-input-wrap">
+                            <i class="bi bi-telephone"></i>
+
+                            <input
+                                type="text"
+                                id="phone"
+                                name="phone"
+                                value="{{ donor.phone }}"
+                                class="ed-form-control"
+                                placeholder="Enter phone number"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <!-- Blood Group -->
+                    <div class="ed-form-group">
+
+                        <label for="blood_group">
+                            <i class="bi bi-droplet-fill"></i>
+                            Blood Group
+                        </label>
+
+                        <div class="ed-input-wrap blood-input">
+                            <i class="bi bi-droplet-fill"></i>
+
+                            <input
+                                type="text"
+                                id="blood_group"
+                                name="blood_group"
+                                value="{{ donor.blood_group }}"
+                                class="ed-form-control"
+                                placeholder="e.g. A+, B+, O+"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <!-- City -->
+                    <div class="ed-form-group">
+
+                        <label for="city">
+                            <i class="bi bi-buildings-fill"></i>
+                            City
+                        </label>
+
+                        <div class="ed-input-wrap">
+                            <i class="bi bi-geo-alt"></i>
+
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                value="{{ donor.city }}"
+                                class="ed-form-control"
+                                placeholder="Enter city"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <!-- State -->
+                    <div class="ed-form-group">
+
+                        <label for="state">
+                            <i class="bi bi-map-fill"></i>
+                            State
+                        </label>
+
+                        <div class="ed-input-wrap">
+                            <i class="bi bi-map"></i>
+
+                            <input
+                                type="text"
+                                id="state"
+                                name="state"
+                                value="{{ donor.state }}"
+                                class="ed-form-control"
+                                placeholder="Enter state"
+                            >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Address -->
+                <div class="ed-section-title address-title">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <span>Address Details</span>
+                </div>
+
+                <div class="ed-form-group">
+
+                    <label for="address">
+                        <i class="bi bi-house-fill"></i>
+                        Complete Address
+                    </label>
+
+                    <div class="ed-textarea-wrap">
+                        <i class="bi bi-pencil"></i>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            rows="4"
+                            class="ed-form-control ed-textarea"
+                            placeholder="Enter complete address"
+                        >{{ donor.address }}</textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Information Note -->
+                <div class="ed-info-note">
+
+                    <div class="ed-note-icon">
+                        <i class="bi bi-info-circle-fill"></i>
+                    </div>
+
+                    <div>
+                        <strong>Update Information</strong>
+                        <p>
+                            Please make sure the donor information is accurate
+                            before saving the changes.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Actions -->
+                <div class="ed-form-actions">
+
+                    <a href="{% url 'manage_donors' %}" class="ed-cancel-btn">
+                        <i class="bi bi-arrow-left"></i>
+                        Cancel
+                    </a>
+
+                    <button type="submit" class="ed-update-btn">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Update Donor
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div class="ed-page-footer">
+
+        <div>
+            <i class="bi bi-person-check-fill"></i>
+            Donor Profile Management
+        </div>
+
+        <div>
+            <i class="bi bi-shield-lock-fill"></i>
+            Secure & Confidential
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

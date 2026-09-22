@@ -1,0 +1,345 @@
+{% load static %}
+
+<aside class="admin-sidebar">
+
+    <!-- =========================================
+         SIDEBAR BRAND
+    ========================================== -->
+
+    <div class="admin-sidebar-brand">
+
+        <div class="admin-brand-icon">
+            <i class="bi bi-droplet-fill"></i>
+        </div>
+
+        <div class="admin-brand-text">
+            <strong>LifeServe</strong>
+            <span>Blood Bank</span>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ADMIN PROFILE
+    ========================================== -->
+
+    <div class="admin-profile-card">
+
+        <div class="admin-profile-avatar">
+            <i class="bi bi-person-fill"></i>
+
+            <span class="admin-online-dot"></span>
+        </div>
+
+        <div class="admin-profile-info">
+            <strong>Admin</strong>
+            <span>
+                <i class="bi bi-shield-check"></i>
+                Administrator
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         MAIN MENU
+    ========================================== -->
+
+    <div class="admin-menu-heading">
+        <span>MAIN MENU</span>
+    </div>
+
+
+    <ul class="admin-sidebar-menu">
+
+
+        <!-- Dashboard -->
+
+        <li>
+            <a
+                href="{% url 'admin_dashboard' %}"
+                class="admin-sidebar-link {% if request.resolver_match.url_name == 'admin_dashboard' %}active{% endif %}">
+
+                <span class="admin-menu-icon">
+                    <i class="bi bi-speedometer2"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Dashboard
+                </span>
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li>
+
+
+        <!-- Manage Patients -->
+
+        <li>
+            <a
+                href="{% url 'manage_patients' %}"
+                class="admin-sidebar-link {% if request.resolver_match.url_name == 'manage_patients' or request.resolver_match.url_name == 'view_patient' or request.resolver_match.url_name == 'edit_patient' %}active{% endif %}">
+
+                <span class="admin-menu-icon">
+                    <i class="bi bi-people-fill"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Manage Patients
+                </span>
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="{% url 'manage_donors' %}"
+                class="admin-sidebar-link {% if request.resolver_match.url_name == 'manage_donors' or request.resolver_match.url_name == 'view_donor' or request.resolver_match.url_name == 'edit_donor' %}active{% endif %}">
+
+                <span class="admin-menu-icon">
+                    <i class="bi bi-people-fill"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Manage Donors
+                </span>
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li>
+
+
+        <!-- Blood Stock -->
+
+        <li>
+            <a
+                href="{% url 'blood_stock' %}"
+                class="admin-sidebar-link {% if request.resolver_match.url_name == 'blood_stock' or request.resolver_match.url_name == 'add_blood_stock' or request.resolver_match.url_name == 'edit_blood_stock' %}active{% endif %}">
+
+                <span class="admin-menu-icon">
+                    <i class="bi bi-droplet-fill"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Blood Stock
+                </span>
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li>
+
+
+        <!-- Donation Requests -->
+
+        <li>
+            <a
+                href="{% url 'donation_requests' %}"
+                class="admin-sidebar-link {% if request.resolver_match.url_name == 'donation_requests' %}active{% endif %}">
+
+                <span class="admin-menu-icon">
+                    <i class="bi bi-heart-pulse-fill"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Donation Requests
+                </span>
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li>
+
+
+        <!-- Blood Requests -->
+
+        <li>
+            <a
+                href="{% url 'blood_requests' %}"
+                class="admin-sidebar-link {% if request.resolver_match.url_name == 'blood_requests' %}active{% endif %}">
+
+                <span class="admin-menu-icon">
+                    <i class="bi bi-clipboard2-pulse-fill"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Blood Requests
+                </span>
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li>
+
+
+        <!-- Contact Messages -->
+
+        <li>
+            <a
+                href="{% url 'contact_messages' %}"
+                class="admin-sidebar-link {% if request.resolver_match.url_name == 'contact_messages' or request.resolver_match.url_name == 'contact_message_detail' %}active{% endif %}">
+
+                <span class="admin-menu-icon">
+                    <i class="bi bi-envelope-fill"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Contact Messages
+                </span>
+
+                {% if contact_message_count > 0 %}
+                    <span class="admin-notification-badge">
+                        {{ contact_message_count }}
+                    </span>
+                {% endif %}
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li>
+
+
+        <!-- Reports -->
+
+        <li>
+            <a
+                href="{% url 'reports' %}"
+                class="admin-sidebar-link {% if request.resolver_match.url_name == 'reports' or request.resolver_match.url_name == 'print_report' %}active{% endif %}">
+
+                <span class="admin-menu-icon">
+                    <i class="bi bi-bar-chart-fill"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Reports
+                </span>
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li>
+
+
+        <!-- Notifications -->
+
+        <li>
+            <a
+                href="{% url 'admin_notifications' %}"
+                class="admin-sidebar-link {% if request.resolver_match.url_name == 'admin_notifications' %}active{% endif %}">
+
+                <span class="admin-menu-icon notification-menu-icon">
+                    <i class="bi bi-bell-fill"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Notifications
+                </span>
+
+                {% if notification_count > 0 %}
+
+                    <span class="admin-notification-badge">
+                        {{ notification_count }}
+                    </span>
+
+                {% endif %}
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li>
+
+
+        <!-- Settings -->
+
+        <!-- <li>
+            <a
+                href="#"
+                class="admin-sidebar-link">
+
+                <span class="admin-menu-icon">
+                    <i class="bi bi-gear-fill"></i>
+                </span>
+
+                <span class="admin-menu-text">
+                    Settings
+                </span>
+
+                <i class="bi bi-chevron-right admin-menu-arrow"></i>
+
+            </a>
+        </li> -->
+
+    </ul>
+
+
+    <!-- =========================================
+         SIDEBAR BOTTOM
+    ========================================== -->
+
+    <div class="admin-sidebar-bottom">
+
+
+        <!-- Need Help -->
+
+        <div class="admin-help-card">
+
+            <div class="admin-help-icon">
+                <i class="bi bi-headset"></i>
+            </div>
+
+            <div class="admin-help-content">
+
+                <strong>Need Help?</strong>
+
+                <span>
+                    We're here for you
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Divider -->
+
+        <div class="admin-sidebar-divider"></div>
+
+
+        <!-- Logout -->
+
+        <a
+            href="{% url 'logout' %}"
+            class="admin-logout">
+
+            <span class="admin-logout-icon">
+                <i class="bi bi-box-arrow-right"></i>
+            </span>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+
+        <!-- Footer Brand -->
+
+        <div class="admin-sidebar-footer-brand">
+
+            <i class="bi bi-droplet-fill"></i>
+
+            <span>
+                LifeServe Blood Bank
+            </span>
+
+        </div>
+
+    </div>
+
+</aside>

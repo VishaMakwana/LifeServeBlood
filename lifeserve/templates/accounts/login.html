@@ -1,0 +1,280 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}
+Login - LifeServe Blood Bank
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="login-page">
+
+    <div class="login-wrapper">
+
+        <!-- LEFT SIDE -->
+        <div class="login-info">
+
+            <div class="login-info-content">
+
+                <div class="login-logo">
+                    <i class="bi bi-heart-pulse-fill"></i>
+                </div>
+
+                <span class="login-eyebrow">
+                    Welcome to LifeServe
+                </span>
+
+                <h1>
+                    Together, we can
+                    <span>save lives.</span>
+                </h1>
+
+                <p>
+                    Sign in to manage your blood donations, requests,
+                    inventory and healthcare services through LifeServe
+                    Blood Bank.
+                </p>
+
+                <div class="login-features">
+
+                    <div class="login-feature">
+                        <div class="feature-icon">
+                            <i class="bi bi-droplet-half"></i>
+                        </div>
+
+                        <div>
+                            <strong>Blood Donation</strong>
+                            <small>Help someone in need</small>
+                        </div>
+                    </div>
+
+
+                    <div class="login-feature">
+                        <div class="feature-icon">
+                            <i class="bi bi-hospital"></i>
+                        </div>
+
+                        <div>
+                            <strong>Healthcare Network</strong>
+                            <small>Connected with trusted services</small>
+                        </div>
+                    </div>
+
+
+                    <div class="login-feature">
+                        <div class="feature-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+
+                        <div>
+                            <strong>Secure Access</strong>
+                            <small>Your account stays protected</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="login-form-section">
+
+            <div class="login-form-container">
+
+                <div class="login-heading">
+
+                    <div class="mobile-login-icon">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                    </div>
+
+                    <h2>
+                        Welcome back
+                    </h2>
+
+                    <p>
+                        Sign in to continue to your account
+                    </p>
+
+                </div>
+
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+
+                    <!-- USERNAME -->
+                    <div class="login-field">
+
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <div class="login-input">
+
+                            <i class="bi bi-person"></i>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Enter your username"
+                                autocomplete="username"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+                    <div class="login-field">
+
+                        <div class="password-label-row">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                        </div>
+
+                        <div class="login-input">
+
+                            <i class="bi bi-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="togglePassword"
+                                aria-label="Show password">
+
+                                <i class="bi bi-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+                    <button
+                        type="submit"
+                        class="login-button">
+
+                        <span>
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            Login
+                        </span>
+
+                        <i class="bi bi-arrow-right login-arrow"></i>
+
+                    </button>
+
+                </form>
+
+
+                <!-- LINKS -->
+                <div class="login-links">
+
+                    <a
+                        href="{% url 'forgot_password' %}"
+                        class="forgot-link">
+
+                        <i class="bi bi-key"></i>
+                        Forgot Password?
+
+                    </a>
+
+
+                    <div class="register-divider">
+                        <span>Don't have an account?</span>
+
+                        <a href="{% url 'register' %}">
+                            Create Account
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="login-security">
+
+                    <i class="bi bi-shield-lock"></i>
+
+                    <span>
+                        Your login information is securely protected
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("togglePassword");
+
+    if (passwordInput && togglePassword) {
+
+        togglePassword.addEventListener("click", function () {
+
+            const icon = this.querySelector("i");
+
+            if (passwordInput.type === "password") {
+
+                passwordInput.type = "text";
+
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+
+                this.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+            } else {
+
+                passwordInput.type = "password";
+
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+
+                this.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+            }
+
+        });
+
+    }
+
+});
+</script>
+
+{% endblock %}

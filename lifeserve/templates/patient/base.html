@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}Patient Dashboard{% endblock %}
+    </title>
+
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- Patient Base CSS -->
+    <link
+        rel="stylesheet"
+        href="{% static 'css/patient-base.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/language-switcher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skeleton-loading.css' %}">
+
+
+    <!-- Page Specific CSS -->
+    {% block extra_css %}
+    <link rel="stylesheet"href="{% static 'css/patient-sidebar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/patient-dashboard.css' %}">
+        <link rel="stylesheet" href="{% static 'css/patient-profile.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile-content.css' %}">
+        <link rel="stylesheet" href="{% static 'css/blood-request.css' %}">
+         <link rel="stylesheet" href="{% static 'css/request-history.css' %}">
+         <link rel="stylesheet" href="{% static 'css/blood-availability.css' %}">
+         <link rel="stylesheet" href="{% static 'css/patient-notifications.css' %}">
+  
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+    <div class="site-skeleton" aria-hidden="true">
+        <div class="site-skeleton-inner">
+            <div class="site-skeleton-nav"><span></span><span></span><span></span><span></span></div>
+            <div class="site-skeleton-hero"><div></div><div></div><div></div></div>
+            <div class="site-skeleton-toolbar"><span></span><span></span><span></span></div>
+            <div class="site-skeleton-cards"><div></div><div></div><div></div></div>
+        </div>
+    </div>
+
+    <div class="patient-app">
+
+        <!-- Sidebar -->
+        <aside class="patient-sidebar">
+
+            {% include "patient/sidebar.html" %}
+
+        </aside>
+
+
+        <!-- Main Area -->
+        <main class="patient-main">
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="{% static 'js/skeleton-loading.js' %}"></script>
+
+
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+
+</html>

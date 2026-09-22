@@ -1,0 +1,348 @@
+{% extends 'adminpanel/base.html' %}
+
+{% block title %}Blood Requests | LifeServe Admin{% endblock %}
+
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/blood-requests.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="blood-requests-page">
+
+    <!-- Page Header -->
+    
+    <div class="br-page-header">
+         <section class="blood-requests-header">
+
+        <div class="br-header-left">
+            <div class="br-title-icon">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div>
+                <h2>Blood Requests</h2>
+                <p>Manage and review patient blood requests</p>
+            </div>
+        </div>
+           
+
+        <!-- <div class="br-secure-badge"> -->
+         <div class="requests-header-badge">
+            
+                <i class="bi bi-shield-check"></i>
+            <span>Secure Admin Panel</span>
+        </div>
+        <!-- </div> -->
+
+    </div>
+   </section> 
+
+
+    <!-- Quick Stats -->
+    <div class="br-stats-grid">
+
+        <div class="br-stat-card">
+            <div class="br-stat-icon total">
+                <i class="bi bi-clipboard2-pulse-fill"></i>
+            </div>
+
+            <div class="br-stat-info">
+                <span>Total Requests</span>
+                <strong>{{ requests|length }}</strong>
+            </div>
+        </div>
+
+        <div class="br-stat-card">
+            <div class="br-stat-icon pending">
+                <i class="bi bi-hourglass-split"></i>
+            </div>
+
+            <div class="br-stat-info">
+                <span>Request Management</span>
+                <strong>Active</strong>
+            </div>
+        </div>
+
+        <div class="br-stat-card">
+            <div class="br-stat-icon approved">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+
+            <div class="br-stat-info">
+                <span>Approval</span>
+                <strong>Available</strong>
+            </div>
+        </div>
+
+        <div class="br-stat-card">
+            <div class="br-stat-icon rejected">
+                <i class="bi bi-shield-check"></i>
+            </div>
+
+            <div class="br-stat-info">
+                <span>Admin Control</span>
+                <strong>Enabled</strong>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Main Card -->
+    <div class="br-card">
+
+        <div class="br-card-header">
+
+            <div>
+                <h4>
+                    <i class="bi bi-list-ul"></i>
+                    Blood Request List
+                </h4>
+
+                <p>Review patient requests and update their status</p>
+            </div>
+
+            <div class="br-live-status">
+                <span class="br-live-dot"></span>
+                Live Records
+            </div>
+
+        </div>
+
+
+        <div class="br-card-body">
+
+            {% if requests %}
+
+            <div class="br-table-wrapper">
+
+                <table class="br-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Patient</th>
+                            <th>Blood Group</th>
+                            <th>Units</th>
+                            <th>Hospital</th>
+                            <th>Request Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for request in requests %}
+
+                    <tr>
+
+                        <!-- ID -->
+                        <td>
+                            <span class="br-request-id">
+                                #{{ request.id }}
+                            </span>
+                        </td>
+
+
+                        <!-- Patient -->
+                        <td>
+
+                            <div class="br-patient">
+
+                                <div class="br-patient-avatar">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+
+                                <div class="br-patient-info">
+                                    <strong>
+                                        {{ request.patient.user.get_full_name }}
+                                    </strong>
+
+                                    <span>
+                                        Patient
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- Blood Group -->
+                        <td>
+
+                            <div class="br-blood-group">
+                                <i class="bi bi-droplet-fill"></i>
+                                {{ request.blood_group }}
+                            </div>
+
+                        </td>
+
+
+                        <!-- Units -->
+                        <td>
+
+                            <div class="br-units">
+                                <strong>{{ request.units }}</strong>
+                                <span>Units</span>
+                            </div>
+
+                        </td>
+
+
+                        <!-- Hospital -->
+                        <td>
+
+                            <div class="br-hospital">
+
+                                <i class="bi bi-hospital-fill"></i>
+
+                                <span>
+                                    {{ request.hospital }}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- Date -->
+                        <td>
+
+                            <div class="br-date">
+
+                                <i class="bi bi-calendar3"></i>
+
+                                <span>
+                                    {{ request.request_date }}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- Status -->
+                        <td>
+
+                            {% if request.status == "Pending" %}
+
+                                <span class="br-status pending">
+                                    <i class="bi bi-clock-fill"></i>
+                                    Pending
+                                </span>
+
+                            {% elif request.status == "Approved" %}
+
+                                <span class="br-status approved">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Approved
+                                </span>
+
+                            {% else %}
+
+                                <span class="br-status rejected">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                    Rejected
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- Action -->
+                        <td>
+
+                            {% if request.status == "Pending" %}
+
+                            <div class="br-actions">
+
+                                <a href="{% url 'approve_blood_request' request.id %}"
+                                   class="br-action-btn approve"
+                                   title="Approve Request">
+
+                                    <i class="bi bi-check-lg"></i>
+
+                                </a>
+
+                                <a href="{% url 'reject_blood_request' request.id %}"
+                                   class="br-action-btn reject"
+                                   title="Reject Request">
+
+                                    <i class="bi bi-x-lg"></i>
+
+                                </a>
+
+                            </div>
+
+                            {% else %}
+
+                            <span class="br-no-action">
+                                <i class="bi bi-check2-all"></i>
+                                Completed
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% else %}
+
+            <!-- Empty State -->
+            <div class="br-empty-state">
+
+                <div class="br-empty-icon">
+                    <i class="bi bi-droplet"></i>
+                </div>
+
+                <h3>No Blood Requests Found</h3>
+
+                <p>
+                    There are currently no blood requests available
+                    in the system.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="br-card-footer">
+
+            <div class="br-record-info">
+                <i class="bi bi-database-check"></i>
+                <span>
+                    Total Records:
+                    <strong>{{ requests|length }}</strong>
+                </span>
+            </div>
+
+            <div class="br-security-info">
+                <i class="bi bi-lock-fill"></i>
+                Secure &amp; Protected
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

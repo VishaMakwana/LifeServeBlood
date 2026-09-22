@@ -1,0 +1,1625 @@
+/* =====================================================
+   LIFESERVE HOME PAGE
+   Modern Responsive UI
+===================================================== */
+/* =====================================================
+   LIFESERVE NAVBAR
+   Center Menu + Professional Logo
+===================================================== */
+
+.ls-navbar {
+    width: 100%;
+    min-height: 80px;
+
+    background: linear-gradient(
+        135deg,
+        #df2f48 0%,
+        #d92540 100%
+    );
+
+    position: relative;
+    z-index: 1050;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =====================================================
+   NAVBAR INNER
+===================================================== */
+
+.ls-navbar-inner {
+    width: 100%;
+    min-height: 80px;
+
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   LIFESERVE LOGO / BRAND
+===================================================== */
+
+.ls-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: #ffffff !important;
+
+    text-decoration: none;
+
+    flex-shrink: 0;
+
+    position: relative;
+    z-index: 3;
+}
+
+
+/* Logo Circle */
+
+.ls-logo-box {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    padding: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border: 2px solid rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* Logo Hover */
+
+.ls-brand:hover .ls-logo-box {
+    transform: scale(1.05);
+
+    box-shadow:
+        0 6px 17px rgba(0, 0, 0, 0.22);
+}
+
+
+/* Logo Image */
+
+.ls-logo-img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 50%;
+}
+
+
+/* Brand Text */
+
+.ls-brand-text {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    line-height: 1;
+}
+
+
+.ls-brand-text strong {
+    font-size: 21px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+
+    color: #ffffff;
+}
+
+
+.ls-brand-text span {
+    margin-top: 5px;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* =====================================================
+   NAVBAR COLLAPSE
+===================================================== */
+
+.ls-navbar-collapse {
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+/* =====================================================
+   CENTER NAVIGATION
+===================================================== */
+
+.ls-center-menu {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* Navigation Links */
+
+.ls-nav-link {
+    display: inline-flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 42px;
+
+    padding: 9px 15px !important;
+
+    border-radius: 10px;
+
+    color: rgba(255, 255, 255, 0.85) !important;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Menu Icons */
+
+.ls-nav-link i {
+    font-size: 14px;
+
+    opacity: 0.95;
+}
+
+
+/* Hover */
+
+.ls-nav-link:hover {
+    color: #ffffff !important;
+
+    background: rgba(255, 255, 255, 0.13);
+
+    transform: translateY(-1px);
+}
+
+
+/* Active */
+
+.ls-nav-link.active {
+    color: #ffffff !important;
+
+    background: rgba(255, 255, 255, 0.17);
+
+    font-weight: 650;
+
+    box-shadow:
+        inset 0 -2px 0 rgba(255, 255, 255, 0.85);
+}
+
+
+/* =====================================================
+   RIGHT SIDE BUTTONS
+===================================================== */
+
+.ls-right-menu {
+    margin-left: auto;
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    gap: 9px;
+
+    position: relative;
+    z-index: 3;
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.ls-login-btn {
+    min-width: 74px;
+    height: 42px;
+
+    padding: 0 16px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+
+.ls-login-btn:hover {
+    background: #ffffff;
+
+    color: #d92540;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   REGISTER BUTTON
+===================================================== */
+
+.ls-register-btn {
+    min-width: 82px;
+    height: 42px;
+
+    padding: 0 16px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #ffffff;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #d92540;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+
+.ls-register-btn:hover {
+    background: #fff6f7;
+
+    color: #bd1d36;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   AUTHENTICATED USER MENU
+===================================================== */
+
+.ls-user-menu {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px 4px 4px !important;
+    border-radius: 999px;
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ls-user-menu:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.ls-user-menu::after {
+    display: none !important;
+}
+
+.ls-user-menu span {
+    line-height: 1;
+    white-space: nowrap;
+}
+
+
+/* User Profile Image */
+
+.ls-user-avatar {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+    background: #f5f5f5;
+}
+
+
+/* =====================================================
+   USER DROPDOWN
+===================================================== */
+
+.ls-user-dropdown {
+    min-width: 195px;
+
+    margin-top: 8px !important;
+
+    padding: 7px;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+
+.ls-user-dropdown .dropdown-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 10px 11px;
+
+    border-radius: 8px;
+
+    color: #444444;
+
+    font-size: 13px;
+
+    transition: all 0.2s ease;
+}
+
+
+.ls-user-dropdown .dropdown-item i {
+    width: 17px;
+
+    color: #d92540;
+
+    font-size: 14px;
+}
+
+
+.ls-user-dropdown .dropdown-item:hover {
+    background: #fff1f3;
+
+    color: #d92540;
+}
+
+
+.ls-user-dropdown .dropdown-divider {
+    margin: 5px 0;
+}
+
+
+.ls-logout-item,
+.ls-logout-item i {
+    color: #d92540 !important;
+}
+
+
+/* =====================================================
+   MOBILE TOGGLE
+===================================================== */
+
+.ls-mobile-toggle {
+    margin-left: auto;
+
+    padding: 7px 9px !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.55) !important;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    box-shadow: none !important;
+}
+
+
+.ls-mobile-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+.ls-mobile-toggle:focus {
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.15) !important;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 991px) {
+
+    .ls-navbar-inner {
+        min-height: 72px;
+
+        padding: 0 15px;
+    }
+
+
+    .ls-logo-box {
+        width: 49px;
+        height: 49px;
+    }
+
+
+    .ls-brand-text strong {
+        font-size: 19px;
+    }
+
+
+    .ls-navbar-collapse {
+        position: absolute;
+
+        top: 72px;
+
+        left: 0;
+        right: 0;
+
+        padding: 12px 15px 17px;
+
+        background: #d92540;
+
+        box-shadow:
+            0 8px 18px rgba(0, 0, 0, 0.14);
+    }
+
+
+    /* Mobile/Tablet menu normal position */
+
+    .ls-center-menu {
+        position: static;
+
+        transform: none;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 3px;
+    }
+
+
+    .ls-nav-link {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        padding: 10px 13px !important;
+    }
+
+
+    /* Right buttons below menu */
+
+    .ls-right-menu {
+        margin-top: 9px;
+
+        padding-top: 10px;
+
+        border-top:
+            1px solid rgba(255, 255, 255, 0.16);
+
+        justify-content: flex-start;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 575px) {
+
+    .ls-navbar-inner {
+        padding: 0 11px;
+    }
+
+
+    .ls-logo-box {
+        width: 45px;
+        height: 45px;
+    }
+
+
+    .ls-brand-text strong {
+        font-size: 17px;
+    }
+
+
+    .ls-brand-text span {
+        font-size: 7px;
+
+        letter-spacing: 1.1px;
+    }
+
+
+    .ls-navbar-collapse {
+        top: 72px;
+
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+
+
+    .ls-login-btn,
+    .ls-register-btn {
+        height: 38px;
+
+        padding: 0 13px;
+
+        font-size: 12px;
+    }
+
+}
+
+
+:root {
+    --ls-red: #dc3545;
+    --ls-dark-red: #a71930;
+    --ls-light-red: #fff1f3;
+    --ls-dark: #171717;
+    --ls-gray: #6c757d;
+    --ls-light: #f8f9fa;
+    --ls-border: #eeeeee;
+}
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    color: var(--ls-dark);
+    background: #ffffff;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.ls-hero {
+    position: relative;
+    min-height: 720px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
+
+.ls-hero-bg {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(73, 0, 12, .94) 0%,
+            rgba(130, 10, 28, .85) 48%,
+            rgba(130, 10, 28, .35) 100%
+        ),
+        url("../images/donate1.jpg") center/cover no-repeat;
+
+    transform: scale(1.03);
+}
+
+.min-vh-75 {
+    min-height: 720px;
+}
+
+.ls-hero .container {
+    z-index: 2;
+}
+
+.ls-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 17px;
+
+    background: rgba(255, 255, 255, .13);
+    border: 1px solid rgba(255, 255, 255, .25);
+
+    border-radius: 50px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    margin-bottom: 22px;
+
+    backdrop-filter: blur(10px);
+}
+
+.ls-hero-title {
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.02;
+    font-weight: 800;
+    letter-spacing: -2px;
+    max-width: 700px;
+}
+
+.ls-hero-title span {
+    display: block;
+    color: #ffccd2;
+}
+
+.ls-hero-text {
+    max-width: 620px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, .88);
+    margin: 25px 0;
+}
+
+.ls-hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.ls-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 14px 25px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+    transition: .3s ease;
+}
+
+.ls-btn-danger {
+    background: #ffffff;
+    color: var(--ls-red);
+}
+
+.ls-btn-danger:hover {
+    background: #ffe5e8;
+    color: var(--ls-dark-red);
+    transform: translateY(-3px);
+}
+
+.ls-btn-light {
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,.55);
+}
+
+.ls-btn-light:hover {
+    background: #ffffff;
+    color: var(--ls-red);
+    transform: translateY(-3px);
+}
+
+.ls-btn-white {
+    background: #ffffff;
+    color: var(--ls-red);
+}
+
+.ls-btn-white:hover {
+    background: #ffecef;
+    color: var(--ls-dark-red);
+    transform: translateY(-3px);
+}
+
+.ls-trust {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    font-size: 13px;
+}
+
+.ls-trust div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255,255,255,.85);
+}
+
+.ls-trust i {
+    color: #ffd6da;
+}
+
+
+/* =====================================================
+   HERO IMAGE
+===================================================== */
+
+.ls-hero-image-wrapper {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    margin: auto;
+}
+
+.ls-circle {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.25);
+
+    backdrop-filter: blur(4px);
+}
+
+.ls-hero-image {
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    left: 35px;
+    top: 35px;
+
+    border: 8px solid rgba(255,255,255,.75);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
+}
+
+.ls-floating-card {
+    position: absolute;
+
+    background: #ffffff;
+    color: var(--ls-dark);
+
+    padding: 14px 18px;
+
+    border-radius: 14px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-align: left;
+}
+
+.ls-floating-card i {
+    font-size: 27px;
+    color: var(--ls-red);
+}
+
+.ls-floating-card strong {
+    display: block;
+}
+
+.ls-floating-card small {
+    display: block;
+    color: var(--ls-gray);
+}
+
+.ls-card-one {
+    left: -25px;
+    bottom: 50px;
+}
+
+.ls-card-two {
+    right: -20px;
+    top: 45px;
+
+    display: block;
+    text-align: center;
+}
+
+.ls-card-two strong {
+    font-size: 24px;
+    color: var(--ls-red);
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.ls-stats {
+    position: relative;
+    margin-top: -55px;
+    z-index: 10;
+}
+
+.ls-stats-box {
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow: 0 15px 50px rgba(0,0,0,.12);
+
+    padding: 28px 20px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.ls-stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    border-right: 1px solid var(--ls-border);
+}
+
+.ls-stat:last-child {
+    border-right: none;
+}
+
+.ls-stat > i {
+    font-size: 32px;
+    color: var(--ls-red);
+}
+
+.ls-stat h3 {
+    margin: 0;
+    font-weight: 800;
+}
+
+.ls-stat p {
+    margin: 3px 0 0;
+    color: var(--ls-gray);
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.ls-section {
+    padding: 100px 0;
+}
+
+.ls-light-section {
+    background: #fafafa;
+}
+
+.ls-section-label {
+    color: var(--ls-red);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.ls-section-title {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 12px 0 20px;
+}
+
+.ls-section-title span {
+    color: var(--ls-red);
+}
+
+.ls-section-subtitle {
+    max-width: 600px;
+    margin: auto;
+    color: var(--ls-gray);
+    font-size: 17px;
+}
+
+.ls-section-text {
+    color: #5f6368;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.ls-feature-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+
+    margin-top: 25px;
+}
+
+.ls-feature-list div {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-weight: 600;
+}
+
+.ls-feature-list i {
+    color: #198754;
+}
+
+.ls-about-image {
+    position: relative;
+    text-align: center;
+}
+
+.ls-about-image img {
+    width: 100%;
+    max-height: 450px;
+    object-fit: contain;
+}
+
+.ls-about-badge {
+    position: absolute;
+    right: 10px;
+    bottom: 25px;
+
+    background: #ffffff;
+
+    border-radius: 15px;
+
+    padding: 15px 20px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.13);
+
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.ls-about-badge i {
+    color: var(--ls-red);
+    font-size: 30px;
+}
+
+.ls-about-badge strong,
+.ls-about-badge span {
+    display: block;
+}
+
+.ls-about-badge span {
+    color: var(--ls-gray);
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+.ls-service-card {
+    height: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 18px;
+
+    padding: 30px 25px;
+
+    transition: .3s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.ls-service-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    background: var(--ls-light-red);
+
+    border-radius: 50%;
+
+    right: -30px;
+    top: -30px;
+}
+
+.ls-service-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #ffd2d8;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,.10);
+}
+
+.ls-service-icon {
+    width: 65px;
+    height: 65px;
+
+    border-radius: 15px;
+
+    background: var(--ls-light-red);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+}
+
+.ls-service-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.ls-service-card h4 {
+    font-weight: 750;
+}
+
+.ls-service-card p {
+    color: var(--ls-gray);
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.ls-service-card a {
+    color: var(--ls-red);
+    font-weight: 700;
+}
+
+.ls-service-card a i {
+    margin-left: 5px;
+    transition: .2s;
+}
+
+.ls-service-card:hover a i {
+    margin-left: 10px;
+}
+
+
+/* =====================================================
+   BLOOD GROUP
+===================================================== */
+
+.ls-blood-card {
+    background: #ffffff;
+
+    border: 1px solid var(--ls-border);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    transition: .3s;
+}
+
+.ls-blood-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 30px rgba(0,0,0,.08);
+
+    border-color: #ffc5cc;
+}
+
+.ls-blood-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    background: var(--ls-light-red);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ls-blood-icon i {
+    color: var(--ls-red);
+    font-size: 25px;
+}
+
+.ls-blood-card h4 {
+    margin: 0;
+    font-weight: 800;
+}
+
+.ls-blood-card span {
+    font-size: 13px;
+    color: #198754;
+}
+
+.ls-blood-card span i {
+    margin-right: 4px;
+}
+
+
+/* =====================================================
+   COMPANY
+===================================================== */
+
+.ls-company-image {
+    background: #ffffff;
+
+    border-radius: 25px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,.08);
+}
+
+.ls-company-image img {
+    max-height: 400px;
+    object-fit: contain;
+}
+
+
+/* =====================================================
+   MISSION
+===================================================== */
+
+.ls-mission-box {
+    display: flex;
+    gap: 18px;
+
+    padding: 22px;
+
+    margin-top: 18px;
+
+    border-radius: 15px;
+
+    background: #fff;
+
+    border: 1px solid var(--ls-border);
+
+    transition: .3s;
+}
+
+.ls-mission-box:hover {
+    border-color: #ffc6cd;
+    box-shadow: 0 12px 30px rgba(0,0,0,.06);
+}
+
+.ls-mission-icon {
+    min-width: 55px;
+    height: 55px;
+
+    border-radius: 13px;
+
+    background: var(--ls-light-red);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ls-mission-icon i {
+    color: var(--ls-red);
+    font-size: 25px;
+}
+
+.ls-mission-box h4 {
+    margin-bottom: 8px;
+    font-weight: 750;
+}
+
+.ls-mission-box p {
+    margin: 0;
+    color: var(--ls-gray);
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   LEADERSHIP
+===================================================== */
+
+.ls-leader-card {
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    border: 1px solid var(--ls-border);
+
+    height: 100%;
+
+    transition: .3s;
+}
+
+.ls-leader-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow: 0 20px 45px rgba(0,0,0,.10);
+}
+
+.ls-leader-card img {
+    width: 135px;
+    height: 135px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 5px solid #fff0f2;
+
+    margin-bottom: 20px;
+}
+
+.ls-leader-card h4 {
+    font-weight: 750;
+    margin-bottom: 8px;
+}
+
+.ls-leader-card p {
+    color: var(--ls-red);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.ls-leader-card span {
+    color: var(--ls-gray);
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   FINAL CTA
+===================================================== */
+
+.ls-final-cta {
+    padding: 80px 0;
+
+    background:
+        linear-gradient(
+            110deg,
+            #9f1028,
+            #dc3545
+        );
+}
+
+.ls-cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    color: #ffffff;
+}
+
+.ls-cta-box > div:first-child {
+    max-width: 700px;
+}
+
+.ls-cta-box span {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.ls-cta-box h2 {
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 12px 0;
+}
+
+.ls-cta-box h2 strong {
+    display: block;
+    color: #ffd7dc;
+}
+
+.ls-cta-box p {
+    color: rgba(255,255,255,.85);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 991px) {
+
+    .ls-hero {
+        min-height: auto;
+        padding: 90px 0 120px;
+    }
+
+    .min-vh-75 {
+        min-height: auto;
+    }
+
+    .ls-hero-image-wrapper {
+        margin-top: 70px;
+    }
+
+    .ls-stats-box {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+    .ls-stat:nth-child(2) {
+        border-right: none;
+    }
+
+    .ls-section {
+        padding: 75px 0;
+    }
+
+    .ls-cta-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .ls-hero {
+        padding: 70px 0 100px;
+    }
+
+    .ls-hero-title {
+        letter-spacing: -1px;
+    }
+
+    .ls-hero-text {
+        font-size: 16px;
+    }
+
+    .ls-hero-image-wrapper {
+        width: 310px;
+        height: 310px;
+    }
+
+    .ls-circle {
+        width: 310px;
+        height: 310px;
+    }
+
+    .ls-hero-image {
+        width: 255px;
+        height: 255px;
+
+        left: 27px;
+        top: 27px;
+    }
+
+    .ls-card-one {
+        left: -15px;
+        bottom: 15px;
+    }
+
+    .ls-card-two {
+        right: -10px;
+        top: 10px;
+    }
+
+    .ls-stats {
+        margin-top: -35px;
+    }
+
+    .ls-stats-box {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .ls-stat {
+        justify-content: flex-start;
+        border-right: none;
+        border-bottom: 1px solid var(--ls-border);
+        padding: 15px 5px;
+    }
+
+    .ls-stat:last-child {
+        border-bottom: none;
+    }
+
+    .ls-feature-list {
+        grid-template-columns: 1fr;
+    }
+
+    .ls-about-badge {
+        right: 0;
+        bottom: 10px;
+    }
+
+    .ls-section {
+        padding: 60px 0;
+    }
+
+    .ls-trust {
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    .ls-hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .ls-btn {
+        width: 100%;
+    }
+
+    .ls-cta-box {
+        text-align: center;
+        align-items: center;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .ls-hero-title {
+        font-size: 42px;
+    }
+
+    .ls-hero-image-wrapper {
+        width: 270px;
+        height: 270px;
+    }
+
+    .ls-circle {
+        width: 270px;
+        height: 270px;
+    }
+
+    .ls-hero-image {
+        width: 225px;
+        height: 225px;
+
+        left: 22px;
+        top: 22px;
+    }
+
+    .ls-floating-card {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    .ls-card-one {
+        left: -8px;
+    }
+
+    .ls-card-two {
+        right: -8px;
+    }
+
+    .ls-section-title {
+        font-size: 32px;
+    }
+}
+
+/* ================= BLOOD STOCK STATUS ================= */
+
+.stock-available {
+    color: #198754;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.stock-low {
+    color: #f0ad00;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.stock-out {
+    color: #dc3545;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.stock-available i,
+.stock-low i,
+.stock-out i {
+    margin-right: 4px;
+}
